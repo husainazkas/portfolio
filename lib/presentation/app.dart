@@ -12,6 +12,7 @@ class App extends StatelessWidget {
       routeInformationParser: router.routeInformationParser,
       routeInformationProvider: router.routeInformationProvider,
       routerDelegate: router.routerDelegate,
+      title: 'Husain Fadhilah Azka',
       themeMode: ThemeMode.light,
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
