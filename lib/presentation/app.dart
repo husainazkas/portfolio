@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'resources/theme.dart';
 import 'routes/router.dart';
 
 class App extends StatelessWidget {
@@ -11,6 +12,9 @@ class App extends StatelessWidget {
       routeInformationParser: router.routeInformationParser,
       routeInformationProvider: router.routeInformationProvider,
       routerDelegate: router.routerDelegate,
+      themeMode: ThemeMode.light,
+      theme: AppTheme.lightTheme,
+      darkTheme: AppTheme.darkTheme,
     );
   }
 }
