@@ -16,6 +16,7 @@ class AppTheme {
       colorScheme: const ColorScheme.light(
         primary: ColorPalette.primaryColor,
         onPrimary: ColorPalette.onPrimaryColor,
+        primaryContainer: ColorPalette.primaryContainerColor,
         secondary: ColorPalette.secondaryColor,
         onSecondary: Colors.white,
         background: ColorPalette.backgroundColor,
@@ -39,10 +40,11 @@ class AppTheme {
       colorScheme: const ColorScheme.dark(
         primary: ColorPalette.darkPrimaryColor,
         onPrimary: ColorPalette.onPrimaryColor,
+        primaryContainer: ColorPalette.primaryContainerColor,
         secondary: ColorPalette.darkSecondaryColor,
         onSecondary: ColorPalette.onSecondaryColor,
         background: ColorPalette.darkBackgroundColor,
-        onBackground: ColorPalette.onDarkBackgroundColor,
+        onBackground: ColorPalette.onBackgroundColor,
         surface: ColorPalette.surfaceColor,
         onSurface: ColorPalette.onSurfaceColor,
       ),
