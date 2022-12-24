@@ -1,49 +1,77 @@
 import 'package:flutter/material.dart';
 
+import '../../../widgets/cached_image.dart';
+
 class SideBar extends StatelessWidget {
   const SideBar({
     super.key,
     required this.items,
-    this.width,
+    this.width = 304.0,
     this.onTap,
   }) : assert(items.length > 0);
 
   final List<SideBarMenuItem> items;
   final ValueChanged<int>? onTap;
-  final double? width;
+  final double width;
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final photoDimension = width * .6;
     return Drawer(
       width: width,
       backgroundColor: theme.colorScheme.primaryContainer,
-      child: Center(
-        child: TextButtonTheme(
-          data: TextButtonThemeData(
-            style: TextButton.styleFrom(
-              foregroundColor:
-                  theme.brightness == Brightness.dark ? Colors.white : null,
-              fixedSize: Size.fromWidth((width ?? 304) * .8),
-              padding: const EdgeInsets.symmetric(
-                horizontal: 24.0,
-                vertical: 20.0,
-              ),
-            ),
-          ),
+      child: Padding(
+        padding: EdgeInsets.all(width * .1),
+        child: Center(
           child: Column(
             mainAxisSize: MainAxisSize.min,
-            children: List.generate(
-              items.length,
-              (index) => TextButton(
-                onPressed: () => onTap?.call(index),
-                child: Text(
-                  items[index].label,
-                  style: items[index].textStyle,
-                  maxLines: 1,
+            children: [
+              Container(
+                width: photoDimension,
+                height: photoDimension,
+                clipBehavior: Clip.antiAlias,
+                decoration: const BoxDecoration(shape: BoxShape.circle),
+                foregroundDecoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  border: Border.all(color: Colors.white, width: 4.0),
+                ),
+                child: const CachedImage(source: ''),
+              ),
+              const SizedBox(height: 20.0),
+              Text(
+                'Husain Fadhilah Azka Syamlan',
+                style: theme.textTheme.headline6?.copyWith(color: Colors.white),
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 20.0),
+              TextButtonTheme(
+                data: TextButtonThemeData(
+                  style: TextButton.styleFrom(
+                    foregroundColor: Colors.white,
+                    fixedSize: Size.fromWidth(width),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 24.0,
+                      vertical: 20.0,
+                    ),
+                  ),
+                ),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: List.generate(
+                    items.length,
+                    (index) => TextButton(
+                      onPressed: () => onTap?.call(index),
+                      child: Text(
+                        items[index].label,
+                        style: items[index].textStyle,
+                        maxLines: 1,
+                      ),
+                    ),
+                  ),
                 ),
               ),
-            ),
+            ],
           ),
         ),
       ),
