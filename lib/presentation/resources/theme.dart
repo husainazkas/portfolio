@@ -44,7 +44,7 @@ class AppTheme {
         secondary: ColorPalette.darkSecondaryColor,
         onSecondary: ColorPalette.onSecondaryColor,
         background: ColorPalette.darkBackgroundColor,
-        onBackground: ColorPalette.onBackgroundColor,
+        onBackground: ColorPalette.onDarkBackgroundColor,
         surface: ColorPalette.surfaceColor,
         onSurface: ColorPalette.onSurfaceColor,
       ),
