@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'widgets/section.dart';
 import 'widgets/side_bar.dart';
 
 class HomePage extends StatelessWidget {
@@ -38,9 +39,7 @@ class HomePage extends StatelessWidget {
               Expanded(
                 child: Stack(
                   children: [
-                    const Center(
-                      child: Text('Hello World'),
-                    ),
+                    const HomeBody(),
                     if (isMobileSize)
                       Builder(
                         builder: (context) => IconButton(
@@ -55,6 +54,31 @@ class HomePage extends StatelessWidget {
           ),
         );
       },
+    );
+  }
+}
+
+class HomeBody extends StatelessWidget {
+  const HomeBody({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      padding: const EdgeInsets.symmetric(vertical: 38.0),
+      child: Column(
+        children: HomePage._sections
+            .map((e) => Section(
+                  title: e.label,
+                  children: const [
+                    Text('Lorem ipsum dolor sit amet'),
+                    Text('Lorem ipsum dolor sit amet'),
+                    Text('Lorem ipsum dolor sit amet'),
+                    Text('Lorem ipsum dolor sit amet'),
+                    SizedBox(height: 24.0),
+                  ],
+                ))
+            .toList(),
+      ),
     );
   }
 }
