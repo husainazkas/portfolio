@@ -22,6 +22,8 @@ class SideBar extends StatelessWidget {
         child: TextButtonTheme(
           data: TextButtonThemeData(
             style: TextButton.styleFrom(
+              foregroundColor:
+                  theme.brightness == Brightness.dark ? Colors.white : null,
               fixedSize: Size.fromWidth((width ?? 304) * .8),
               padding: const EdgeInsets.symmetric(
                 horizontal: 24.0,
