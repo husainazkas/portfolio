@@ -54,7 +54,7 @@ class SideBar extends StatelessWidget {
                       horizontal: 24.0,
                       vertical: 20.0,
                     ),
-                  ),
+                  ).merge(theme.textButtonTheme.style),
                 ),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,

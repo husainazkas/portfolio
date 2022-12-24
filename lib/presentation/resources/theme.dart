@@ -65,6 +65,7 @@ class AppTheme {
       appBarTheme: _buildAppBarTheme(base),
       iconTheme: _buildIconThemeData(base),
       inputDecorationTheme: _buildInputDecorationTheme(base),
+      textButtonTheme: _buildTextButtonThemeData(base),
       outlinedButtonTheme: _buildOutlinedButtonThemeData(base),
       elevatedButtonTheme: _buildElevatedButtonThemeData(base),
       bottomNavigationBarTheme: _buildBottomNavigationBarThemeData(base),
@@ -148,6 +149,15 @@ class AppTheme {
         disabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
           borderSide: BorderSide(color: theme.dividerColor),
+        ),
+      );
+
+  static TextButtonThemeData _buildTextButtonThemeData(ThemeData theme) =>
+      TextButtonThemeData(
+        style: TextButton.styleFrom(
+          elevation: 0,
+          padding: const EdgeInsets.fromLTRB(12, 8, 12, 8),
+          shape: const StadiumBorder(),
         ),
       );
 
