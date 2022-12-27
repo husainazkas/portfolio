@@ -21,7 +21,7 @@ class SideBar extends StatelessWidget {
     return Drawer(
       width: width,
       backgroundColor: theme.colorScheme.primaryContainer,
-      child: Padding(
+      child: SingleChildScrollView(
         padding: EdgeInsets.all(width * .1),
         child: Center(
           child: Column(
