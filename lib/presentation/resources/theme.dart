@@ -4,6 +4,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'colors.dart';
 
 class AppTheme {
+  const AppTheme._();
+
   static bool isDarkMode(BuildContext context) {
     final brightness = MediaQuery.of(context).platformBrightness;
     return brightness == Brightness.dark;
