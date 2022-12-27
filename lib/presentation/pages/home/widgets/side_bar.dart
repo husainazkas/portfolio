@@ -27,16 +27,12 @@ class SideBar extends StatelessWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Container(
+              CachedImage(
+                source: '',
                 width: photoDimension,
                 height: photoDimension,
-                clipBehavior: Clip.antiAlias,
-                decoration: const BoxDecoration(shape: BoxShape.circle),
-                foregroundDecoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  border: Border.all(color: Colors.white, width: 4.0),
-                ),
-                child: const CachedImage(source: ''),
+                shape: BoxShape.circle,
+                border: Border.all(color: Colors.white, width: 4.0),
               ),
               const SizedBox(height: 20.0),
               Text(

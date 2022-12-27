@@ -11,6 +11,9 @@ class CachedImage extends StatelessWidget {
   final BoxFit fit;
   final double? width;
   final double? height;
+  final Clip clipBehavior;
+  final BoxShape shape;
+  final BoxBorder? border;
 
   const CachedImage({
     Key? key,
@@ -19,12 +22,16 @@ class CachedImage extends StatelessWidget {
     this.errorBuilder,
     this.width,
     this.height,
+    this.clipBehavior = Clip.antiAlias,
+    this.shape = BoxShape.rectangle,
+    this.border,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    Widget child;
     if (source.toLowerCase().startsWith('assets')) {
-      return Image.asset(
+      child = Image.asset(
         source,
         fit: fit,
         width: width,
@@ -35,7 +42,7 @@ class CachedImage extends StatelessWidget {
             errorBuilder?.call(context, e.toString(), s) ?? _errorImage(),
       );
     } else {
-      return CachedNetworkImage(
+      child = CachedNetworkImage(
         imageUrl: source,
         fit: fit,
         width: width,
@@ -47,6 +54,13 @@ class CachedImage extends StatelessWidget {
         errorWidget: errorBuilder ?? (context, e, s) => _errorImage(),
       );
     }
+
+    return Container(
+      clipBehavior: clipBehavior,
+      decoration: BoxDecoration(shape: shape),
+      foregroundDecoration: BoxDecoration(shape: shape, border: border),
+      child: child,
+    );
   }
 
   Widget _errorImage() {
