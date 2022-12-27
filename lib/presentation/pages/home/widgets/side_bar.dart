@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../utils/color_utils.dart';
 import '../../../widgets/cached_image.dart';
 
 class SideBar extends StatelessWidget {
@@ -20,7 +21,7 @@ class SideBar extends StatelessWidget {
     final photoDimension = width * .6;
     return Drawer(
       width: width,
-      backgroundColor: theme.colorScheme.primaryContainer,
+      backgroundColor: sideBarColor(context),
       child: SingleChildScrollView(
         padding: EdgeInsets.all(width * .1),
         child: Center(

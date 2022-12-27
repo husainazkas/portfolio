@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../blocs_cubits/scroll_listener/scroll_listener_cubit.dart';
+import '../../utils/color_utils.dart';
 import 'widgets/section.dart';
 import 'widgets/side_bar.dart';
 
@@ -85,7 +86,7 @@ class _HomePageState extends State<HomePage> {
                             return Container(
                               height: kToolbarHeight,
                               width: double.infinity,
-                              color: theme.colorScheme.primaryContainer
+                              color: sideBarColor(context)
                                   .withOpacity(transformation),
                               child: Align(
                                 alignment: Alignment.centerLeft,
