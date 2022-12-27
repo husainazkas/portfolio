@@ -236,9 +236,16 @@ class AppTheme {
       );
 
   static TextTheme _buildTextTheme(ThemeData base) {
-    return GoogleFonts.interTextTheme().apply(
-      displayColor: base.colorScheme.onBackground,
-      bodyColor: base.colorScheme.onBackground,
-    );
+    final lato = GoogleFonts.lato().copyWith(fontWeight: FontWeight.w600);
+    return GoogleFonts.montserratTextTheme()
+        .copyWith(
+          subtitle1: base.textTheme.subtitle1?.merge(lato) ?? lato,
+          subtitle2: base.textTheme.subtitle2?.merge(lato) ?? lato,
+          caption: base.textTheme.caption?.merge(lato) ?? lato,
+        )
+        .apply(
+          displayColor: base.colorScheme.onBackground,
+          bodyColor: base.colorScheme.onBackground,
+        );
   }
 }

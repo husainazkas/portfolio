@@ -121,18 +121,31 @@ class HomeBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 38.0),
       child: Column(
         children: HomePage._sections
             .map((e) => Section(
                   title: e.label,
-                  children: const [
-                    Text('Lorem ipsum dolor sit amet'),
-                    Text('Lorem ipsum dolor sit amet'),
-                    Text('Lorem ipsum dolor sit amet'),
-                    Text('Lorem ipsum dolor sit amet'),
-                    SizedBox(height: 24.0),
+                  children: [
+                    Text(
+                      'Lorem ipsum dolor sit amet',
+                      style: theme.textTheme.subtitle2,
+                    ),
+                    Text(
+                      'Lorem ipsum dolor sit amet',
+                      style: theme.textTheme.subtitle2,
+                    ),
+                    Text(
+                      'Lorem ipsum dolor sit amet',
+                      style: theme.textTheme.subtitle2,
+                    ),
+                    Text(
+                      'Lorem ipsum dolor sit amet',
+                      style: theme.textTheme.subtitle2,
+                    ),
+                    const SizedBox(height: 24.0),
                   ],
                 ))
             .toList(),
