@@ -29,21 +29,16 @@ class CachedImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Widget child;
-    if (source.toLowerCase().startsWith('assets')) {
-      child = Image.asset(
-        source,
-        fit: fit,
-        width: width,
-        height: height,
-        cacheHeight: height?.toInt(),
-        cacheWidth: width?.toInt(),
-        errorBuilder: (context, e, s) =>
-            errorBuilder?.call(context, e.toString(), s) ?? _errorImage(),
-      );
-    } else {
-      child = CachedNetworkImage(
-        imageUrl: source,
+    final isFromAsset = source.toLowerCase().startsWith('assets');
+
+    return Container(
+      width: width,
+      height: height,
+      clipBehavior: clipBehavior,
+      decoration: BoxDecoration(shape: shape),
+      foregroundDecoration: BoxDecoration(shape: shape, border: border),
+      child: CachedNetworkImage(
+        imageUrl: isFromAsset ? 'assets/$source' : source,
         fit: fit,
         width: width,
         height: height,
@@ -52,16 +47,7 @@ class CachedImage extends StatelessWidget {
         progressIndicatorBuilder: (context, url, progress) =>
             _progressIndicator(progress),
         errorWidget: errorBuilder ?? (context, e, s) => _errorImage(),
-      );
-    }
-
-    return Container(
-      width: width,
-      height: height,
-      clipBehavior: clipBehavior,
-      decoration: BoxDecoration(shape: shape),
-      foregroundDecoration: BoxDecoration(shape: shape, border: border),
-      child: child,
+      ),
     );
   }
 
