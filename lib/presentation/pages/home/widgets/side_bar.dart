@@ -29,7 +29,7 @@ class SideBar extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               CachedImage(
-                source: '',
+                source: 'assets/images/profile_picture.jpg',
                 width: photoDimension,
                 height: photoDimension,
                 shape: BoxShape.circle,
