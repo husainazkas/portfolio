@@ -56,6 +56,8 @@ class CachedImage extends StatelessWidget {
     }
 
     return Container(
+      width: width,
+      height: height,
       clipBehavior: clipBehavior,
       decoration: BoxDecoration(shape: shape),
       foregroundDecoration: BoxDecoration(shape: shape, border: border),
