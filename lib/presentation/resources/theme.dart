@@ -43,7 +43,7 @@ class AppTheme {
         primary: ColorPalette.darkPrimaryColor,
         onPrimary: ColorPalette.onPrimaryColor,
         primaryContainer: ColorPalette.primaryContainerColor,
-        secondary: ColorPalette.darkSecondaryColor,
+        secondary: ColorPalette.secondaryColor,
         onSecondary: ColorPalette.onSecondaryColor,
         background: ColorPalette.darkBackgroundColor,
         onBackground: ColorPalette.onDarkBackgroundColor,
@@ -238,7 +238,7 @@ class AppTheme {
       );
 
   static TextTheme _buildTextTheme(ThemeData base) {
-    final lato = GoogleFonts.lato().copyWith(fontWeight: FontWeight.w600);
+    final lato = GoogleFonts.lato().copyWith(fontWeight: FontWeight.w700);
     return GoogleFonts.montserratTextTheme()
         .copyWith(
           subtitle1: base.textTheme.subtitle1?.merge(lato) ?? lato,
