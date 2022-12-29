@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../blocs_cubits/scroll_listener/scroll_listener_cubit.dart';
+import '../../resources/colors.dart';
 import '../../utils/color_utils.dart';
 import 'widgets/section.dart';
 import 'widgets/side_bar.dart';
@@ -10,7 +11,6 @@ class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
   static const _sections = <SideBarMenuItem>[
-    SideBarMenuItem(label: 'About'),
     SideBarMenuItem(label: 'Skills'),
     SideBarMenuItem(label: 'Projects'),
     SideBarMenuItem(label: 'Work Experience'),
@@ -74,7 +74,7 @@ class _HomePageState extends State<HomePage> {
                       controller: _controller,
                       child: Column(
                         children: [
-                          if (isMobileSize) const HomeHeader(),
+                          HomeHeader(isMobileSize),
                           HomeBody(isMobileSize, key: _bodyKey),
                         ],
                       ),
@@ -135,21 +135,44 @@ class _HomePageState extends State<HomePage> {
 }
 
 class HomeHeader extends StatelessWidget {
-  const HomeHeader({super.key});
+  const HomeHeader(this.isMobileSize, {super.key});
+
+  final bool isMobileSize;
+
+  double _rightPadding(double parent) {
+    if (parent >= 1024) return .25 * parent;
+    if (parent >= 700) return .1 * parent;
+    return 36.0;
+  }
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final width = MediaQuery.of(context).size.width;
+
     return Container(
-      color: sideBarColor(context),
-      padding: const EdgeInsets.fromLTRB(40.0, 20.0, 20.0, 20.0),
+      width: double.infinity,
+      color: isMobileSize ? sideBarColor(context) : headerColor(context),
+      padding: isMobileSize
+          ? const EdgeInsets.fromLTRB(40.0, 20.0, 20.0, 20.0)
+          : EdgeInsets.fromLTRB(36.0, 20.0, _rightPadding(width), 20.0),
       child: DefaultTextStyle.merge(
-        style: TextStyle(color: Theme.of(context).colorScheme.onSurface),
+        style: TextStyle(color: theme.colorScheme.onSurface),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
-            Text('Hello \u{01f44b}'),
-            SizedBox(height: 12.0),
-            Text.rich(
+          children: [
+            Text(
+              'Hello \u{01f44b}',
+              style: isMobileSize
+                  ? null
+                  : theme.textTheme.headline4?.copyWith(
+                      fontFamily: theme.textTheme.subtitle2?.fontFamily,
+                      fontWeight: FontWeight.w700,
+                      color: ColorPalette.darkPrimaryColor,
+                    ),
+            ),
+            SizedBox(height: isMobileSize ? 12.0 : 20.0),
+            const Text.rich(
               TextSpan(
                 children: [
                   TextSpan(
@@ -157,12 +180,12 @@ class HomeHeader extends StatelessWidget {
                         'I\'m Husain Fadhilah Azka Syamlan, usually called "Husain". I\'m currently working as a ',
                   ),
                   TextSpan(
-                    text: 'Mobile Apps Developer at Startup Company',
+                    text: 'Mobile Apps Developer',
                     style: TextStyle(
                       fontWeight: FontWeight.w700,
                     ),
                   ),
-                  TextSpan(text: ' specialized in '),
+                  TextSpan(text: ' at Startup Company specialized in '),
                   TextSpan(
                     text: 'Flutter Applications',
                     style: TextStyle(
@@ -173,8 +196,8 @@ class HomeHeader extends StatelessWidget {
                 ],
               ),
             ),
-            SizedBox(height: 12.0),
-            Text.rich(
+            SizedBox(height: isMobileSize ? 12.0 : 20.0),
+            const Text.rich(
               TextSpan(
                 children: [
                   TextSpan(text: 'I\'m a '),
@@ -205,7 +228,6 @@ class HomeBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
     return Padding(
       padding: EdgeInsets.only(
         top: isMobileSize ? 20.0 : 38.0,
@@ -213,27 +235,14 @@ class HomeBody extends StatelessWidget {
       ),
       child: Column(
         children: HomePage._sections
-            .sublist(isMobileSize ? 1 : 0)
             .map((e) => Section(
                   title: e.label,
-                  children: [
-                    Text(
-                      'Lorem ipsum dolor sit amet',
-                      style: theme.textTheme.subtitle2,
-                    ),
-                    Text(
-                      'Lorem ipsum dolor sit amet',
-                      style: theme.textTheme.subtitle2,
-                    ),
-                    Text(
-                      'Lorem ipsum dolor sit amet',
-                      style: theme.textTheme.subtitle2,
-                    ),
-                    Text(
-                      'Lorem ipsum dolor sit amet',
-                      style: theme.textTheme.subtitle2,
-                    ),
-                    const SizedBox(height: 24.0),
+                  children: const [
+                    Text('Lorem ipsum dolor sit amet'),
+                    Text('Lorem ipsum dolor sit amet'),
+                    Text('Lorem ipsum dolor sit amet'),
+                    Text('Lorem ipsum dolor sit amet'),
+                    SizedBox(height: 24.0),
                   ],
                 ))
             .toList(),
