@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'blocs_cubits/theme_mode/theme_mode_cubit.dart';
 import 'resources/theme.dart';
 import 'routes/router.dart';
 
@@ -8,14 +10,19 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      routeInformationParser: router.routeInformationParser,
-      routeInformationProvider: router.routeInformationProvider,
-      routerDelegate: router.routerDelegate,
-      title: 'Husain Fadhilah Azka',
-      themeMode: ThemeMode.light,
-      theme: AppTheme.lightTheme,
-      darkTheme: AppTheme.darkTheme,
+    return BlocProvider<ThemeModeCubit>(
+      create: (context) => ThemeModeCubit(),
+      child: BlocBuilder<ThemeModeCubit, ThemeModeState>(
+        builder: (context, state) => MaterialApp.router(
+          routeInformationParser: router.routeInformationParser,
+          routeInformationProvider: router.routeInformationProvider,
+          routerDelegate: router.routerDelegate,
+          title: 'Husain Fadhilah Azka',
+          themeMode: state.themeMode,
+          theme: AppTheme.lightTheme,
+          darkTheme: AppTheme.darkTheme,
+        ),
+      ),
     );
   }
 }
