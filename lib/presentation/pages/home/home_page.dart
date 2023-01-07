@@ -4,8 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../blocs_cubits/scroll_listener/scroll_listener_cubit.dart';
 import '../../resources/colors.dart';
 import '../../utils/color_utils.dart';
-import 'widgets/section.dart';
 import 'widgets/side_bar.dart';
+import 'widgets/skills_section.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -234,18 +234,9 @@ class HomeBody extends StatelessWidget {
         bottom: 38.0,
       ),
       child: Column(
-        children: HomePage._sections
-            .map((e) => Section(
-                  title: e.label,
-                  children: const [
-                    Text('Lorem ipsum dolor sit amet'),
-                    Text('Lorem ipsum dolor sit amet'),
-                    Text('Lorem ipsum dolor sit amet'),
-                    Text('Lorem ipsum dolor sit amet'),
-                    SizedBox(height: 24.0),
-                  ],
-                ))
-            .toList(),
+        children: [
+          SkillsSection(HomePage._sections.first.label),
+        ],
       ),
     );
   }
