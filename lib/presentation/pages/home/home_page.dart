@@ -165,8 +165,8 @@ class HomeHeader extends StatelessWidget {
               'Hello \u{01f44b}',
               style: isMobileSize
                   ? null
-                  : theme.textTheme.headline4?.copyWith(
-                      fontFamily: theme.textTheme.subtitle2?.fontFamily,
+                  : theme.textTheme.headlineMedium?.copyWith(
+                      fontFamily: theme.textTheme.titleSmall?.fontFamily,
                       fontWeight: FontWeight.w700,
                       color: ColorPalette.darkPrimaryColor,
                     ),

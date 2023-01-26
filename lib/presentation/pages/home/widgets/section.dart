@@ -23,7 +23,7 @@ class Section extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(left: 16.0),
               child: DefaultTextStyle.merge(
-                style: Theme.of(context).textTheme.subtitle2,
+                style: Theme.of(context).textTheme.titleSmall,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: children!,

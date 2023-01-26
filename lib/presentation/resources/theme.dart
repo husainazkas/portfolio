@@ -30,7 +30,6 @@ class AppTheme {
       scaffoldBackgroundColor: ColorPalette.backgroundColor,
       dividerColor: ColorPalette.borderColor,
       unselectedWidgetColor: ColorPalette.disabledColor,
-      toggleableActiveColor: ColorPalette.secondaryColor,
       shadowColor: ColorPalette.borderColor,
       disabledColor: ColorPalette.disabledColor,
     );
@@ -54,7 +53,6 @@ class AppTheme {
       scaffoldBackgroundColor: ColorPalette.darkBackgroundColor,
       dividerColor: ColorPalette.borderColor,
       unselectedWidgetColor: ColorPalette.disabledColor,
-      toggleableActiveColor: ColorPalette.secondaryColor,
     );
     return _buildThemeData(base);
   }
@@ -77,10 +75,27 @@ class AppTheme {
       scaffoldBackgroundColor: base.scaffoldBackgroundColor,
       dividerColor: base.dividerColor,
       unselectedWidgetColor: base.unselectedWidgetColor,
-      toggleableActiveColor: base.toggleableActiveColor,
       shadowColor: base.shadowColor,
       chipTheme: _buildChipTheme(base),
+      switchTheme: SwitchThemeData(
+        thumbColor: _toggleableActiveColor(),
+        trackColor: _toggleableActiveColor(),
+      ),
+      radioTheme: RadioThemeData(fillColor: _toggleableActiveColor()),
     );
+  }
+
+  static MaterialStateProperty<Color?> _toggleableActiveColor() {
+    return MaterialStateProperty.resolveWith<Color?>(
+        (Set<MaterialState> states) {
+      if (states.contains(MaterialState.disabled)) {
+        return null;
+      }
+      if (states.contains(MaterialState.selected)) {
+        return ColorPalette.secondaryColor;
+      }
+      return null;
+    });
   }
 
   static ChipThemeData _buildChipTheme(ThemeData base) {
@@ -241,9 +256,9 @@ class AppTheme {
     final lato = GoogleFonts.lato().copyWith(fontWeight: FontWeight.w700);
     return GoogleFonts.montserratTextTheme()
         .copyWith(
-          subtitle1: base.textTheme.subtitle1?.merge(lato) ?? lato,
-          subtitle2: base.textTheme.subtitle2?.merge(lato) ?? lato,
-          caption: base.textTheme.caption?.merge(lato) ?? lato,
+          titleMedium: base.textTheme.titleMedium?.merge(lato) ?? lato,
+          titleSmall: base.textTheme.titleSmall?.merge(lato) ?? lato,
+          bodySmall: base.textTheme.bodySmall?.merge(lato) ?? lato,
         )
         .apply(
           displayColor: base.colorScheme.onBackground,

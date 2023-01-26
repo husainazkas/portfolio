@@ -43,7 +43,7 @@ class SideBar extends StatelessWidget {
                     const SizedBox(height: 20.0),
                     Text(
                       'Husain Fadhilah Azka Syamlan',
-                      style: theme.textTheme.headline6
+                      style: theme.textTheme.titleLarge
                           ?.copyWith(color: Colors.white),
                       textAlign: TextAlign.center,
                     ),
