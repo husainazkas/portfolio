@@ -26,7 +26,6 @@ class SkillsSection extends StatelessWidget {
       children: [
         AlignedGridView.count(
           physics: const NeverScrollableScrollPhysics(),
-          padding: const EdgeInsets.only(right: 36.0),
           crossAxisCount: 2,
           crossAxisSpacing: 36.0,
           mainAxisSpacing: 16.0,

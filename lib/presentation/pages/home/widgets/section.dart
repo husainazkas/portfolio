@@ -21,7 +21,7 @@ class Section extends StatelessWidget {
           if (children != null) ...[
             const SizedBox(height: 12.0),
             Padding(
-              padding: const EdgeInsets.only(left: 16.0),
+              padding: const EdgeInsets.only(left: 16.0, right: 36.0),
               child: DefaultTextStyle.merge(
                 style: Theme.of(context).textTheme.titleSmall,
                 child: Column(
