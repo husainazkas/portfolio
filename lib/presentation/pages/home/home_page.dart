@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../blocs_cubits/scroll_listener/scroll_listener_cubit.dart';
 import '../../resources/colors.dart';
 import '../../utils/color_utils.dart';
+import 'widgets/projects_section.dart';
 import 'widgets/side_bar.dart';
 import 'widgets/skills_section.dart';
 
@@ -235,7 +236,10 @@ class HomeBody extends StatelessWidget {
       ),
       child: Column(
         children: [
-          SkillsSection(HomePage._sections.first.label),
+          SkillsSection(HomePage._sections[0].label),
+          const SizedBox(height: 24.0),
+          ProjectSection(HomePage._sections[1].label),
+          const SizedBox(height: 24.0),
         ],
       ),
     );

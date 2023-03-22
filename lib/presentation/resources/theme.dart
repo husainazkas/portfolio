@@ -100,20 +100,30 @@ class AppTheme {
 
   static ChipThemeData _buildChipTheme(ThemeData base) {
     return ChipThemeData(
-      backgroundColor: base.colorScheme.background,
+      backgroundColor: base.brightness == Brightness.dark
+          ? base.colorScheme.background
+          : base.colorScheme.surface,
       disabledColor: base.disabledColor,
       selectedColor: base.colorScheme.secondary,
       secondarySelectedColor: base.colorScheme.secondary,
       labelPadding: const EdgeInsets.symmetric(horizontal: 8, vertical: 0),
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 0),
-      shape: StadiumBorder(side: BorderSide(color: base.colorScheme.secondary)),
+      shape: StadiumBorder(
+        side: BorderSide(
+          color: base.brightness == Brightness.dark
+              ? base.colorScheme.secondary
+              : Colors.white,
+        ),
+      ),
       secondaryLabelStyle: TextStyle(
         color: base.colorScheme.onSecondary,
         fontWeight: FontWeight.w600,
       ),
       labelStyle: TextStyle(
         fontSize: 10,
-        color: base.colorScheme.secondary,
+        color: base.brightness == Brightness.dark
+            ? base.colorScheme.secondary
+            : base.colorScheme.onSecondary,
         fontWeight: FontWeight.w600,
       ),
       brightness: base.brightness,
