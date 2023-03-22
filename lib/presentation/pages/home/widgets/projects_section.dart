@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../injector.dart';
+import '../../../blocs_cubits/projects_section/projects_section_bloc.dart';
 import '../../../utils/color_utils.dart';
 import '../../../widgets/cached_image.dart';
 import '../../../widgets/expandable_group.dart';
@@ -12,74 +15,60 @@ class ProjectSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Section(
-      title: title,
-      children: [
-        Container(
-          padding: const EdgeInsets.all(8.0),
-          decoration: BoxDecoration(
-            color: sideBarColor(context),
-            borderRadius: const BorderRadius.all(Radius.circular(12.0)),
-          ),
-          child: ClipRRect(
-            borderRadius: const BorderRadius.all(Radius.circular(12.0)),
-            child: ExpandableGroup(
-              items: [
-                ExpandableItem(
-                  headerBuilder: (isExpanded) => const Text('data213'),
-                  content: Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 8.0),
-                    child: _ProjectItemCard(
-                      imageUrl:
-                          'https://d1csarkz8obe9u.cloudfront.net/posterpreviews/orange-and-black-design-template-logo-icon-d225e1dce23b44a25e755e220779b9ca_screen.jpg?ts=1596483534',
-                      description:
-                          'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Incidunt, iste. Doloremque, libero nobis ipsam neque obcaecati reprehenderit porro incidunt, magnam nemo unde, omnis cupiditate dolores? Voluptatibus, ex! Ut, neque nihil?',
-                      onTap: () {},
-                      tags: const ['Kotlin', 'Java', 'Android Studio'],
+    return BlocProvider<ProjectsSectionBloc>(
+      create: (context) => sl()..add(const ProjectsSectionEvent.fetched()),
+      child: Section(
+        title: title,
+        children: [
+          BlocBuilder<ProjectsSectionBloc, ProjectsSectionState>(
+            builder: (context, state) => state.maybeWhen(
+              loading: () => const Center(
+                child: SizedBox.square(
+                  dimension: 75.0,
+                  child: CircularProgressIndicator.adaptive(),
+                ),
+              ),
+              failure: (failure) => Center(
+                child: Text(failure.message ?? 'Unknown Error'),
+              ),
+              success: (projects) {
+                if (projects.isEmpty) return const SizedBox();
+
+                return Container(
+                  padding: const EdgeInsets.all(8.0),
+                  decoration: BoxDecoration(
+                    color: sideBarColor(context),
+                    borderRadius: const BorderRadius.all(Radius.circular(12.0)),
+                  ),
+                  child: ClipRRect(
+                    borderRadius: const BorderRadius.all(Radius.circular(12.0)),
+                    child: ExpandableGroup(
+                      items: projects
+                          .map(
+                            (e) => ExpandableItem(
+                              headerBuilder: (isExpanded) => Text(e.title),
+                              content: Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 8.0),
+                                child: _ProjectItemCard(
+                                  imageUrl: e.thumb ?? '',
+                                  description: e.description,
+                                  tags: e.tags,
+                                  onTap: () {},
+                                ),
+                              ),
+                            ),
+                          )
+                          .toList(),
                     ),
                   ),
-                ),
-                ExpandableItem(
-                  headerBuilder: (isExpanded) => const Text('data waokaw'),
-                  content: Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 8.0),
-                    child: Column(
-                      children: const [
-                        Text('data'),
-                        Text('anjay'),
-                      ],
-                    ),
-                  ),
-                ),
-                ExpandableItem(
-                  headerBuilder: (isExpanded) => const Text('data'),
-                  content: Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 8.0),
-                    child: Column(
-                      children: const [
-                        Text('data'),
-                        Text('anjay'),
-                      ],
-                    ),
-                  ),
-                ),
-                ExpandableItem(
-                  headerBuilder: (isExpanded) => const Text('data hehe'),
-                  content: Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 8.0),
-                    child: Column(
-                      children: const [
-                        Text('data'),
-                        Text('anjay'),
-                      ],
-                    ),
-                  ),
-                ),
-              ],
+                );
+              },
+              orElse: () => const SizedBox(),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

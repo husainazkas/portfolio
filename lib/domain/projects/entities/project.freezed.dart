@@ -14,10 +14,18 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
+Project _$ProjectFromJson(Map<String, dynamic> json) {
+  return _Project.fromJson(json);
+}
+
 /// @nodoc
 mixin _$Project {
+  @JsonKey(name: 'image_url')
   String? get thumb => throw _privateConstructorUsedError;
+  String get title => throw _privateConstructorUsedError;
+  @JsonKey(name: 'body')
   String get description => throw _privateConstructorUsedError;
+  @JsonKey(name: 'href')
   String? get url => throw _privateConstructorUsedError;
   List<String> get tags => throw _privateConstructorUsedError;
 
@@ -31,7 +39,11 @@ abstract class $ProjectCopyWith<$Res> {
       _$ProjectCopyWithImpl<$Res, Project>;
   @useResult
   $Res call(
-      {String? thumb, String description, String? url, List<String> tags});
+      {@JsonKey(name: 'image_url') String? thumb,
+      String title,
+      @JsonKey(name: 'body') String description,
+      @JsonKey(name: 'href') String? url,
+      List<String> tags});
 }
 
 /// @nodoc
@@ -48,6 +60,7 @@ class _$ProjectCopyWithImpl<$Res, $Val extends Project>
   @override
   $Res call({
     Object? thumb = freezed,
+    Object? title = null,
     Object? description = null,
     Object? url = freezed,
     Object? tags = null,
@@ -57,6 +70,10 @@ class _$ProjectCopyWithImpl<$Res, $Val extends Project>
           ? _value.thumb
           : thumb // ignore: cast_nullable_to_non_nullable
               as String?,
+      title: null == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String,
       description: null == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
@@ -81,7 +98,11 @@ abstract class _$$_ProjectCopyWith<$Res> implements $ProjectCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {String? thumb, String description, String? url, List<String> tags});
+      {@JsonKey(name: 'image_url') String? thumb,
+      String title,
+      @JsonKey(name: 'body') String description,
+      @JsonKey(name: 'href') String? url,
+      List<String> tags});
 }
 
 /// @nodoc
@@ -95,6 +116,7 @@ class __$$_ProjectCopyWithImpl<$Res>
   @override
   $Res call({
     Object? thumb = freezed,
+    Object? title = null,
     Object? description = null,
     Object? url = freezed,
     Object? tags = null,
@@ -104,6 +126,10 @@ class __$$_ProjectCopyWithImpl<$Res>
           ? _value.thumb
           : thumb // ignore: cast_nullable_to_non_nullable
               as String?,
+      title: null == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String,
       description: null == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
@@ -121,20 +147,29 @@ class __$$_ProjectCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable(createToJson: false)
 class _$_Project implements _Project {
   const _$_Project(
-      {required this.thumb,
-      required this.description,
-      required this.url,
+      {@JsonKey(name: 'image_url') required this.thumb,
+      required this.title,
+      @JsonKey(name: 'body') required this.description,
+      @JsonKey(name: 'href') required this.url,
       required final List<String> tags})
       : _tags = tags;
 
+  factory _$_Project.fromJson(Map<String, dynamic> json) =>
+      _$$_ProjectFromJson(json);
+
   @override
+  @JsonKey(name: 'image_url')
   final String? thumb;
   @override
+  final String title;
+  @override
+  @JsonKey(name: 'body')
   final String description;
   @override
+  @JsonKey(name: 'href')
   final String? url;
   final List<String> _tags;
   @override
@@ -146,7 +181,7 @@ class _$_Project implements _Project {
 
   @override
   String toString() {
-    return 'Project(thumb: $thumb, description: $description, url: $url, tags: $tags)';
+    return 'Project(thumb: $thumb, title: $title, description: $description, url: $url, tags: $tags)';
   }
 
   @override
@@ -155,14 +190,16 @@ class _$_Project implements _Project {
         (other.runtimeType == runtimeType &&
             other is _$_Project &&
             (identical(other.thumb, thumb) || other.thumb == thumb) &&
+            (identical(other.title, title) || other.title == title) &&
             (identical(other.description, description) ||
                 other.description == description) &&
             (identical(other.url, url) || other.url == url) &&
             const DeepCollectionEquality().equals(other._tags, _tags));
   }
 
+  @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, thumb, description, url,
+  int get hashCode => Object.hash(runtimeType, thumb, title, description, url,
       const DeepCollectionEquality().hash(_tags));
 
   @JsonKey(ignore: true)
@@ -174,16 +211,24 @@ class _$_Project implements _Project {
 
 abstract class _Project implements Project {
   const factory _Project(
-      {required final String? thumb,
-      required final String description,
-      required final String? url,
+      {@JsonKey(name: 'image_url') required final String? thumb,
+      required final String title,
+      @JsonKey(name: 'body') required final String description,
+      @JsonKey(name: 'href') required final String? url,
       required final List<String> tags}) = _$_Project;
 
+  factory _Project.fromJson(Map<String, dynamic> json) = _$_Project.fromJson;
+
   @override
+  @JsonKey(name: 'image_url')
   String? get thumb;
   @override
+  String get title;
+  @override
+  @JsonKey(name: 'body')
   String get description;
   @override
+  @JsonKey(name: 'href')
   String? get url;
   @override
   List<String> get tags;
