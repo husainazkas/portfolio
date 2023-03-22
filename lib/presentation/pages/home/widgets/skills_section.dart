@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
+import '../../../../domain/skills/entities/skill.dart';
+import '../../../../injector.dart';
+import '../../../blocs_cubits/skills_section/skills_section_bloc.dart';
 import 'section.dart';
 
 class SkillsSection extends StatelessWidget {
@@ -8,41 +12,60 @@ class SkillsSection extends StatelessWidget {
 
   final String title;
 
-  final List<Skill> _skills = const [
-    Skill(title: 'Flutter', score: .75),
-    Skill(title: 'C++', score: .05),
-    Skill(title: 'Android Native (Kotlin)', score: .25),
-    Skill(title: 'HTML, CSS', score: .2),
-    Skill(title: 'Android Native (Java)', score: .25),
-    Skill(title: 'NodeJS, JavaScript, TypeScript', score: .15),
-    Skill(title: 'IOS Native (Swift)', score: .0),
-    Skill(title: 'Version Control (GIT)', score: .65),
-  ];
-
   @override
   Widget build(BuildContext context) {
-    return Section(
-      title: title,
-      children: [
-        AlignedGridView.count(
-          physics: const NeverScrollableScrollPhysics(),
-          crossAxisCount: 2,
-          crossAxisSpacing: 36.0,
-          mainAxisSpacing: 16.0,
-          itemCount: _skills.length,
-          shrinkWrap: true,
-          itemBuilder: (context, index) => _SkillBar(_skills[index]),
-        ),
-        const SizedBox(height: 16.0),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: const [
-            Text('0-25% : Beginner'),
-            Text('26-75% : Intermediate'),
-            Text('76-100% : Advanced/Expert'),
-          ],
-        )
-      ],
+    return BlocProvider<SkillsSectionBloc>(
+      create: (context) => sl()..add(const SkillsSectionEvent.fetched()),
+      child: Section(
+        title: title,
+        children: [
+          BlocBuilder<SkillsSectionBloc, SkillsSectionState>(
+            builder: (context, state) => state.maybeWhen(
+              loading: () => const Center(
+                child: SizedBox.square(
+                  dimension: 75.0,
+                  child: CircularProgressIndicator.adaptive(),
+                ),
+              ),
+              failure: (failure) => Center(
+                child: Text(failure.message ?? 'Unknown Error'),
+              ),
+              success: (data) => AlignedGridView.count(
+                physics: const NeverScrollableScrollPhysics(),
+                crossAxisCount: 2,
+                crossAxisSpacing: 36.0,
+                mainAxisSpacing: 16.0,
+                itemCount: data.skills.length,
+                shrinkWrap: true,
+                itemBuilder: (context, index) => _SkillBar(data.skills[index]),
+              ),
+              orElse: () => const SizedBox(),
+            ),
+          ),
+          const SizedBox(height: 16.0),
+          BlocBuilder<SkillsSectionBloc, SkillsSectionState>(
+            builder: (context, state) => state.maybeWhen(
+              success: (data) {
+                final List<Widget> children = [];
+                for (int i = 0; i < data.thresholds.length; i++) {
+                  final curr = data.thresholds[i];
+                  final next = (i + 1) == data.thresholds.length
+                      ? null
+                      : data.thresholds[i + 1];
+                  children.add(Text(
+                    '${curr.value * 100}-${next != null ? next.value * 100 - 1 : '100'}% : ${curr.label}',
+                  ));
+                }
+                return Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: children,
+                );
+              },
+              orElse: () => const SizedBox(),
+            ),
+          )
+        ],
+      ),
     );
   }
 }
@@ -84,11 +107,4 @@ class _SkillBar extends StatelessWidget {
       ],
     );
   }
-}
-
-class Skill {
-  final String title;
-  final double score;
-
-  const Skill({required this.title, required this.score});
 }
