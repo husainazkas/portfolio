@@ -44,21 +44,19 @@ class ProjectSection extends StatelessWidget {
                     borderRadius: const BorderRadius.all(Radius.circular(12.0)),
                     child: ExpandableGroup(
                       items: projects
-                          .map(
-                            (e) => ExpandableItem(
-                              headerBuilder: (isExpanded) => Text(e.title),
-                              content: Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(vertical: 8.0),
-                                child: _ProjectItemCard(
-                                  imageUrl: e.thumb ?? '',
-                                  description: e.description,
-                                  tags: e.tags,
-                                  onTap: () {},
+                          .map((e) => ExpandableItem(
+                                headerBuilder: (isExpanded) => Text(e.title),
+                                content: Padding(
+                                  padding:
+                                      const EdgeInsets.symmetric(vertical: 8.0),
+                                  child: _ProjectItemCard(
+                                    imageUrl: e.thumb ?? '',
+                                    description: e.description,
+                                    tags: e.tags,
+                                    onTap: () {},
+                                  ),
                                 ),
-                              ),
-                            ),
-                          )
+                              ))
                           .toList(),
                     ),
                   ),
