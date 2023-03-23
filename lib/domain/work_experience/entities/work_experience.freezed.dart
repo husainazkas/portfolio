@@ -27,6 +27,7 @@ mixin _$WorkExperience {
   @JsonKey(name: 'href')
   String? get url => throw _privateConstructorUsedError;
   List<TimelineExperience> get timeline => throw _privateConstructorUsedError;
+  List<String> get tags => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $WorkExperienceCopyWith<WorkExperience> get copyWith =>
@@ -45,7 +46,8 @@ abstract class $WorkExperienceCopyWith<$Res> {
       String address,
       String? thumb,
       @JsonKey(name: 'href') String? url,
-      List<TimelineExperience> timeline});
+      List<TimelineExperience> timeline,
+      List<String> tags});
 }
 
 /// @nodoc
@@ -67,6 +69,7 @@ class _$WorkExperienceCopyWithImpl<$Res, $Val extends WorkExperience>
     Object? thumb = freezed,
     Object? url = freezed,
     Object? timeline = null,
+    Object? tags = null,
   }) {
     return _then(_value.copyWith(
       name: null == name
@@ -93,6 +96,10 @@ class _$WorkExperienceCopyWithImpl<$Res, $Val extends WorkExperience>
           ? _value.timeline
           : timeline // ignore: cast_nullable_to_non_nullable
               as List<TimelineExperience>,
+      tags: null == tags
+          ? _value.tags
+          : tags // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ) as $Val);
   }
 }
@@ -111,7 +118,8 @@ abstract class _$$_WorkExperienceCopyWith<$Res>
       String address,
       String? thumb,
       @JsonKey(name: 'href') String? url,
-      List<TimelineExperience> timeline});
+      List<TimelineExperience> timeline,
+      List<String> tags});
 }
 
 /// @nodoc
@@ -131,6 +139,7 @@ class __$$_WorkExperienceCopyWithImpl<$Res>
     Object? thumb = freezed,
     Object? url = freezed,
     Object? timeline = null,
+    Object? tags = null,
   }) {
     return _then(_$_WorkExperience(
       name: null == name
@@ -157,6 +166,10 @@ class __$$_WorkExperienceCopyWithImpl<$Res>
           ? _value._timeline
           : timeline // ignore: cast_nullable_to_non_nullable
               as List<TimelineExperience>,
+      tags: null == tags
+          ? _value._tags
+          : tags // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ));
   }
 }
@@ -170,8 +183,10 @@ class _$_WorkExperience implements _WorkExperience {
       required this.address,
       required this.thumb,
       @JsonKey(name: 'href') required this.url,
-      required final List<TimelineExperience> timeline})
-      : _timeline = timeline;
+      required final List<TimelineExperience> timeline,
+      required final List<String> tags})
+      : _timeline = timeline,
+        _tags = tags;
 
   factory _$_WorkExperience.fromJson(Map<String, dynamic> json) =>
       _$$_WorkExperienceFromJson(json);
@@ -195,9 +210,17 @@ class _$_WorkExperience implements _WorkExperience {
     return EqualUnmodifiableListView(_timeline);
   }
 
+  final List<String> _tags;
+  @override
+  List<String> get tags {
+    if (_tags is EqualUnmodifiableListView) return _tags;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_tags);
+  }
+
   @override
   String toString() {
-    return 'WorkExperience(name: $name, period: $period, address: $address, thumb: $thumb, url: $url, timeline: $timeline)';
+    return 'WorkExperience(name: $name, period: $period, address: $address, thumb: $thumb, url: $url, timeline: $timeline, tags: $tags)';
   }
 
   @override
@@ -210,13 +233,21 @@ class _$_WorkExperience implements _WorkExperience {
             (identical(other.address, address) || other.address == address) &&
             (identical(other.thumb, thumb) || other.thumb == thumb) &&
             (identical(other.url, url) || other.url == url) &&
-            const DeepCollectionEquality().equals(other._timeline, _timeline));
+            const DeepCollectionEquality().equals(other._timeline, _timeline) &&
+            const DeepCollectionEquality().equals(other._tags, _tags));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, name, period, address, thumb,
-      url, const DeepCollectionEquality().hash(_timeline));
+  int get hashCode => Object.hash(
+      runtimeType,
+      name,
+      period,
+      address,
+      thumb,
+      url,
+      const DeepCollectionEquality().hash(_timeline),
+      const DeepCollectionEquality().hash(_tags));
 
   @JsonKey(ignore: true)
   @override
@@ -232,7 +263,8 @@ abstract class _WorkExperience implements WorkExperience {
       required final String address,
       required final String? thumb,
       @JsonKey(name: 'href') required final String? url,
-      required final List<TimelineExperience> timeline}) = _$_WorkExperience;
+      required final List<TimelineExperience> timeline,
+      required final List<String> tags}) = _$_WorkExperience;
 
   factory _WorkExperience.fromJson(Map<String, dynamic> json) =
       _$_WorkExperience.fromJson;
@@ -250,6 +282,8 @@ abstract class _WorkExperience implements WorkExperience {
   String? get url;
   @override
   List<TimelineExperience> get timeline;
+  @override
+  List<String> get tags;
   @override
   @JsonKey(ignore: true)
   _$$_WorkExperienceCopyWith<_$_WorkExperience> get copyWith =>

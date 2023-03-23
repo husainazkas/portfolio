@@ -14,6 +14,7 @@ class WorkExperience with _$WorkExperience {
     required String? thumb,
     @JsonKey(name: 'href') required String? url,
     required List<TimelineExperience> timeline,
+    required List<String> tags,
   }) = _WorkExperience;
 
   factory WorkExperience.fromJson(Map<String, dynamic> json) =>

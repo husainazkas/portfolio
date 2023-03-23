@@ -5,6 +5,7 @@ import 'package:timelines/timelines.dart';
 import '../../../../domain/work_experience/entities/work_experience.dart';
 import '../../../../injector.dart';
 import '../../../blocs_cubits/work_experience_section/work_experience_section_bloc.dart';
+import '../../../utils/color_utils.dart';
 import '../../../widgets/cached_image.dart';
 import '../../../widgets/timeline_item_view.dart';
 import 'section.dart';
@@ -53,73 +54,95 @@ class _ExperienceItemView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Row(
-          children: [
-            ClipRRect(
-              borderRadius: const BorderRadius.all(Radius.circular(12.0)),
-              child: CachedImage(
-                source: _experience.thumb ?? '',
-                height: 56.0,
+    return Container(
+      padding: const EdgeInsets.fromLTRB(12.0, 12.0, 12.0, 20.0),
+      decoration: BoxDecoration(
+        color: sideBarColor(context),
+        borderRadius: const BorderRadius.all(Radius.circular(12.0)),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              ClipRRect(
+                borderRadius: const BorderRadius.all(Radius.circular(12.0)),
+                child: CachedImage(
+                  source: _experience.thumb ?? '',
+                  height: 56.0,
+                ),
               ),
-            ),
-            const SizedBox(width: 12.0),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                InkWell(
-                  onTap: _experience.url != null ? () {} : null,
-                  child: Text(
-                    _experience.name,
-                    style: const TextStyle(
-                      fontSize: 16.0,
-                      fontWeight: FontWeight.w600,
-                      decoration: TextDecoration.underline,
+              const SizedBox(width: 12.0),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  InkWell(
+                    onTap: _experience.url != null ? () {} : null,
+                    child: Text(
+                      _experience.name,
+                      style: const TextStyle(
+                        fontSize: 16.0,
+                        fontWeight: FontWeight.w600,
+                        decoration: TextDecoration.underline,
+                      ),
                     ),
                   ),
-                ),
-                Text(
-                  _experience.period,
-                  style: TextStyle(
-                    fontWeight: FontWeight.w300,
-                    color: Theme.of(context)
-                        .colorScheme
-                        .onBackground
-                        .withOpacity(.75),
+                  Text(
+                    _experience.period,
+                    style: TextStyle(
+                      fontWeight: FontWeight.w300,
+                      color: Theme.of(context)
+                          .colorScheme
+                          .onBackground
+                          .withOpacity(.75),
+                    ),
+                  ),
+                  Text(
+                    _experience.address,
+                    style: TextStyle(
+                      fontWeight: FontWeight.w300,
+                      color: Theme.of(context)
+                          .colorScheme
+                          .onBackground
+                          .withOpacity(.75),
+                    ),
+                  )
+                ],
+              )
+            ],
+          ),
+          // const SizedBox(height: 8.0),
+          const Divider(),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 14.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Timeline.custom(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  childrenDelegate: TimelineTileBuilderDelegate(
+                    (context, index) => TimelineItemView(
+                      _experience.timeline[index],
+                      showStartLine: index > 0,
+                      showEndLine: (index + 1) < _experience.timeline.length,
+                    ),
+                    childCount: _experience.timeline.length,
                   ),
                 ),
-                Text(
-                  _experience.address,
-                  style: TextStyle(
-                    fontWeight: FontWeight.w300,
-                    color: Theme.of(context)
-                        .colorScheme
-                        .onBackground
-                        .withOpacity(.75),
-                  ),
-                )
+                const SizedBox(height: 4.0),
+                Wrap(
+                  spacing: 16.0,
+                  runSpacing: 8.0,
+                  children: _experience.tags
+                      .map((e) => Chip(label: Text(e)))
+                      .toList(),
+                ),
               ],
-            )
-          ],
-        ),
-        Padding(
-          padding: const EdgeInsets.only(left: 14.0, top: 8.0),
-          child: Timeline.custom(
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            childrenDelegate: TimelineTileBuilderDelegate(
-              (context, index) => TimelineItemView(
-                _experience.timeline[index],
-                showStartLine: index > 0,
-                showEndLine: (index + 1) < _experience.timeline.length,
-              ),
-              childCount: _experience.timeline.length,
             ),
           ),
-        )
-      ],
+        ],
+      ),
     );
   }
 }

@@ -16,4 +16,5 @@ _$_WorkExperience _$$_WorkExperienceFromJson(Map<String, dynamic> json) =>
       timeline: (json['timeline'] as List<dynamic>)
           .map((e) => TimelineExperience.fromJson(e as Map<String, dynamic>))
           .toList(),
+      tags: (json['tags'] as List<dynamic>).map((e) => e as String).toList(),
     );
