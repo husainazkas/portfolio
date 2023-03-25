@@ -56,9 +56,17 @@ class SkillsSection extends StatelessWidget {
                     '${curr.value * 100}-${next != null ? next.value * 100 - 1 : '100'}% : ${curr.label}',
                   ));
                 }
-                return Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: children,
+
+                return SizedBox(
+                  width: double.infinity,
+                  child: Wrap(
+                    alignment: WrapAlignment.spaceEvenly,
+                    runAlignment: WrapAlignment.center,
+                    crossAxisAlignment: WrapCrossAlignment.center,
+                    spacing: 24.0,
+                    runSpacing: 8.0,
+                    children: children,
+                  ),
                 );
               },
               orElse: () => const SizedBox(),
@@ -85,9 +93,8 @@ class _SkillBar extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(_skill.title),
+            Expanded(child: Text(_skill.title)),
             Text(
               '${_skill.score * 100}%',
               style: const TextStyle(fontSize: 12.0),
