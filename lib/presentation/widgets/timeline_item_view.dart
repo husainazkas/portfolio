@@ -10,11 +10,89 @@ class TimelineItemView extends StatelessWidget {
     super.key,
     this.showStartLine = false,
     this.showEndLine = false,
+    this.h1TextStyle,
+    this.h2TextStyle,
+    this.h3TextStyle,
+    this.h4TextStyle,
+    this.h5TextStyle,
+    this.h6TextStyle,
+    this.textStyle,
+    this.textColor,
   });
 
   final TimelineExperience timelineExperience;
   final bool showStartLine;
   final bool showEndLine;
+
+  final TextStyle? h1TextStyle;
+  final TextStyle? h2TextStyle;
+  final TextStyle? h3TextStyle;
+  final TextStyle? h4TextStyle;
+  final TextStyle? h5TextStyle;
+  final TextStyle? h6TextStyle;
+  final TextStyle? textStyle;
+  final Color? textColor;
+
+  Map<String, Style> _getEffectiveTextStyle() {
+    final isH1 = h1TextStyle != null;
+    final isH2 = h2TextStyle != null;
+    final isH3 = h3TextStyle != null;
+    final isH4 = h4TextStyle != null;
+    final isH5 = h5TextStyle != null;
+    final isH6 = h6TextStyle != null;
+    final isP = textStyle != null;
+
+    Style? h1, h2, h3, h4, h5, h6, p, li;
+    if (textColor != null) {
+      h1 = Style(color: textColor);
+      h2 = Style(color: textColor);
+      h3 = Style(color: textColor);
+      h4 = Style(color: textColor);
+      h5 = Style(color: textColor);
+      h6 = Style(color: textColor);
+      p = Style(color: textColor);
+      li = Style(color: textColor);
+    }
+    if (isH1) {
+      final h1Style = Style.fromTextStyle(h1TextStyle!);
+      h1 = h1?.merge(h1Style) ?? h1Style;
+    }
+    if (isH2) {
+      final h2Style = Style.fromTextStyle(h2TextStyle!);
+      h2 = h2?.merge(h2Style) ?? h2Style;
+    }
+    if (isH3) {
+      final h3Style = Style.fromTextStyle(h3TextStyle!);
+      h3 = h3?.merge(h3Style) ?? h3Style;
+    }
+    if (isH4) {
+      final h4Style = Style.fromTextStyle(h4TextStyle!);
+      h4 = h4?.merge(h4Style) ?? h4Style;
+    }
+    if (isH5) {
+      final h5Style = Style.fromTextStyle(h5TextStyle!);
+      h5 = h5?.merge(h5Style) ?? h5Style;
+    }
+    if (isH6) {
+      final h6Style = Style.fromTextStyle(h6TextStyle!);
+      h6 = h6?.merge(h6Style) ?? h6Style;
+    }
+    if (isP) {
+      final style = Style.fromTextStyle(textStyle!);
+      p = p?.merge(style) ?? style;
+      li = li?.merge(style) ?? style;
+    }
+    return {
+      if (h1 != null) 'h1': h1,
+      if (h2 != null) 'h2': h2,
+      if (h3 != null) 'h3': h3,
+      if (h4 != null) 'h4': h4,
+      if (h5 != null) 'h5': h5,
+      if (h6 != null) 'h6': h6,
+      if (p != null) 'p': p,
+      if (li != null) 'li': li,
+    };
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,18 +113,21 @@ class TimelineItemView extends StatelessWidget {
                   ),
                   child: Indicator.dot(
                     size: 8.0,
-                    color: theme.colorScheme.onBackground.withOpacity(.8),
+                    color: textColor ??
+                        theme.colorScheme.onBackground.withOpacity(.8),
                   ),
                 ),
                 indicatorPosition: 0.0,
                 startConnector: showStartLine
                     ? Connector.solidLine(
-                        color: theme.colorScheme.onBackground.withOpacity(.35),
+                        color: textColor ??
+                            theme.colorScheme.onBackground.withOpacity(.35),
                       )
                     : null,
                 endConnector: showEndLine
                     ? Connector.solidLine(
-                        color: theme.colorScheme.onBackground.withOpacity(.35),
+                        color: textColor ??
+                            theme.colorScheme.onBackground.withOpacity(.35),
                       )
                     : null,
               ),
@@ -64,13 +145,7 @@ class TimelineItemView extends StatelessWidget {
                         Text(timelineExperience.title),
                         Text(
                           '${timelineExperience.period} (${timelineExperience.type})',
-                          style: TextStyle(
-                            fontWeight: FontWeight.w300,
-                            color: Theme.of(context)
-                                .colorScheme
-                                .onBackground
-                                .withOpacity(.75),
-                          ),
+                          style: const TextStyle(fontWeight: FontWeight.w300),
                           textScaleFactor: .95,
                         ),
                         const SizedBox(height: 4.0),
@@ -81,7 +156,8 @@ class TimelineItemView extends StatelessWidget {
                             'body': Style(
                               margin: Margins.symmetric(vertical: 8.0),
                               padding: EdgeInsets.zero,
-                            )
+                            ),
+                            ..._getEffectiveTextStyle(),
                           },
                         ),
                         const SizedBox(height: 20.0)

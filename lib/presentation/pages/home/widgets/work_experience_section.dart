@@ -60,88 +60,79 @@ class _ExperienceItemView extends StatelessWidget {
         color: sideBarColor(context),
         borderRadius: const BorderRadius.all(Radius.circular(12.0)),
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            children: [
-              ClipRRect(
-                borderRadius: const BorderRadius.all(Radius.circular(12.0)),
-                child: CachedImage(
-                  source: _experience.thumb ?? '',
-                  height: 56.0,
+      child: DefaultTextStyle.merge(
+        style: const TextStyle(color: Colors.white),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                ClipRRect(
+                  borderRadius: const BorderRadius.all(Radius.circular(12.0)),
+                  child: CachedImage(
+                    source: _experience.thumb ?? '',
+                    height: 56.0,
+                  ),
                 ),
-              ),
-              const SizedBox(width: 12.0),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  InkWell(
-                    onTap: _experience.url != null ? () {} : null,
-                    child: Text(
-                      _experience.name,
-                      style: const TextStyle(
-                        fontSize: 16.0,
-                        fontWeight: FontWeight.w600,
-                        decoration: TextDecoration.underline,
+                const SizedBox(width: 12.0),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    InkWell(
+                      onTap: _experience.url != null ? () {} : null,
+                      child: Text(
+                        _experience.name,
+                        style: const TextStyle(
+                          fontSize: 16.0,
+                          fontWeight: FontWeight.w600,
+                          decoration: TextDecoration.underline,
+                        ),
                       ),
                     ),
-                  ),
-                  Text(
-                    _experience.period,
-                    style: TextStyle(
-                      fontWeight: FontWeight.w300,
-                      color: Theme.of(context)
-                          .colorScheme
-                          .onBackground
-                          .withOpacity(.75),
+                    Text(
+                      _experience.period,
+                      style: const TextStyle(fontWeight: FontWeight.w300),
                     ),
-                  ),
-                  Text(
-                    _experience.address,
-                    style: TextStyle(
-                      fontWeight: FontWeight.w300,
-                      color: Theme.of(context)
-                          .colorScheme
-                          .onBackground
-                          .withOpacity(.75),
-                    ),
-                  )
-                ],
-              )
-            ],
-          ),
-          // const SizedBox(height: 8.0),
-          const Divider(),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 14.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Timeline.custom(
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  childrenDelegate: TimelineTileBuilderDelegate(
-                    (context, index) => TimelineItemView(
-                      _experience.timeline[index],
-                      showStartLine: index > 0,
-                      showEndLine: (index + 1) < _experience.timeline.length,
-                    ),
-                    childCount: _experience.timeline.length,
-                  ),
-                ),
-                const SizedBox(height: 4.0),
-                Wrap(
-                  spacing: 16.0,
-                  runSpacing: 8.0,
-                  children: _experience.tags
-                      .map((e) => Chip(label: Text(e)))
-                      .toList(),
-                ),
+                    Text(
+                      _experience.address,
+                      style: const TextStyle(fontWeight: FontWeight.w300),
+                    )
+                  ],
+                )
               ],
             ),
-          ),
-        ],
+            const Divider(),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 14.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Timeline.custom(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    childrenDelegate: TimelineTileBuilderDelegate(
+                      (context, index) => TimelineItemView(
+                        _experience.timeline[index],
+                        showStartLine: index > 0,
+                        showEndLine: (index + 1) < _experience.timeline.length,
+                        textColor: Colors.white,
+                      ),
+                      childCount: _experience.timeline.length,
+                    ),
+                  ),
+                  const SizedBox(height: 4.0),
+                  Wrap(
+                    spacing: 16.0,
+                    runSpacing: 8.0,
+                    children: _experience.tags
+                        .map((e) => Chip(label: Text(e)))
+                        .toList(),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
