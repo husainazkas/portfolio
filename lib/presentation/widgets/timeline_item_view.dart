@@ -44,14 +44,8 @@ class TimelineItemView extends StatelessWidget {
 
     Style? h1, h2, h3, h4, h5, h6, p, li;
     if (textColor != null) {
-      h1 = Style(color: textColor);
-      h2 = Style(color: textColor);
-      h3 = Style(color: textColor);
-      h4 = Style(color: textColor);
-      h5 = Style(color: textColor);
-      h6 = Style(color: textColor);
-      p = Style(color: textColor);
-      li = Style(color: textColor);
+      final coloredStyle = Style(color: textColor);
+      h1 = h2 = h3 = h4 = h5 = h6 = p = li = coloredStyle;
     }
     if (isH1) {
       final h1Style = Style.fromTextStyle(h1TextStyle!);
