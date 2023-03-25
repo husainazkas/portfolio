@@ -24,8 +24,6 @@ class WorkExperienceSectionBloc
 
     final result = await _getWorkExperiences(const NoParams());
 
-    print(result);
-
     emit(result.fold(
       WorkExperienceSectionState.failure,
       WorkExperienceSectionState.success,
