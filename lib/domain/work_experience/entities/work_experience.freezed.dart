@@ -26,7 +26,8 @@ mixin _$WorkExperience {
   String? get thumb => throw _privateConstructorUsedError;
   @JsonKey(name: 'href')
   String? get url => throw _privateConstructorUsedError;
-  List<TimelineExperience> get timeline => throw _privateConstructorUsedError;
+  @JsonKey(fromJson: WorkExperience._parseTimeline)
+  List<TimelineData> get timeline => throw _privateConstructorUsedError;
   List<String> get tags => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -45,8 +46,10 @@ abstract class $WorkExperienceCopyWith<$Res> {
       String period,
       String address,
       String? thumb,
-      @JsonKey(name: 'href') String? url,
-      List<TimelineExperience> timeline,
+      @JsonKey(name: 'href')
+          String? url,
+      @JsonKey(fromJson: WorkExperience._parseTimeline)
+          List<TimelineData> timeline,
       List<String> tags});
 }
 
@@ -95,7 +98,7 @@ class _$WorkExperienceCopyWithImpl<$Res, $Val extends WorkExperience>
       timeline: null == timeline
           ? _value.timeline
           : timeline // ignore: cast_nullable_to_non_nullable
-              as List<TimelineExperience>,
+              as List<TimelineData>,
       tags: null == tags
           ? _value.tags
           : tags // ignore: cast_nullable_to_non_nullable
@@ -117,8 +120,10 @@ abstract class _$$_WorkExperienceCopyWith<$Res>
       String period,
       String address,
       String? thumb,
-      @JsonKey(name: 'href') String? url,
-      List<TimelineExperience> timeline,
+      @JsonKey(name: 'href')
+          String? url,
+      @JsonKey(fromJson: WorkExperience._parseTimeline)
+          List<TimelineData> timeline,
       List<String> tags});
 }
 
@@ -165,7 +170,7 @@ class __$$_WorkExperienceCopyWithImpl<$Res>
       timeline: null == timeline
           ? _value._timeline
           : timeline // ignore: cast_nullable_to_non_nullable
-              as List<TimelineExperience>,
+              as List<TimelineData>,
       tags: null == tags
           ? _value._tags
           : tags // ignore: cast_nullable_to_non_nullable
@@ -182,8 +187,10 @@ class _$_WorkExperience implements _WorkExperience {
       required this.period,
       required this.address,
       required this.thumb,
-      @JsonKey(name: 'href') required this.url,
-      required final List<TimelineExperience> timeline,
+      @JsonKey(name: 'href')
+          required this.url,
+      @JsonKey(fromJson: WorkExperience._parseTimeline)
+          required final List<TimelineData> timeline,
       required final List<String> tags})
       : _timeline = timeline,
         _tags = tags;
@@ -202,9 +209,10 @@ class _$_WorkExperience implements _WorkExperience {
   @override
   @JsonKey(name: 'href')
   final String? url;
-  final List<TimelineExperience> _timeline;
+  final List<TimelineData> _timeline;
   @override
-  List<TimelineExperience> get timeline {
+  @JsonKey(fromJson: WorkExperience._parseTimeline)
+  List<TimelineData> get timeline {
     if (_timeline is EqualUnmodifiableListView) return _timeline;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_timeline);
@@ -262,8 +270,10 @@ abstract class _WorkExperience implements WorkExperience {
       required final String period,
       required final String address,
       required final String? thumb,
-      @JsonKey(name: 'href') required final String? url,
-      required final List<TimelineExperience> timeline,
+      @JsonKey(name: 'href')
+          required final String? url,
+      @JsonKey(fromJson: WorkExperience._parseTimeline)
+          required final List<TimelineData> timeline,
       required final List<String> tags}) = _$_WorkExperience;
 
   factory _WorkExperience.fromJson(Map<String, dynamic> json) =
@@ -281,7 +291,8 @@ abstract class _WorkExperience implements WorkExperience {
   @JsonKey(name: 'href')
   String? get url;
   @override
-  List<TimelineExperience> get timeline;
+  @JsonKey(fromJson: WorkExperience._parseTimeline)
+  List<TimelineData> get timeline;
   @override
   List<String> get tags;
   @override

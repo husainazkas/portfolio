@@ -47,6 +47,7 @@ flutter:
     - assets/data/skills.json
     - assets/data/projects.json
     - assets/data/work_experience.json
+    - assets/data/educations.json
     - assets/images/
 
   # To add custom fonts to your application, add a fonts section here,

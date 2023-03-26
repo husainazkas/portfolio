@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:timelines/timelines.dart';
 
-import '../../domain/work_experience/entities/timeline_experience.dart';
+import '../../domain/shared/entities/timeline_data.dart';
 
 class TimelineItemView extends StatelessWidget {
   const TimelineItemView(
-    this.timelineExperience, {
+    this.data, {
     super.key,
     this.showStartLine = false,
     this.showEndLine = false,
@@ -20,7 +20,7 @@ class TimelineItemView extends StatelessWidget {
     this.textColor,
   });
 
-  final TimelineExperience timelineExperience;
+  final TimelineData data;
   final bool showStartLine;
   final bool showEndLine;
 
@@ -91,77 +91,83 @@ class TimelineItemView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    return Align(
-      child: IntrinsicHeight(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            ConstrainedBox(
-              constraints: const BoxConstraints(minWidth: 8.0),
-              child: TimelineNode(
-                direction: Axis.vertical,
-                indicator: Padding(
-                  padding: const EdgeInsets.symmetric(
-                    vertical: 8.0,
+    return DefaultTextStyle.merge(
+      style:
+          textStyle?.copyWith(color: textColor) ?? TextStyle(color: textColor),
+      child: Align(
+        child: IntrinsicHeight(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              ConstrainedBox(
+                constraints: const BoxConstraints(minWidth: 8.0),
+                child: TimelineNode(
+                  direction: Axis.vertical,
+                  indicator: Padding(
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 8.0,
+                    ),
+                    child: Indicator.dot(
+                      size: 8.0,
+                      color: textColor ??
+                          theme.colorScheme.onBackground.withOpacity(.8),
+                    ),
                   ),
-                  child: Indicator.dot(
-                    size: 8.0,
-                    color: textColor ??
-                        theme.colorScheme.onBackground.withOpacity(.8),
-                  ),
+                  indicatorPosition: 0.0,
+                  startConnector: showStartLine
+                      ? Connector.solidLine(
+                          color: textColor ??
+                              theme.colorScheme.onBackground.withOpacity(.35),
+                        )
+                      : null,
+                  endConnector: showEndLine
+                      ? Connector.solidLine(
+                          color: textColor ??
+                              theme.colorScheme.onBackground.withOpacity(.35),
+                        )
+                      : null,
                 ),
-                indicatorPosition: 0.0,
-                startConnector: showStartLine
-                    ? Connector.solidLine(
-                        color: textColor ??
-                            theme.colorScheme.onBackground.withOpacity(.35),
-                      )
-                    : null,
-                endConnector: showEndLine
-                    ? Connector.solidLine(
-                        color: textColor ??
-                            theme.colorScheme.onBackground.withOpacity(.35),
-                      )
-                    : null,
               ),
-            ),
-            Expanded(
-              child: Align(
-                alignment: AlignmentDirectional.centerStart,
-                child: SizedBox(
-                  width: double.infinity,
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 20.0, top: 4.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(timelineExperience.title),
-                        Text(
-                          '${timelineExperience.period} (${timelineExperience.type})',
-                          style: const TextStyle(fontWeight: FontWeight.w300),
-                          textScaleFactor: .95,
-                        ),
-                        const SizedBox(height: 4.0),
-                        Html(
-                          data: timelineExperience.description,
-                          shrinkWrap: true,
-                          style: {
-                            'body': Style(
-                              margin: Margins.symmetric(vertical: 8.0),
-                              padding: EdgeInsets.zero,
+              Expanded(
+                child: Align(
+                  alignment: AlignmentDirectional.centerStart,
+                  child: SizedBox(
+                    width: double.infinity,
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 20.0, top: 4.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(data.title),
+                          if (data.subtitle != null)
+                            Text(
+                              data.subtitle!,
+                              style:
+                                  const TextStyle(fontWeight: FontWeight.w300),
+                              textScaleFactor: .95,
                             ),
-                            ..._getEffectiveTextStyle(),
-                          },
-                        ),
-                        const SizedBox(height: 20.0)
-                      ],
+                          const SizedBox(height: 4.0),
+                          Html(
+                            data: data.description,
+                            shrinkWrap: true,
+                            style: {
+                              'body': Style(
+                                margin: Margins.symmetric(vertical: 8.0),
+                                padding: EdgeInsets.zero,
+                              ),
+                              ..._getEffectiveTextStyle(),
+                            },
+                          ),
+                          const SizedBox(height: 20.0)
+                        ],
+                      ),
                     ),
                   ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

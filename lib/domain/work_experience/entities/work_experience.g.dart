@@ -13,8 +13,6 @@ _$_WorkExperience _$$_WorkExperienceFromJson(Map<String, dynamic> json) =>
       address: json['address'] as String,
       thumb: json['thumb'] as String?,
       url: json['href'] as String?,
-      timeline: (json['timeline'] as List<dynamic>)
-          .map((e) => TimelineExperience.fromJson(e as Map<String, dynamic>))
-          .toList(),
+      timeline: WorkExperience._parseTimeline(json['timeline'] as List),
       tags: (json['tags'] as List<dynamic>).map((e) => e as String).toList(),
     );
