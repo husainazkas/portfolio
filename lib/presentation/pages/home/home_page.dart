@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../blocs_cubits/scroll_listener/scroll_listener_cubit.dart';
 import '../../resources/colors.dart';
 import '../../utils/color_utils.dart';
+import 'widgets/contact_section.dart';
 import 'widgets/education_section.dart';
 import 'widgets/projects_section.dart';
 import 'widgets/side_bar.dart';
@@ -245,6 +246,8 @@ class HomeBody extends StatelessWidget {
           WorkExperienceSection(HomePage._sections[2].label),
           const SizedBox(height: 24.0),
           EducationSection(HomePage._sections[3].label),
+          const SizedBox(height: 24.0),
+          ContactSection(HomePage._sections[4].label),
           const SizedBox(height: 24.0),
         ],
       ),
