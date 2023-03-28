@@ -8,6 +8,7 @@ class ExternalLink with _$ExternalLink {
   const factory ExternalLink({
     required String label,
     required String? url,
+    required String? icon,
     required String type,
   }) = _ExternalLink;
 

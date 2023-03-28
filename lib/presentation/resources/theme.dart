@@ -49,7 +49,7 @@ class AppTheme {
         surface: ColorPalette.surfaceColor,
         onSurface: ColorPalette.onSurfaceColor,
       ),
-      primaryColor: ColorPalette.primaryColor,
+      primaryColor: ColorPalette.darkPrimaryColor,
       scaffoldBackgroundColor: ColorPalette.darkBackgroundColor,
       dividerColor: ColorPalette.borderColor,
       unselectedWidgetColor: ColorPalette.disabledColor,

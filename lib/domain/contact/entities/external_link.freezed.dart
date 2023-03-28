@@ -22,6 +22,7 @@ ExternalLink _$ExternalLinkFromJson(Map<String, dynamic> json) {
 mixin _$ExternalLink {
   String get label => throw _privateConstructorUsedError;
   String? get url => throw _privateConstructorUsedError;
+  String? get icon => throw _privateConstructorUsedError;
   String get type => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -35,7 +36,7 @@ abstract class $ExternalLinkCopyWith<$Res> {
           ExternalLink value, $Res Function(ExternalLink) then) =
       _$ExternalLinkCopyWithImpl<$Res, ExternalLink>;
   @useResult
-  $Res call({String label, String? url, String type});
+  $Res call({String label, String? url, String? icon, String type});
 }
 
 /// @nodoc
@@ -53,6 +54,7 @@ class _$ExternalLinkCopyWithImpl<$Res, $Val extends ExternalLink>
   $Res call({
     Object? label = null,
     Object? url = freezed,
+    Object? icon = freezed,
     Object? type = null,
   }) {
     return _then(_value.copyWith(
@@ -63,6 +65,10 @@ class _$ExternalLinkCopyWithImpl<$Res, $Val extends ExternalLink>
       url: freezed == url
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
+              as String?,
+      icon: freezed == icon
+          ? _value.icon
+          : icon // ignore: cast_nullable_to_non_nullable
               as String?,
       type: null == type
           ? _value.type
@@ -80,7 +86,7 @@ abstract class _$$_ExternalLinkCopyWith<$Res>
       __$$_ExternalLinkCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String label, String? url, String type});
+  $Res call({String label, String? url, String? icon, String type});
 }
 
 /// @nodoc
@@ -96,6 +102,7 @@ class __$$_ExternalLinkCopyWithImpl<$Res>
   $Res call({
     Object? label = null,
     Object? url = freezed,
+    Object? icon = freezed,
     Object? type = null,
   }) {
     return _then(_$_ExternalLink(
@@ -106,6 +113,10 @@ class __$$_ExternalLinkCopyWithImpl<$Res>
       url: freezed == url
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
+              as String?,
+      icon: freezed == icon
+          ? _value.icon
+          : icon // ignore: cast_nullable_to_non_nullable
               as String?,
       type: null == type
           ? _value.type
@@ -119,7 +130,10 @@ class __$$_ExternalLinkCopyWithImpl<$Res>
 @JsonSerializable(createToJson: false)
 class _$_ExternalLink implements _ExternalLink {
   const _$_ExternalLink(
-      {required this.label, required this.url, required this.type});
+      {required this.label,
+      required this.url,
+      required this.icon,
+      required this.type});
 
   factory _$_ExternalLink.fromJson(Map<String, dynamic> json) =>
       _$$_ExternalLinkFromJson(json);
@@ -129,11 +143,13 @@ class _$_ExternalLink implements _ExternalLink {
   @override
   final String? url;
   @override
+  final String? icon;
+  @override
   final String type;
 
   @override
   String toString() {
-    return 'ExternalLink(label: $label, url: $url, type: $type)';
+    return 'ExternalLink(label: $label, url: $url, icon: $icon, type: $type)';
   }
 
   @override
@@ -143,12 +159,13 @@ class _$_ExternalLink implements _ExternalLink {
             other is _$_ExternalLink &&
             (identical(other.label, label) || other.label == label) &&
             (identical(other.url, url) || other.url == url) &&
+            (identical(other.icon, icon) || other.icon == icon) &&
             (identical(other.type, type) || other.type == type));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, label, url, type);
+  int get hashCode => Object.hash(runtimeType, label, url, icon, type);
 
   @JsonKey(ignore: true)
   @override
@@ -161,6 +178,7 @@ abstract class _ExternalLink implements ExternalLink {
   const factory _ExternalLink(
       {required final String label,
       required final String? url,
+      required final String? icon,
       required final String type}) = _$_ExternalLink;
 
   factory _ExternalLink.fromJson(Map<String, dynamic> json) =
@@ -170,6 +188,8 @@ abstract class _ExternalLink implements ExternalLink {
   String get label;
   @override
   String? get url;
+  @override
+  String? get icon;
   @override
   String get type;
   @override

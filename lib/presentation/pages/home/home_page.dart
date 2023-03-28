@@ -1,8 +1,12 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
+import '../../blocs_cubits/contact_section/contact_section_bloc.dart';
 import '../../blocs_cubits/scroll_listener/scroll_listener_cubit.dart';
 import '../../resources/colors.dart';
+import '../../resources/custom_icons.dart';
 import '../../utils/color_utils.dart';
 import 'widgets/contact_section.dart';
 import 'widgets/education_section.dart';
@@ -80,6 +84,7 @@ class _HomePageState extends State<HomePage> {
                         children: [
                           HomeHeader(isMobileSize),
                           HomeBody(isMobileSize, key: _bodyKey),
+                          HomeFooter(isMobileSize),
                         ],
                       ),
                     ),
@@ -232,23 +237,133 @@ class HomeBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.only(
-        top: isMobileSize ? 20.0 : 38.0,
-        bottom: 38.0,
+    return Column(
+      children: [
+        SizedBox(height: isMobileSize ? 20.0 : 38.0),
+        SkillsSection(HomePage._sections[0].label),
+        const SizedBox(height: 24.0),
+        ProjectSection(HomePage._sections[1].label),
+        const SizedBox(height: 24.0),
+        WorkExperienceSection(HomePage._sections[2].label),
+        const SizedBox(height: 24.0),
+        EducationSection(HomePage._sections[3].label),
+        const SizedBox(height: 24.0),
+        ContactSection(HomePage._sections[4].label),
+        const SizedBox(height: 24.0),
+      ],
+    );
+  }
+}
+
+class HomeFooter extends StatelessWidget {
+  const HomeFooter(this.isMobileSize, {super.key});
+
+  final bool isMobileSize;
+
+  Widget _getIcon(BuildContext context, String? iconSrc,
+      {VoidCallback? onPressed}) {
+    switch (iconSrc) {
+      case 'linkedin':
+        return IconButton(
+          onPressed: onPressed,
+          iconSize: 16.0,
+          padding: EdgeInsets.zero,
+          icon: const Icon(CustomIcons.linkedin),
+          color: sideBarColor(context),
+        );
+      case 'github':
+        return IconButton(
+          onPressed: onPressed,
+          iconSize: 16.0,
+          padding: EdgeInsets.zero,
+          icon: const Icon(CustomIcons.github),
+          color: sideBarColor(context),
+        );
+      default:
+        if (iconSrc?.startsWith('assets') ?? false) {
+        } else if (iconSrc?.startsWith('http') ?? false) {}
+        return const SizedBox();
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    return Container(
+      margin: const EdgeInsets.fromLTRB(36.0, 38.0, 36.0, 0.0),
+      padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 16.0),
+      width: double.infinity,
+      decoration: BoxDecoration(
+        color: sideBarColor(context),
+        borderRadius: const BorderRadius.vertical(top: Radius.circular(12.0)),
       ),
-      child: Column(
+      child: Stack(
+        alignment: AlignmentDirectional.center,
         children: [
-          SkillsSection(HomePage._sections[0].label),
-          const SizedBox(height: 24.0),
-          ProjectSection(HomePage._sections[1].label),
-          const SizedBox(height: 24.0),
-          WorkExperienceSection(HomePage._sections[2].label),
-          const SizedBox(height: 24.0),
-          EducationSection(HomePage._sections[3].label),
-          const SizedBox(height: 24.0),
-          ContactSection(HomePage._sections[4].label),
-          const SizedBox(height: 24.0),
+          BlocBuilder<ContactSectionBloc, ContactSectionState>(
+            builder: (context, state) => state.maybeWhen(
+              success: (contact) => Row(
+                children:
+                    List.generate(contact.externals.length * 2 - 1, (index) {
+                  if (index.isOdd) return const SizedBox(width: 12.0);
+                  final link = contact.externals[index ~/ 2];
+                  if (link.icon == null) return const SizedBox();
+                  return Material(
+                    type: MaterialType.button,
+                    clipBehavior: Clip.antiAlias,
+                    shape: const CircleBorder(),
+                    color: Colors.white,
+                    child: _getIcon(
+                      context,
+                      link.icon,
+                      onPressed: () {
+                        final url = link.url;
+                        if (url != null && url.isNotEmpty) {
+                          canLaunchUrlString(url).then((value) {
+                            if (value) launchUrlString(url);
+                          });
+                        }
+                      },
+                    ),
+                  );
+                }),
+              ),
+              orElse: () => const SizedBox(),
+            ),
+          ),
+          DefaultTextStyle.merge(
+            style: const TextStyle(color: Colors.white),
+            child: Column(
+              children: [
+                const Text(
+                  'Made with \u2665 by Me',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 12.0),
+                ),
+                Text.rich(
+                  TextSpan(
+                    text: 'Thanks to ',
+                    children: [
+                      TextSpan(
+                        text: '@vinaysomawat',
+                        style: const TextStyle(fontWeight: FontWeight.w700),
+                        recognizer: TapGestureRecognizer()
+                          ..onTap = () {
+                            const url = 'https://github.com/vinaysomawat';
+                            canLaunchUrlString(url).then((value) {
+                              if (value) launchUrlString(url);
+                            });
+                          },
+                      ),
+                      const TextSpan(text: ' for the reference')
+                    ],
+                  ),
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(fontSize: 11.0),
+                ),
+              ],
+            ),
+          ),
         ],
       ),
     );

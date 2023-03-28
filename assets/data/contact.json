@@ -9,11 +9,13 @@
         {
             "label": "@husainazkas",
             "url": "https://github.com/husainazkas/",
+            "icon": "github",
             "type": "github"
         },
         {
             "label": "Husain Fadhilah",
             "url": "https://linkedin.com/in/husain-fadhilah",
+            "icon": "linkedin",
             "type": "linkedin"
         }
     ]
