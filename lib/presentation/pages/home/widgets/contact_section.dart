@@ -34,7 +34,9 @@ class ContactSection extends StatelessWidget {
                   margin: Margins.zero,
                   padding: EdgeInsets.zero,
                 ),
-                ...HtmlStyle.getEffectiveTextStyle(),
+                ...HtmlStyle.getEffectiveTextStyle(
+                  textStyle: const TextStyle(fontWeight: FontWeight.w600),
+                ),
               },
             ),
             orElse: () => const SizedBox(),
