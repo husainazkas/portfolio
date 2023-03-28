@@ -288,7 +288,6 @@ class HomeFooter extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
     return Container(
       margin: const EdgeInsets.fromLTRB(36.0, 38.0, 36.0, 0.0),
       padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 16.0),
