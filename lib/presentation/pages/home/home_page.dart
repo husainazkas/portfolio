@@ -6,8 +6,8 @@ import 'package:url_launcher/url_launcher_string.dart';
 import '../../blocs_cubits/contact_section/contact_section_bloc.dart';
 import '../../blocs_cubits/scroll_listener/scroll_listener_cubit.dart';
 import '../../resources/colors.dart';
-import '../../resources/custom_icons.dart';
 import '../../utils/color_utils.dart';
+import '../../widgets/social_button.dart';
 import 'widgets/contact_section.dart';
 import 'widgets/education_section.dart';
 import 'widgets/projects_section.dart';
@@ -68,6 +68,45 @@ class _HomePageState extends State<HomePage> {
                   items: HomePage._sections,
                 )
               : null,
+          floatingActionButton: constraints.maxWidth >= 900
+              ? null
+              : BlocBuilder<ContactSectionBloc, ContactSectionState>(
+                  builder: (context, state) => state.maybeWhen(
+                    success: (contact) => Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: List.generate(
+                        contact.externals.length * 2 - 1,
+                        (index) {
+                          if (index.isOdd) return const SizedBox(height: 12.0);
+                          final link = contact.externals[index ~/ 2];
+                          if (link.icon == null) return const SizedBox();
+                          return Material(
+                            type: MaterialType.button,
+                            clipBehavior: Clip.antiAlias,
+                            shape: const CircleBorder(),
+                            color: Colors.white,
+                            child: SizedBox.square(
+                              dimension: 48.0,
+                              child: SocialButton(
+                                link.icon,
+                                iconSize: 20.0,
+                                onPressed: () {
+                                  final url = link.url;
+                                  if (url != null && url.isNotEmpty) {
+                                    canLaunchUrlString(url).then((value) {
+                                      if (value) launchUrlString(url);
+                                    });
+                                  }
+                                },
+                              ),
+                            ),
+                          );
+                        },
+                      ),
+                    ),
+                    orElse: () => const SizedBox(),
+                  ),
+                ),
           body: Row(
             children: [
               if (!isMobileSize)
@@ -84,7 +123,7 @@ class _HomePageState extends State<HomePage> {
                         children: [
                           HomeHeader(isMobileSize),
                           HomeBody(isMobileSize, key: _bodyKey),
-                          HomeFooter(isMobileSize),
+                          HomeFooter(constraints),
                         ],
                       ),
                     ),
@@ -256,35 +295,9 @@ class HomeBody extends StatelessWidget {
 }
 
 class HomeFooter extends StatelessWidget {
-  const HomeFooter(this.isMobileSize, {super.key});
+  const HomeFooter(this.constraints, {super.key});
 
-  final bool isMobileSize;
-
-  Widget _getIcon(BuildContext context, String? iconSrc,
-      {VoidCallback? onPressed}) {
-    switch (iconSrc) {
-      case 'linkedin':
-        return IconButton(
-          onPressed: onPressed,
-          iconSize: 16.0,
-          padding: EdgeInsets.zero,
-          icon: const Icon(CustomIcons.linkedin),
-          color: sideBarColor(context),
-        );
-      case 'github':
-        return IconButton(
-          onPressed: onPressed,
-          iconSize: 16.0,
-          padding: EdgeInsets.zero,
-          icon: const Icon(CustomIcons.github),
-          color: sideBarColor(context),
-        );
-      default:
-        if (iconSrc?.startsWith('assets') ?? false) {
-        } else if (iconSrc?.startsWith('http') ?? false) {}
-        return const SizedBox();
-    }
-  }
+  final BoxConstraints constraints;
 
   @override
   Widget build(BuildContext context) {
@@ -299,37 +312,37 @@ class HomeFooter extends StatelessWidget {
       child: Stack(
         alignment: AlignmentDirectional.center,
         children: [
-          BlocBuilder<ContactSectionBloc, ContactSectionState>(
-            builder: (context, state) => state.maybeWhen(
-              success: (contact) => Row(
-                children:
-                    List.generate(contact.externals.length * 2 - 1, (index) {
-                  if (index.isOdd) return const SizedBox(width: 12.0);
-                  final link = contact.externals[index ~/ 2];
-                  if (link.icon == null) return const SizedBox();
-                  return Material(
-                    type: MaterialType.button,
-                    clipBehavior: Clip.antiAlias,
-                    shape: const CircleBorder(),
-                    color: Colors.white,
-                    child: _getIcon(
-                      context,
-                      link.icon,
-                      onPressed: () {
-                        final url = link.url;
-                        if (url != null && url.isNotEmpty) {
-                          canLaunchUrlString(url).then((value) {
-                            if (value) launchUrlString(url);
-                          });
-                        }
-                      },
-                    ),
-                  );
-                }),
+          if (constraints.maxWidth >= 900)
+            BlocBuilder<ContactSectionBloc, ContactSectionState>(
+              builder: (context, state) => state.maybeWhen(
+                success: (contact) => Row(
+                  children:
+                      List.generate(contact.externals.length * 2 - 1, (index) {
+                    if (index.isOdd) return const SizedBox(width: 12.0);
+                    final link = contact.externals[index ~/ 2];
+                    if (link.icon == null) return const SizedBox();
+                    return Material(
+                      type: MaterialType.button,
+                      clipBehavior: Clip.antiAlias,
+                      shape: const CircleBorder(),
+                      color: Colors.white,
+                      child: SocialButton(
+                        link.icon,
+                        onPressed: () {
+                          final url = link.url;
+                          if (url != null && url.isNotEmpty) {
+                            canLaunchUrlString(url).then((value) {
+                              if (value) launchUrlString(url);
+                            });
+                          }
+                        },
+                      ),
+                    );
+                  }),
+                ),
+                orElse: () => const SizedBox(),
               ),
-              orElse: () => const SizedBox(),
             ),
-          ),
           DefaultTextStyle.merge(
             style: const TextStyle(color: Colors.white),
             child: Column(
