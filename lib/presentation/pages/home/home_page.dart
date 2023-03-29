@@ -53,6 +53,18 @@ class _HomePageState extends State<HomePage> {
   RenderBox? get _bodyBox =>
       _bodyKey.currentContext?.findRenderObject() as RenderBox?;
 
+  double _getTransformation(double offset) {
+    final bodyHasSize = _bodyBox != null && _bodyBox!.hasSize;
+    final bodyOffset =
+        (bodyHasSize ? _bodyBox : null)?.localToGlobal(Offset.zero) ??
+            Offset.zero;
+    final diff = bodyOffset.dy - kToolbarHeight;
+    final transformation = bodyOffset.dy > kToolbarHeight || offset == 0.0
+        ? 0.0
+        : ((diff.isNegative ? diff.abs() : 0.0) / 50).clamp(0, 1).toDouble();
+    return transformation;
+  }
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -133,42 +145,26 @@ class _HomePageState extends State<HomePage> {
                         child: BlocBuilder<ScrollListenerCubit,
                             ScrollListenerState>(
                           bloc: _scrollCubit,
-                          builder: (context, state) {
-                            final bodyHasSize =
-                                _bodyBox != null && _bodyBox!.hasSize;
-                            final bodyOffset = (bodyHasSize ? _bodyBox : null)
-                                    ?.localToGlobal(Offset.zero) ??
-                                Offset.zero;
-                            final diff = bodyOffset.dy - kToolbarHeight;
-                            final transformation = bodyOffset.dy >
-                                        kToolbarHeight ||
-                                    state.offset == 0.0
-                                ? 0.0
-                                : ((diff.isNegative ? diff.abs() : 0.0) / 50)
-                                    .clamp(0, 1)
-                                    .toDouble();
-
-                            return Container(
-                              height: kToolbarHeight,
-                              width: double.infinity,
-                              color: sideBarColor(context)
-                                  .withOpacity(transformation),
-                              child: Material(
-                                type: MaterialType.transparency,
-                                child: Align(
-                                  alignment: Alignment.centerLeft,
-                                  child: IconButton(
-                                    onPressed: () =>
-                                        Scaffold.of(context).openDrawer(),
-                                    icon: Icon(
-                                      Icons.menu,
-                                      color: theme.colorScheme.onSurface,
-                                    ),
+                          builder: (context, state) => Container(
+                            height: kToolbarHeight,
+                            width: double.infinity,
+                            color: sideBarColor(context)
+                                .withOpacity(_getTransformation(state.offset)),
+                            child: Material(
+                              type: MaterialType.transparency,
+                              child: Align(
+                                alignment: Alignment.centerLeft,
+                                child: IconButton(
+                                  onPressed: () =>
+                                      Scaffold.of(context).openDrawer(),
+                                  icon: Icon(
+                                    Icons.menu,
+                                    color: theme.colorScheme.onSurface,
                                   ),
                                 ),
                               ),
-                            );
-                          },
+                            ),
+                          ),
                         ),
                       )
                   ],
