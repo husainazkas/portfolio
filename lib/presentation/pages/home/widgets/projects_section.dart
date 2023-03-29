@@ -9,8 +9,9 @@ import '../../../widgets/expandable_group.dart';
 import 'section.dart';
 
 class ProjectSection extends StatelessWidget {
-  const ProjectSection(this.title, {super.key});
+  const ProjectSection(this.title, {super.key, this.titleKey});
 
+  final Key? titleKey;
   final String title;
 
   @override
@@ -18,6 +19,7 @@ class ProjectSection extends StatelessWidget {
     return BlocProvider<ProjectsSectionBloc>(
       create: (context) => sl()..add(const ProjectsSectionEvent.fetched()),
       child: Section(
+        titleKey: titleKey,
         title: title,
         children: [
           BlocBuilder<ProjectsSectionBloc, ProjectsSectionState>(

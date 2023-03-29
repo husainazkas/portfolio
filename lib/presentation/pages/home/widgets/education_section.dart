@@ -10,8 +10,9 @@ import '../../../widgets/timeline_item_view.dart';
 import 'section.dart';
 
 class EducationSection extends StatelessWidget {
-  const EducationSection(this.title, {super.key});
+  const EducationSection(this.title, {super.key, this.titleKey});
 
+  final Key? titleKey;
   final String title;
 
   @override
@@ -19,6 +20,7 @@ class EducationSection extends StatelessWidget {
     return BlocProvider<EducationSectionBloc>(
       create: (context) => sl()..add(const EducationSectionEvent.fetched()),
       child: Section(
+        titleKey: titleKey,
         title: title,
         children: [
           BlocBuilder<EducationSectionBloc, EducationSectionState>(

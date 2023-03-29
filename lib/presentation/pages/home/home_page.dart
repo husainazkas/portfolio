@@ -34,6 +34,7 @@ class _HomePageState extends State<HomePage> {
   final _bodyKey = GlobalKey();
   final _controller = ScrollController();
   final _scrollCubit = ScrollListenerCubit();
+  late final _sectionKeys = HomePage._sections.map((e) => GlobalKey()).toList();
 
   @override
   void initState() {
@@ -65,6 +66,15 @@ class _HomePageState extends State<HomePage> {
     return transformation;
   }
 
+  void _handleScrollNavigation(int index, {double alignment = 0.0}) {
+    if (!mounted) return;
+    Scrollable.ensureVisible(
+      _sectionKeys[index].currentContext!,
+      alignment: alignment,
+      duration: const Duration(milliseconds: 300),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -78,6 +88,10 @@ class _HomePageState extends State<HomePage> {
               ? SideBar(
                   width: 300.0,
                   items: HomePage._sections,
+                  onTap: (context, i) {
+                    _handleScrollNavigation(i, alignment: .1);
+                    Scaffold.of(context).closeDrawer();
+                  },
                 )
               : null,
           floatingActionButton: constraints.maxWidth >= 900
@@ -125,6 +139,7 @@ class _HomePageState extends State<HomePage> {
                 SideBar(
                   width: sideBarWidth,
                   items: HomePage._sections,
+                  onTap: (_, i) => _handleScrollNavigation(i, alignment: .02),
                 ),
               Expanded(
                 child: Stack(
@@ -134,7 +149,11 @@ class _HomePageState extends State<HomePage> {
                       child: Column(
                         children: [
                           HomeHeader(isMobileSize),
-                          HomeBody(isMobileSize, key: _bodyKey),
+                          HomeBody(
+                            isMobileSize,
+                            key: _bodyKey,
+                            sectionKeys: _sectionKeys,
+                          ),
                           HomeFooter(constraints),
                         ],
                       ),
@@ -266,24 +285,29 @@ class HomeHeader extends StatelessWidget {
 }
 
 class HomeBody extends StatelessWidget {
-  const HomeBody(this.isMobileSize, {super.key});
+  const HomeBody(
+    this.isMobileSize, {
+    super.key,
+    required this.sectionKeys,
+  }) : assert(sectionKeys.length > 0);
 
   final bool isMobileSize;
+  final List<GlobalKey<State<StatefulWidget>>> sectionKeys;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         SizedBox(height: isMobileSize ? 20.0 : 38.0),
-        SkillsSection(HomePage._sections[0].label),
+        SkillsSection(HomePage._sections[0].label, titleKey: sectionKeys[0]),
         const SizedBox(height: 24.0),
-        ProjectSection(HomePage._sections[1].label),
+        ProjectSection(HomePage._sections[1].label, titleKey: sectionKeys[1]),
         const SizedBox(height: 24.0),
-        WorkExperienceSection(HomePage._sections[2].label),
+        WorkExperienceSection(HomePage._sections[2].label, titleKey: sectionKeys[2]),
         const SizedBox(height: 24.0),
-        EducationSection(HomePage._sections[3].label),
+        EducationSection(HomePage._sections[3].label, titleKey: sectionKeys[3]),
         const SizedBox(height: 24.0),
-        ContactSection(HomePage._sections[4].label),
+        ContactSection(HomePage._sections[4].label, titleKey: sectionKeys[4]),
         const SizedBox(height: 24.0),
       ],
     );

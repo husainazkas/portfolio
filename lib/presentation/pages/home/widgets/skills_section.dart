@@ -8,8 +8,9 @@ import '../../../blocs_cubits/skills_section/skills_section_bloc.dart';
 import 'section.dart';
 
 class SkillsSection extends StatelessWidget {
-  const SkillsSection(this.title, {super.key});
+  const SkillsSection(this.title, {super.key, this.titleKey});
 
+  final Key? titleKey;
   final String title;
 
   @override
@@ -17,6 +18,7 @@ class SkillsSection extends StatelessWidget {
     return BlocProvider<SkillsSectionBloc>(
       create: (context) => sl()..add(const SkillsSectionEvent.fetched()),
       child: Section(
+        titleKey: titleKey,
         title: title,
         children: [
           BlocBuilder<SkillsSectionBloc, SkillsSectionState>(

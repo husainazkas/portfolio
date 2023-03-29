@@ -11,8 +11,9 @@ import '../../../widgets/timeline_item_view.dart';
 import 'section.dart';
 
 class WorkExperienceSection extends StatelessWidget {
-  const WorkExperienceSection(this.title, {super.key});
+  const WorkExperienceSection(this.title, {super.key, this.titleKey});
 
+  final Key? titleKey;
   final String title;
 
   @override
@@ -21,6 +22,7 @@ class WorkExperienceSection extends StatelessWidget {
       create: (context) =>
           sl()..add(const WorkExperienceSectionEvent.fetched()),
       child: Section(
+        titleKey: titleKey,
         title: title,
         children: [
           BlocBuilder<WorkExperienceSectionBloc, WorkExperienceSectionState>(

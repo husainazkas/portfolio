@@ -14,7 +14,7 @@ class SideBar extends StatelessWidget {
   }) : assert(items.length > 0);
 
   final List<SideBarMenuItem> items;
-  final ValueChanged<int>? onTap;
+  final void Function(BuildContext context, int index)? onTap;
   final double width;
 
   @override
@@ -64,7 +64,7 @@ class SideBar extends StatelessWidget {
                         children: List.generate(
                           items.length,
                           (index) => TextButton(
-                            onPressed: () => onTap?.call(index),
+                            onPressed: () => onTap?.call(context, index),
                             child: Text(
                               items[index].label,
                               style: items[index].textStyle,

@@ -7,13 +7,15 @@ import '../../../utils/html_style.dart';
 import 'section.dart';
 
 class ContactSection extends StatelessWidget {
-  const ContactSection(this.title, {super.key});
+  const ContactSection(this.title, {super.key, this.titleKey});
 
+  final Key? titleKey;
   final String title;
 
   @override
   Widget build(BuildContext context) {
     return Section(
+      titleKey: titleKey,
       title: title,
       children: [
         BlocBuilder<ContactSectionBloc, ContactSectionState>(
