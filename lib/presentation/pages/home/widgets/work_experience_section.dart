@@ -77,29 +77,37 @@ class _ExperienceItemView extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(width: 12.0),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    InkWell(
-                      onTap: _experience.url != null ? () {} : null,
-                      child: Text(
-                        _experience.name,
-                        style: const TextStyle(
-                          fontSize: 16.0,
-                          fontWeight: FontWeight.w600,
-                          decoration: TextDecoration.underline,
+                Flexible(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      InkWell(
+                        onTap: _experience.url != null ? () {} : null,
+                        child: Text(
+                          _experience.name,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: const TextStyle(
+                            fontSize: 16.0,
+                            fontWeight: FontWeight.w600,
+                            decoration: TextDecoration.underline,
+                          ),
                         ),
                       ),
-                    ),
-                    Text(
-                      _experience.period,
-                      style: const TextStyle(fontWeight: FontWeight.w300),
-                    ),
-                    Text(
-                      _experience.address,
-                      style: const TextStyle(fontWeight: FontWeight.w300),
-                    )
-                  ],
+                      Text(
+                        _experience.period,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: const TextStyle(fontWeight: FontWeight.w300),
+                      ),
+                      Text(
+                        _experience.address,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: const TextStyle(fontWeight: FontWeight.w300),
+                      )
+                    ],
+                  ),
                 )
               ],
             ),
