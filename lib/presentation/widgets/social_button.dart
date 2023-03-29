@@ -2,12 +2,22 @@ import 'package:flutter/material.dart';
 
 import '../resources/custom_icons.dart';
 import '../utils/color_utils.dart';
+import 'cached_image.dart';
 
 class SocialButton extends StatelessWidget {
-  const SocialButton(this.iconSrc, {super.key, this.iconSize = 16.0, this.onPressed});
+  const SocialButton(
+    this.iconSrc, {
+    super.key,
+    this.iconSize = 16.0,
+    this.width,
+    this.height,
+    this.onPressed,
+  });
 
   final String? iconSrc;
   final double? iconSize;
+  final double? width;
+  final double? height;
   final VoidCallback? onPressed;
 
   @override
@@ -30,8 +40,14 @@ class SocialButton extends StatelessWidget {
           color: sideBarColor(context),
         );
       default:
-        if (iconSrc?.startsWith('assets') ?? false) {
-        } else if (iconSrc?.startsWith('http') ?? false) {}
+        if (iconSrc != null &&
+            (iconSrc!.startsWith('assets') || iconSrc!.startsWith('http'))) {
+          return CachedImage(
+            source: iconSrc!,
+            width: width,
+            height: height,
+          );
+        }
         return const SizedBox();
     }
   }
