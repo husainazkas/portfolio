@@ -171,7 +171,7 @@ mixin _$ProjectsSectionState {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(Failure failure) failure,
-    required TResult Function(List<Project> projects) success,
+    required TResult Function(List<ProjectGroup> projects) success,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -179,7 +179,7 @@ mixin _$ProjectsSectionState {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(Failure failure)? failure,
-    TResult? Function(List<Project> projects)? success,
+    TResult? Function(List<ProjectGroup> projects)? success,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -187,7 +187,7 @@ mixin _$ProjectsSectionState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(Failure failure)? failure,
-    TResult Function(List<Project> projects)? success,
+    TResult Function(List<ProjectGroup> projects)? success,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -277,7 +277,7 @@ class _$_Initial implements _Initial {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(Failure failure) failure,
-    required TResult Function(List<Project> projects) success,
+    required TResult Function(List<ProjectGroup> projects) success,
   }) {
     return initial();
   }
@@ -288,7 +288,7 @@ class _$_Initial implements _Initial {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(Failure failure)? failure,
-    TResult? Function(List<Project> projects)? success,
+    TResult? Function(List<ProjectGroup> projects)? success,
   }) {
     return initial?.call();
   }
@@ -299,7 +299,7 @@ class _$_Initial implements _Initial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(Failure failure)? failure,
-    TResult Function(List<Project> projects)? success,
+    TResult Function(List<ProjectGroup> projects)? success,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -390,7 +390,7 @@ class _$_Loading implements _Loading {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(Failure failure) failure,
-    required TResult Function(List<Project> projects) success,
+    required TResult Function(List<ProjectGroup> projects) success,
   }) {
     return loading();
   }
@@ -401,7 +401,7 @@ class _$_Loading implements _Loading {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(Failure failure)? failure,
-    TResult? Function(List<Project> projects)? success,
+    TResult? Function(List<ProjectGroup> projects)? success,
   }) {
     return loading?.call();
   }
@@ -412,7 +412,7 @@ class _$_Loading implements _Loading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(Failure failure)? failure,
-    TResult Function(List<Project> projects)? success,
+    TResult Function(List<ProjectGroup> projects)? success,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -539,7 +539,7 @@ class _$_Failure implements _Failure {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(Failure failure) failure,
-    required TResult Function(List<Project> projects) success,
+    required TResult Function(List<ProjectGroup> projects) success,
   }) {
     return failure(this.failure);
   }
@@ -550,7 +550,7 @@ class _$_Failure implements _Failure {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(Failure failure)? failure,
-    TResult? Function(List<Project> projects)? success,
+    TResult? Function(List<ProjectGroup> projects)? success,
   }) {
     return failure?.call(this.failure);
   }
@@ -561,7 +561,7 @@ class _$_Failure implements _Failure {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(Failure failure)? failure,
-    TResult Function(List<Project> projects)? success,
+    TResult Function(List<ProjectGroup> projects)? success,
     required TResult orElse(),
   }) {
     if (failure != null) {
@@ -623,7 +623,7 @@ abstract class _$$_SuccessCopyWith<$Res> {
           _$_Success value, $Res Function(_$_Success) then) =
       __$$_SuccessCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<Project> projects});
+  $Res call({List<ProjectGroup> projects});
 }
 
 /// @nodoc
@@ -642,7 +642,7 @@ class __$$_SuccessCopyWithImpl<$Res>
       null == projects
           ? _value._projects
           : projects // ignore: cast_nullable_to_non_nullable
-              as List<Project>,
+              as List<ProjectGroup>,
     ));
   }
 }
@@ -650,11 +650,11 @@ class __$$_SuccessCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_Success implements _Success {
-  const _$_Success(final List<Project> projects) : _projects = projects;
+  const _$_Success(final List<ProjectGroup> projects) : _projects = projects;
 
-  final List<Project> _projects;
+  final List<ProjectGroup> _projects;
   @override
-  List<Project> get projects {
+  List<ProjectGroup> get projects {
     if (_projects is EqualUnmodifiableListView) return _projects;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_projects);
@@ -689,7 +689,7 @@ class _$_Success implements _Success {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(Failure failure) failure,
-    required TResult Function(List<Project> projects) success,
+    required TResult Function(List<ProjectGroup> projects) success,
   }) {
     return success(projects);
   }
@@ -700,7 +700,7 @@ class _$_Success implements _Success {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(Failure failure)? failure,
-    TResult? Function(List<Project> projects)? success,
+    TResult? Function(List<ProjectGroup> projects)? success,
   }) {
     return success?.call(projects);
   }
@@ -711,7 +711,7 @@ class _$_Success implements _Success {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(Failure failure)? failure,
-    TResult Function(List<Project> projects)? success,
+    TResult Function(List<ProjectGroup> projects)? success,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -759,9 +759,9 @@ class _$_Success implements _Success {
 }
 
 abstract class _Success implements ProjectsSectionState {
-  const factory _Success(final List<Project> projects) = _$_Success;
+  const factory _Success(final List<ProjectGroup> projects) = _$_Success;
 
-  List<Project> get projects;
+  List<ProjectGroup> get projects;
   @JsonKey(ignore: true)
   _$$_SuccessCopyWith<_$_Success> get copyWith =>
       throw _privateConstructorUsedError;

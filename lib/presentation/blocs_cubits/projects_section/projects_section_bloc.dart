@@ -3,7 +3,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../../domain/core/failures.dart';
 import '../../../domain/core/params.dart';
-import '../../../domain/projects/entities/project.dart';
+import '../../../domain/projects/entities/project_group.dart';
 import '../../../domain/projects/usecases/get_projects.dart';
 
 part 'projects_section_event.dart';

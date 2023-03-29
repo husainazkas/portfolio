@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
 
 import '../../../domain/core/failures.dart';
-import '../../../domain/projects/entities/project.dart';
+import '../../../domain/projects/entities/project_group.dart';
 import '../../../domain/projects/repositories/i_project_repository.dart';
 import '../datasources/project_local_datasource.dart';
 
@@ -11,7 +11,7 @@ class ProjectRepository implements IProjectRepository {
   const ProjectRepository(this._localDatasource);
 
   @override
-  Future<Either<LocalFailure, List<Project>>> getProjects() async {
+  Future<Either<LocalFailure, List<ProjectGroup>>> getProjects() async {
     try {
       final result = await _localDatasource.getProjects();
 

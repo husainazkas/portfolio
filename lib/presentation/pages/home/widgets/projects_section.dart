@@ -47,15 +47,35 @@ class ProjectSection extends StatelessWidget {
                     child: ExpandableGroup(
                       items: projects
                           .map((e) => ExpandableItem(
-                                headerBuilder: (isExpanded) => Text(e.title),
+                                headerBuilder: (isExpanded) => Text(e.header),
                                 content: Padding(
                                   padding:
                                       const EdgeInsets.symmetric(vertical: 8.0),
-                                  child: _ProjectItemCard(
-                                    imageUrl: e.thumb ?? '',
-                                    description: e.description,
-                                    tags: e.tags,
-                                    onTap: () {},
+                                  child: Column(
+                                    children: List.generate(
+                                        e.projects.length * 2 - 1, (index) {
+                                      if (index.isOdd) {
+                                        return const SizedBox(height: 8.0);
+                                      }
+                                      const radius = Radius.circular(12.0);
+                                      final rTop =
+                                          index == 0 ? radius : Radius.zero;
+                                      final rBottom = ((index ~/ 2) + 1) ==
+                                              e.projects.length
+                                          ? radius
+                                          : Radius.zero;
+                                      final p = e.projects[index ~/ 2];
+                                      return _ProjectItemCard(
+                                        borderRadius: BorderRadius.vertical(
+                                          top: rTop,
+                                          bottom: rBottom,
+                                        ),
+                                        imageUrl: p.thumb ?? '',
+                                        description: p.description,
+                                        tags: p.tags,
+                                        onTap: () {},
+                                      );
+                                    }),
                                   ),
                                 ),
                               ))
@@ -79,12 +99,14 @@ class _ProjectItemCard extends StatelessWidget {
     required this.description,
     this.onTap,
     this.tags = const [],
+    this.borderRadius = const BorderRadius.all(Radius.circular(12.0)),
   });
 
   final String imageUrl;
   final String description;
   final VoidCallback? onTap;
   final List<String> tags;
+  final BorderRadius borderRadius;
 
   @override
   Widget build(BuildContext context) {
@@ -105,7 +127,7 @@ class _ProjectItemCard extends StatelessWidget {
     }
 
     return InkWell(
-      borderRadius: const BorderRadius.all(Radius.circular(12.0)),
+      borderRadius: borderRadius,
       onTap: onTap,
       child: Padding(
         padding: const EdgeInsets.all(24.0),

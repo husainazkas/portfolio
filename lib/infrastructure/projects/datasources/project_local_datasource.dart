@@ -3,19 +3,19 @@ import 'dart:convert';
 import 'package:flutter/services.dart';
 
 import '../../../domain/core/failures.dart';
-import '../../../domain/projects/entities/project.dart';
+import '../../../domain/projects/entities/project_group.dart';
 
 abstract class IProjectLocalDatasource {
-  Future<List<Project>> getProjects();
+  Future<List<ProjectGroup>> getProjects();
 }
 
 class AssetsProjectLocalDatasource implements IProjectLocalDatasource {
   @override
-  Future<List<Project>> getProjects() async {
+  Future<List<ProjectGroup>> getProjects() async {
     try {
       final result = await rootBundle.loadString('assets/data/projects.json');
       return ((jsonDecode(result) as Map)['data'] as List?)
-              ?.map((e) => Project.fromJson((e as Map).cast()))
+              ?.map((e) => ProjectGroup.fromJson((e as Map).cast()))
               .toList() ??
           const [];
     } catch (e) {
