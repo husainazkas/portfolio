@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 import '../../../../injector.dart';
 import '../../../blocs_cubits/projects_section/projects_section_bloc.dart';
@@ -33,8 +34,8 @@ class ProjectSection extends StatelessWidget {
               failure: (failure) => Center(
                 child: Text(failure.message ?? 'Unknown Error'),
               ),
-              success: (projects) {
-                if (projects.isEmpty) return const SizedBox();
+              success: (group) {
+                if (group.isEmpty) return const SizedBox();
 
                 return Container(
                   padding: const EdgeInsets.all(8.0),
@@ -45,7 +46,7 @@ class ProjectSection extends StatelessWidget {
                   child: ClipRRect(
                     borderRadius: const BorderRadius.all(Radius.circular(12.0)),
                     child: ExpandableGroup(
-                      items: projects
+                      items: group
                           .map((e) => ExpandableItem(
                                 headerBuilder: (isExpanded) => Text(e.header),
                                 content: Padding(
@@ -73,7 +74,16 @@ class ProjectSection extends StatelessWidget {
                                         imageUrl: p.thumb ?? '',
                                         description: p.description,
                                         tags: p.tags,
-                                        onTap: () {},
+                                        onTap: () {
+                                          if (p.url != null) {
+                                            canLaunchUrlString(p.url!)
+                                                .then((value) {
+                                              if (value) {
+                                                launchUrlString(p.url!);
+                                              }
+                                            });
+                                          }
+                                        },
                                       );
                                     }),
                                   ),
