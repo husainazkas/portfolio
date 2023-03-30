@@ -51,6 +51,7 @@ flutter:
     - assets/data/educations.json
     - assets/data/contact.json
     - assets/images/
+    - assets/images/projects/
 
   fonts:
     - family: CustomIcons
