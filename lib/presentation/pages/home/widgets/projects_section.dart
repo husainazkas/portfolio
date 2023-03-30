@@ -72,6 +72,7 @@ class ProjectSection extends StatelessWidget {
                                           bottom: rBottom,
                                         ),
                                         imageUrl: p.thumb ?? '',
+                                        title: p.title,
                                         description: p.description,
                                         tags: p.tags,
                                         onTap: () {
@@ -106,6 +107,7 @@ class ProjectSection extends StatelessWidget {
 class _ProjectItemCard extends StatelessWidget {
   const _ProjectItemCard({
     required this.imageUrl,
+    required this.title,
     required this.description,
     this.onTap,
     this.tags = const [],
@@ -113,6 +115,7 @@ class _ProjectItemCard extends StatelessWidget {
   });
 
   final String imageUrl;
+  final String title;
   final String description;
   final VoidCallback? onTap;
   final List<String> tags;
@@ -176,6 +179,13 @@ class _ProjectItemCard extends StatelessWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            Text(
+              title,
+              style: const TextStyle(fontWeight: FontWeight.w600),
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+            ),
+            const SizedBox(height: 4.0),
             Text(description),
             if (chips != null) ...chips,
           ],
@@ -203,6 +213,13 @@ class _ProjectItemCard extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              Text(
+                title,
+                style: const TextStyle(fontWeight: FontWeight.w600),
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+              ),
+              const SizedBox(height: 4.0),
               Text(description),
               if (chips != null) ...chips,
             ],
