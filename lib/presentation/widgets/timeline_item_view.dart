@@ -96,7 +96,6 @@ class TimelineItemView extends StatelessWidget {
                           const SizedBox(height: 4.0),
                           Html(
                             data: data.description,
-                            shrinkWrap: true,
                             style: {
                               'body': Style(
                                 margin: Margins.symmetric(vertical: 8.0),
