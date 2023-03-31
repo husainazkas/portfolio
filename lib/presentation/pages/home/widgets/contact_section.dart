@@ -1,6 +1,8 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_html/flutter_html.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../../blocs_cubits/contact_section/contact_section_bloc.dart';
 import '../../../utils/html_style.dart';
@@ -11,6 +13,10 @@ class ContactSection extends StatelessWidget {
 
   final Key? titleKey;
   final String title;
+
+  CustomRenderMatcher emailMatcher() => (context) {
+        return context.tree.element?.id == 'email';
+      };
 
   @override
   Widget build(BuildContext context) {
@@ -31,13 +37,25 @@ class ContactSection extends StatelessWidget {
             ),
             success: (contact) => Html(
               data: contact.description,
+              customRenders: {
+                emailMatcher(): CustomRender.inlineSpan(
+                  inlineSpan: (context, buildChildren) => TextSpan(
+                    text: contact.email.trim(),
+                    style: const TextStyle(fontWeight: FontWeight.w700),
+                    recognizer: TapGestureRecognizer()
+                      ..onTap = () {
+                        final url = Uri.parse('mailto:${contact.email}');
+                        canLaunchUrl(url).then((value) {
+                          if (value) launchUrl(url);
+                        });
+                      },
+                  ),
+                ),
+              },
               style: {
                 'body': Style(
                   margin: Margins.zero,
                   padding: EdgeInsets.zero,
-                ),
-                ...HtmlStyle.getEffectiveTextStyle(
-                  textStyle: const TextStyle(fontWeight: FontWeight.w600),
                 ),
               },
             ),

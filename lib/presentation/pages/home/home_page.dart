@@ -270,9 +270,16 @@ class HomeHeader extends StatelessWidget {
                       fontWeight: FontWeight.w700,
                     ),
                   ),
+                  TextSpan(text: ' and a programming enthusiast especially '),
+                  TextSpan(
+                    text: 'Flutter',
+                    style: TextStyle(
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
                   TextSpan(
                     text:
-                        ', geek and curious human besides being an OpenSource enthusiast. I have experience of delivering solutions for interesting problems from startup and industry space.',
+                        '. I have experience of creating various needed app for startup and industry.',
                   ),
                 ],
               ),
@@ -303,7 +310,8 @@ class HomeBody extends StatelessWidget {
         const SizedBox(height: 24.0),
         ProjectSection(HomePage._sections[1].label, titleKey: sectionKeys[1]),
         const SizedBox(height: 24.0),
-        WorkExperienceSection(HomePage._sections[2].label, titleKey: sectionKeys[2]),
+        WorkExperienceSection(HomePage._sections[2].label,
+            titleKey: sectionKeys[2]),
         const SizedBox(height: 24.0),
         EducationSection(HomePage._sections[3].label, titleKey: sectionKeys[3]),
         const SizedBox(height: 24.0),
