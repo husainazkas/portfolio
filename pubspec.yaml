@@ -37,7 +37,7 @@ dev_dependencies:
 flutter_icons:
   web:
     generate: true
-    image_path: "assets/images/app_icon.png"
+    image_path: "assets/images/profile_picture.jpg"
     theme_color: "#34AAAC"
     background_color: "#FFFFFF"
 
