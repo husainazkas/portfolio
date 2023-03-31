@@ -93,26 +93,28 @@ class TimelineItemView extends StatelessWidget {
                                   const TextStyle(fontWeight: FontWeight.w300),
                               textScaleFactor: .95,
                             ),
-                          const SizedBox(height: 4.0),
-                          Html(
-                            data: data.description,
-                            style: {
-                              'body': Style(
-                                margin: Margins.symmetric(vertical: 8.0),
-                                padding: EdgeInsets.zero,
-                              ),
-                              ...HtmlStyle.getEffectiveTextStyle(
-                                h1TextStyle: h1TextStyle,
-                                h2TextStyle: h2TextStyle,
-                                h3TextStyle: h3TextStyle,
-                                h4TextStyle: h4TextStyle,
-                                h5TextStyle: h5TextStyle,
-                                h6TextStyle: h6TextStyle,
-                                textStyle: textStyle,
-                                textColor: textColor,
-                              ),
-                            },
-                          ),
+                          if (data.description != null) ...[
+                            const SizedBox(height: 4.0),
+                            Html(
+                              data: data.description,
+                              style: {
+                                'body': Style(
+                                  margin: Margins.symmetric(vertical: 8.0),
+                                  padding: EdgeInsets.zero,
+                                ),
+                                ...HtmlStyle.getEffectiveTextStyle(
+                                  h1TextStyle: h1TextStyle,
+                                  h2TextStyle: h2TextStyle,
+                                  h3TextStyle: h3TextStyle,
+                                  h4TextStyle: h4TextStyle,
+                                  h5TextStyle: h5TextStyle,
+                                  h6TextStyle: h6TextStyle,
+                                  textStyle: textStyle,
+                                  textColor: textColor,
+                                ),
+                              },
+                            ),
+                          ],
                           const SizedBox(height: 20.0)
                         ],
                       ),
