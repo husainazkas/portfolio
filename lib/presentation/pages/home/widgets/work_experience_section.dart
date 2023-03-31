@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:timelines/timelines.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 import '../../../../domain/work_experience/entities/work_experience.dart';
 import '../../../../injector.dart';
@@ -82,7 +83,17 @@ class _ExperienceItemView extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       InkWell(
-                        onTap: _experience.url != null ? () {} : null,
+                        onTap: _experience.url != null
+                            ? () {
+                                if (_experience.url != null) {
+                                  canLaunchUrlString(_experience.url!).then((value) {
+                                    if (value) {
+                                      launchUrlString(_experience.url!);
+                                    }
+                                  });
+                                }
+                              }
+                            : null,
                         child: Text(
                           _experience.name,
                           maxLines: 1,
