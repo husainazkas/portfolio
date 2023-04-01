@@ -5,7 +5,6 @@ import 'package:flutter_html/flutter_html.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../../blocs_cubits/contact_section/contact_section_bloc.dart';
-import '../../../utils/html_style.dart';
 import 'section.dart';
 
 class ContactSection extends StatelessWidget {
