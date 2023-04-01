@@ -98,7 +98,7 @@ class _SkillBar extends StatelessWidget {
           children: [
             Expanded(child: Text(_skill.title)),
             Text(
-              '${_skill.score * 100}%',
+              '${(_skill.score * 100).round()}%',
               style: const TextStyle(fontSize: 12.0),
             ),
           ],
