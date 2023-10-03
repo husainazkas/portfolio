@@ -13,10 +13,6 @@ class ContactSection extends StatelessWidget {
   final Key? titleKey;
   final String title;
 
-  CustomRenderMatcher emailMatcher() => (context) {
-        return context.tree.element?.id == 'email';
-      };
-
   @override
   Widget build(BuildContext context) {
     return Section(
@@ -36,9 +32,10 @@ class ContactSection extends StatelessWidget {
             ),
             success: (contact) => Html(
               data: contact.description,
-              customRenders: {
-                emailMatcher(): CustomRender.inlineSpan(
-                  inlineSpan: (context, buildChildren) => TextSpan(
+              extensions: [
+                MatcherExtension.inline(
+                  matcher: (context) => context.id == 'email',
+                  builder: (context) => TextSpan(
                     text: contact.email.trim(),
                     style: const TextStyle(fontWeight: FontWeight.w700),
                     recognizer: TapGestureRecognizer()
@@ -50,11 +47,11 @@ class ContactSection extends StatelessWidget {
                       },
                   ),
                 ),
-              },
+              ],
               style: {
                 'body': Style(
                   margin: Margins.zero,
-                  padding: EdgeInsets.zero,
+                  padding: HtmlPaddings.zero,
                 ),
               },
             ),

@@ -100,7 +100,7 @@ class TimelineItemView extends StatelessWidget {
                               style: {
                                 'body': Style(
                                   margin: Margins.symmetric(vertical: 8.0),
-                                  padding: EdgeInsets.zero,
+                                  padding: HtmlPaddings.zero,
                                 ),
                                 ...HtmlStyle.getEffectiveTextStyle(
                                   h1TextStyle: h1TextStyle,
