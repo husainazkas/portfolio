@@ -22,14 +22,13 @@ class _ExpandableGroupState extends State<ExpandableGroup> {
       expandedHeaderPadding: EdgeInsets.zero,
       expansionCallback: (index, isExpanded) {
         for (int i = 0; i < _isItemsExpanded.length; i++) {
-          setState(() {
-            if (i == index) {
-              _isItemsExpanded[index] = !isExpanded;
-            } else {
-              _isItemsExpanded[i] = false;
-            }
-          });
+          if (i == index) {
+            _isItemsExpanded[index] = isExpanded;
+          } else {
+            _isItemsExpanded[i] = false;
+          }
         }
+        setState(() {});
       },
       children: List.generate(widget.items.length, (index) {
         final item = widget.items[index];
