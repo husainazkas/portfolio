@@ -144,19 +144,17 @@ class _HomePageState extends State<HomePage> {
               Expanded(
                 child: Stack(
                   children: [
-                    SingleChildScrollView(
+                    ListView(
                       controller: _controller,
-                      child: Column(
-                        children: [
-                          HomeHeader(isMobileSize),
-                          HomeBody(
-                            isMobileSize,
-                            key: _bodyKey,
-                            sectionKeys: _sectionKeys,
-                          ),
-                          HomeFooter(constraints),
-                        ],
-                      ),
+                      children: [
+                        HomeHeader(isMobileSize),
+                        HomeBody(
+                          isMobileSize,
+                          key: _bodyKey,
+                          sectionKeys: _sectionKeys,
+                        ),
+                        HomeFooter(constraints),
+                      ],
                     ),
                     if (isMobileSize)
                       PreferredSize(
