@@ -16,7 +16,7 @@ class CachedImage extends StatelessWidget {
   final BoxBorder? border;
 
   const CachedImage({
-    Key? key,
+    super.key,
     required this.source,
     this.fit = BoxFit.cover,
     this.errorBuilder,
@@ -25,7 +25,7 @@ class CachedImage extends StatelessWidget {
     this.clipBehavior = Clip.antiAlias,
     this.shape = BoxShape.rectangle,
     this.border,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

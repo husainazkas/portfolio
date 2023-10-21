@@ -13,6 +13,8 @@
 ///
 /// 
 ///
+// ignore_for_file: dangling_library_doc_comments
+
 import 'package:flutter/widgets.dart';
 
 class CustomIcons {
