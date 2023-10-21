@@ -38,8 +38,13 @@ class WorkExperienceSection extends StatelessWidget {
                 child: Text(failure.message ?? 'Unknown Error'),
               ),
               success: (experiences) => Column(
-                children:
-                    experiences.map((e) => _ExperienceItemView(e)).toList(),
+                children: List.generate(experiences.length * 2 - 1, (index) {
+                  final realIndex = index ~/ 2;
+                  if (index.isOdd) {
+                    return const SizedBox(height: 12.0);
+                  }
+                  return _ExperienceItemView(experiences[realIndex]);
+                }),
               ),
               orElse: () => const SizedBox(),
             ),
@@ -86,7 +91,8 @@ class _ExperienceItemView extends StatelessWidget {
                         onTap: _experience.url != null
                             ? () {
                                 if (_experience.url != null) {
-                                  canLaunchUrlString(_experience.url!).then((value) {
+                                  canLaunchUrlString(_experience.url!)
+                                      .then((value) {
                                     if (value) {
                                       launchUrlString(_experience.url!);
                                     }
