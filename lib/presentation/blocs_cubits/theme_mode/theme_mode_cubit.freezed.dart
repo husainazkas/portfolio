@@ -12,7 +12,8 @@ part of 'theme_mode_cubit.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods',
+);
 
 /// @nodoc
 mixin _$ThemeModeState {
@@ -26,8 +27,9 @@ mixin _$ThemeModeState {
 /// @nodoc
 abstract class $ThemeModeStateCopyWith<$Res> {
   factory $ThemeModeStateCopyWith(
-          ThemeModeState value, $Res Function(ThemeModeState) then) =
-      _$ThemeModeStateCopyWithImpl<$Res, ThemeModeState>;
+    ThemeModeState value,
+    $Res Function(ThemeModeState) then,
+  ) = _$ThemeModeStateCopyWithImpl<$Res, ThemeModeState>;
   @useResult
   $Res call({ThemeMode themeMode});
 }
@@ -44,15 +46,17 @@ class _$ThemeModeStateCopyWithImpl<$Res, $Val extends ThemeModeState>
 
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? themeMode = null,
-  }) {
-    return _then(_value.copyWith(
-      themeMode: null == themeMode
-          ? _value.themeMode
-          : themeMode // ignore: cast_nullable_to_non_nullable
-              as ThemeMode,
-    ) as $Val);
+  $Res call({Object? themeMode = null}) {
+    return _then(
+      _value.copyWith(
+            themeMode:
+                null == themeMode
+                    ? _value.themeMode
+                    : themeMode // ignore: cast_nullable_to_non_nullable
+                        as ThemeMode,
+          )
+          as $Val,
+    );
   }
 }
 
@@ -60,8 +64,9 @@ class _$ThemeModeStateCopyWithImpl<$Res, $Val extends ThemeModeState>
 abstract class _$$_ThemeModeStateCopyWith<$Res>
     implements $ThemeModeStateCopyWith<$Res> {
   factory _$$_ThemeModeStateCopyWith(
-          _$_ThemeModeState value, $Res Function(_$_ThemeModeState) then) =
-      __$$_ThemeModeStateCopyWithImpl<$Res>;
+    _$_ThemeModeState value,
+    $Res Function(_$_ThemeModeState) then,
+  ) = __$$_ThemeModeStateCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({ThemeMode themeMode});
@@ -72,20 +77,21 @@ class __$$_ThemeModeStateCopyWithImpl<$Res>
     extends _$ThemeModeStateCopyWithImpl<$Res, _$_ThemeModeState>
     implements _$$_ThemeModeStateCopyWith<$Res> {
   __$$_ThemeModeStateCopyWithImpl(
-      _$_ThemeModeState _value, $Res Function(_$_ThemeModeState) _then)
-      : super(_value, _then);
+    _$_ThemeModeState _value,
+    $Res Function(_$_ThemeModeState) _then,
+  ) : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? themeMode = null,
-  }) {
-    return _then(_$_ThemeModeState(
-      null == themeMode
-          ? _value.themeMode
-          : themeMode // ignore: cast_nullable_to_non_nullable
-              as ThemeMode,
-    ));
+  $Res call({Object? themeMode = null}) {
+    return _then(
+      _$_ThemeModeState(
+        null == themeMode
+            ? _value.themeMode
+            : themeMode // ignore: cast_nullable_to_non_nullable
+                as ThemeMode,
+      ),
+    );
   }
 }
 

@@ -24,19 +24,22 @@ class EducationSection extends StatelessWidget {
         title: title,
         children: [
           BlocBuilder<EducationSectionBloc, EducationSectionState>(
-            builder: (context, state) => state.maybeWhen(
-              loading: () => const Center(
-                child: SizedBox.square(
-                  dimension: 75.0,
-                  child: CircularProgressIndicator.adaptive(),
+            builder:
+                (context, state) => state.maybeWhen(
+                  loading:
+                      () => const Center(
+                        child: SizedBox.square(
+                          dimension: 75.0,
+                          child: CircularProgressIndicator.adaptive(),
+                        ),
+                      ),
+                  failure:
+                      (failure) => Center(
+                        child: Text(failure.message ?? 'Unknwon Error'),
+                      ),
+                  success: (data) => _EducationItemView(data),
+                  orElse: () => const SizedBox(),
                 ),
-              ),
-              failure: (failure) => Center(
-                child: Text(failure.message ?? 'Unknwon Error'),
-              ),
-              success: (data) => _EducationItemView(data),
-              orElse: () => const SizedBox(),
-            ),
           ),
         ],
       ),

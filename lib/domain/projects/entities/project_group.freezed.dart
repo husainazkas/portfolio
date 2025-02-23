@@ -12,7 +12,8 @@ part of 'project_group.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods',
+);
 
 ProjectGroup _$ProjectGroupFromJson(Map<String, dynamic> json) {
   return _ProjectGroup.fromJson(json);
@@ -32,8 +33,9 @@ mixin _$ProjectGroup {
 /// @nodoc
 abstract class $ProjectGroupCopyWith<$Res> {
   factory $ProjectGroupCopyWith(
-          ProjectGroup value, $Res Function(ProjectGroup) then) =
-      _$ProjectGroupCopyWithImpl<$Res, ProjectGroup>;
+    ProjectGroup value,
+    $Res Function(ProjectGroup) then,
+  ) = _$ProjectGroupCopyWithImpl<$Res, ProjectGroup>;
   @useResult
   $Res call({String header, @JsonKey(name: 'contents') List<Project> projects});
 }
@@ -50,20 +52,22 @@ class _$ProjectGroupCopyWithImpl<$Res, $Val extends ProjectGroup>
 
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? header = null,
-    Object? projects = null,
-  }) {
-    return _then(_value.copyWith(
-      header: null == header
-          ? _value.header
-          : header // ignore: cast_nullable_to_non_nullable
-              as String,
-      projects: null == projects
-          ? _value.projects
-          : projects // ignore: cast_nullable_to_non_nullable
-              as List<Project>,
-    ) as $Val);
+  $Res call({Object? header = null, Object? projects = null}) {
+    return _then(
+      _value.copyWith(
+            header:
+                null == header
+                    ? _value.header
+                    : header // ignore: cast_nullable_to_non_nullable
+                        as String,
+            projects:
+                null == projects
+                    ? _value.projects
+                    : projects // ignore: cast_nullable_to_non_nullable
+                        as List<Project>,
+          )
+          as $Val,
+    );
   }
 }
 
@@ -71,8 +75,9 @@ class _$ProjectGroupCopyWithImpl<$Res, $Val extends ProjectGroup>
 abstract class _$$_ProjectGroupCopyWith<$Res>
     implements $ProjectGroupCopyWith<$Res> {
   factory _$$_ProjectGroupCopyWith(
-          _$_ProjectGroup value, $Res Function(_$_ProjectGroup) then) =
-      __$$_ProjectGroupCopyWithImpl<$Res>;
+    _$_ProjectGroup value,
+    $Res Function(_$_ProjectGroup) then,
+  ) = __$$_ProjectGroupCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String header, @JsonKey(name: 'contents') List<Project> projects});
@@ -83,35 +88,37 @@ class __$$_ProjectGroupCopyWithImpl<$Res>
     extends _$ProjectGroupCopyWithImpl<$Res, _$_ProjectGroup>
     implements _$$_ProjectGroupCopyWith<$Res> {
   __$$_ProjectGroupCopyWithImpl(
-      _$_ProjectGroup _value, $Res Function(_$_ProjectGroup) _then)
-      : super(_value, _then);
+    _$_ProjectGroup _value,
+    $Res Function(_$_ProjectGroup) _then,
+  ) : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? header = null,
-    Object? projects = null,
-  }) {
-    return _then(_$_ProjectGroup(
-      header: null == header
-          ? _value.header
-          : header // ignore: cast_nullable_to_non_nullable
-              as String,
-      projects: null == projects
-          ? _value._projects
-          : projects // ignore: cast_nullable_to_non_nullable
-              as List<Project>,
-    ));
+  $Res call({Object? header = null, Object? projects = null}) {
+    return _then(
+      _$_ProjectGroup(
+        header:
+            null == header
+                ? _value.header
+                : header // ignore: cast_nullable_to_non_nullable
+                    as String,
+        projects:
+            null == projects
+                ? _value._projects
+                : projects // ignore: cast_nullable_to_non_nullable
+                    as List<Project>,
+      ),
+    );
   }
 }
 
 /// @nodoc
 @JsonSerializable(createToJson: false)
 class _$_ProjectGroup implements _ProjectGroup {
-  const _$_ProjectGroup(
-      {required this.header,
-      @JsonKey(name: 'contents') required final List<Project> projects})
-      : _projects = projects;
+  const _$_ProjectGroup({
+    required this.header,
+    @JsonKey(name: 'contents') required final List<Project> projects,
+  }) : _projects = projects;
 
   factory _$_ProjectGroup.fromJson(Map<String, dynamic> json) =>
       _$$_ProjectGroupFromJson(json);
@@ -144,7 +151,10 @@ class _$_ProjectGroup implements _ProjectGroup {
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
-      runtimeType, header, const DeepCollectionEquality().hash(_projects));
+    runtimeType,
+    header,
+    const DeepCollectionEquality().hash(_projects),
+  );
 
   @JsonKey(ignore: true)
   @override
@@ -154,10 +164,10 @@ class _$_ProjectGroup implements _ProjectGroup {
 }
 
 abstract class _ProjectGroup implements ProjectGroup {
-  const factory _ProjectGroup(
-          {required final String header,
-          @JsonKey(name: 'contents') required final List<Project> projects}) =
-      _$_ProjectGroup;
+  const factory _ProjectGroup({
+    required final String header,
+    @JsonKey(name: 'contents') required final List<Project> projects,
+  }) = _$_ProjectGroup;
 
   factory _ProjectGroup.fromJson(Map<String, dynamic> json) =
       _$_ProjectGroup.fromJson;

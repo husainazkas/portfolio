@@ -12,7 +12,8 @@ part of 'scroll_listener_cubit.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods',
+);
 
 /// @nodoc
 mixin _$ScrollListenerState {
@@ -26,8 +27,9 @@ mixin _$ScrollListenerState {
 /// @nodoc
 abstract class $ScrollListenerStateCopyWith<$Res> {
   factory $ScrollListenerStateCopyWith(
-          ScrollListenerState value, $Res Function(ScrollListenerState) then) =
-      _$ScrollListenerStateCopyWithImpl<$Res, ScrollListenerState>;
+    ScrollListenerState value,
+    $Res Function(ScrollListenerState) then,
+  ) = _$ScrollListenerStateCopyWithImpl<$Res, ScrollListenerState>;
   @useResult
   $Res call({double offset});
 }
@@ -44,24 +46,27 @@ class _$ScrollListenerStateCopyWithImpl<$Res, $Val extends ScrollListenerState>
 
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? offset = null,
-  }) {
-    return _then(_value.copyWith(
-      offset: null == offset
-          ? _value.offset
-          : offset // ignore: cast_nullable_to_non_nullable
-              as double,
-    ) as $Val);
+  $Res call({Object? offset = null}) {
+    return _then(
+      _value.copyWith(
+            offset:
+                null == offset
+                    ? _value.offset
+                    : offset // ignore: cast_nullable_to_non_nullable
+                        as double,
+          )
+          as $Val,
+    );
   }
 }
 
 /// @nodoc
 abstract class _$$_ScrollListenerStateCopyWith<$Res>
     implements $ScrollListenerStateCopyWith<$Res> {
-  factory _$$_ScrollListenerStateCopyWith(_$_ScrollListenerState value,
-          $Res Function(_$_ScrollListenerState) then) =
-      __$$_ScrollListenerStateCopyWithImpl<$Res>;
+  factory _$$_ScrollListenerStateCopyWith(
+    _$_ScrollListenerState value,
+    $Res Function(_$_ScrollListenerState) then,
+  ) = __$$_ScrollListenerStateCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({double offset});
@@ -71,21 +76,22 @@ abstract class _$$_ScrollListenerStateCopyWith<$Res>
 class __$$_ScrollListenerStateCopyWithImpl<$Res>
     extends _$ScrollListenerStateCopyWithImpl<$Res, _$_ScrollListenerState>
     implements _$$_ScrollListenerStateCopyWith<$Res> {
-  __$$_ScrollListenerStateCopyWithImpl(_$_ScrollListenerState _value,
-      $Res Function(_$_ScrollListenerState) _then)
-      : super(_value, _then);
+  __$$_ScrollListenerStateCopyWithImpl(
+    _$_ScrollListenerState _value,
+    $Res Function(_$_ScrollListenerState) _then,
+  ) : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? offset = null,
-  }) {
-    return _then(_$_ScrollListenerState(
-      null == offset
-          ? _value.offset
-          : offset // ignore: cast_nullable_to_non_nullable
-              as double,
-    ));
+  $Res call({Object? offset = null}) {
+    return _then(
+      _$_ScrollListenerState(
+        null == offset
+            ? _value.offset
+            : offset // ignore: cast_nullable_to_non_nullable
+                as double,
+      ),
+    );
   }
 }
 
@@ -119,7 +125,9 @@ class _$_ScrollListenerState implements _ScrollListenerState {
   @pragma('vm:prefer-inline')
   _$$_ScrollListenerStateCopyWith<_$_ScrollListenerState> get copyWith =>
       __$$_ScrollListenerStateCopyWithImpl<_$_ScrollListenerState>(
-          this, _$identity);
+        this,
+        _$identity,
+      );
 }
 
 abstract class _ScrollListenerState implements ScrollListenerState {

@@ -14,12 +14,14 @@ class SkillsSectionBloc extends Bloc<SkillsSectionEvent, SkillsSectionState> {
   final GetSkills _getSkills;
 
   SkillsSectionBloc(this._getSkills)
-      : super(const SkillsSectionState.initial()) {
+    : super(const SkillsSectionState.initial()) {
     on<_Fetched>(_onFetched);
   }
 
   Future<void> _onFetched(
-      _Fetched event, Emitter<SkillsSectionState> emit) async {
+    _Fetched event,
+    Emitter<SkillsSectionState> emit,
+  ) async {
     emit(const SkillsSectionState.loading());
 
     final result = await _getSkills(const NoParams());

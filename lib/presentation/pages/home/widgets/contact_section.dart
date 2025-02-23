@@ -20,44 +20,53 @@ class ContactSection extends StatelessWidget {
       title: title,
       children: [
         BlocBuilder<ContactSectionBloc, ContactSectionState>(
-          builder: (context, state) => state.maybeWhen(
-            loading: () => const Center(
-              child: SizedBox.square(
-                dimension: 75.0,
-                child: CircularProgressIndicator.adaptive(),
-              ),
-            ),
-            failure: (failure) => Center(
-              child: Text(failure.message ?? 'Unknown Error'),
-            ),
-            success: (contact) => Html(
-              data: contact.description,
-              extensions: [
-                MatcherExtension.inline(
-                  matcher: (context) => context.id == 'email',
-                  builder: (context) => TextSpan(
-                    text: contact.email.trim(),
-                    style: const TextStyle(fontWeight: FontWeight.w700),
-                    recognizer: TapGestureRecognizer()
-                      ..onTap = () {
-                        final url = Uri.parse('mailto:${contact.email}');
-                        canLaunchUrl(url).then((value) {
-                          if (value) launchUrl(url);
-                        });
+          builder:
+              (context, state) => state.maybeWhen(
+                loading:
+                    () => const Center(
+                      child: SizedBox.square(
+                        dimension: 75.0,
+                        child: CircularProgressIndicator.adaptive(),
+                      ),
+                    ),
+                failure:
+                    (failure) =>
+                        Center(child: Text(failure.message ?? 'Unknown Error')),
+                success:
+                    (contact) => Html(
+                      data: contact.description,
+                      extensions: [
+                        MatcherExtension.inline(
+                          matcher: (context) => context.id == 'email',
+                          builder:
+                              (context) => TextSpan(
+                                text: contact.email.trim(),
+                                style: const TextStyle(
+                                  fontWeight: FontWeight.w700,
+                                ),
+                                recognizer:
+                                    TapGestureRecognizer()
+                                      ..onTap = () {
+                                        final url = Uri.parse(
+                                          'mailto:${contact.email}',
+                                        );
+                                        canLaunchUrl(url).then((value) {
+                                          if (value) launchUrl(url);
+                                        });
+                                      },
+                              ),
+                        ),
+                      ],
+                      style: {
+                        'body': Style(
+                          margin: Margins.zero,
+                          padding: HtmlPaddings.zero,
+                        ),
                       },
-                  ),
-                ),
-              ],
-              style: {
-                'body': Style(
-                  margin: Margins.zero,
-                  padding: HtmlPaddings.zero,
-                ),
-              },
-            ),
-            orElse: () => const SizedBox(),
-          ),
-        )
+                    ),
+                orElse: () => const SizedBox(),
+              ),
+        ),
       ],
     );
   }

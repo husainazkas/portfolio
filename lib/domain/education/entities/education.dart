@@ -19,8 +19,8 @@ class Education with _$Education {
       _$EducationFromJson(json);
 
   TimelineData toTimelineData() => TimelineData(
-        title: name,
-        subtitle: '$major ($period)',
-        description: description,
-      );
+    title: name,
+    subtitle: '$major ($period)',
+    description: description,
+  );
 }

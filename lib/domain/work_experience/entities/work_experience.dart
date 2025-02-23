@@ -15,7 +15,7 @@ class WorkExperience with _$WorkExperience {
     required String? thumb,
     @JsonKey(name: 'href') required String? url,
     @JsonKey(fromJson: WorkExperience._parseTimeline)
-        required List<TimelineData> timeline,
+    required List<TimelineData> timeline,
     required List<String> tags,
   }) = _WorkExperience;
 

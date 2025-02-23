@@ -20,34 +20,40 @@ class WorkExperienceSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider<WorkExperienceSectionBloc>(
-      create: (context) =>
-          sl()..add(const WorkExperienceSectionEvent.fetched()),
+      create:
+          (context) => sl()..add(const WorkExperienceSectionEvent.fetched()),
       child: Section(
         titleKey: titleKey,
         title: title,
         children: [
           BlocBuilder<WorkExperienceSectionBloc, WorkExperienceSectionState>(
-            builder: (context, state) => state.maybeWhen(
-              loading: () => const Center(
-                child: SizedBox.square(
-                  dimension: 75.0,
-                  child: CircularProgressIndicator.adaptive(),
+            builder:
+                (context, state) => state.maybeWhen(
+                  loading:
+                      () => const Center(
+                        child: SizedBox.square(
+                          dimension: 75.0,
+                          child: CircularProgressIndicator.adaptive(),
+                        ),
+                      ),
+                  failure:
+                      (failure) => Center(
+                        child: Text(failure.message ?? 'Unknown Error'),
+                      ),
+                  success:
+                      (experiences) => Column(
+                        children: List.generate(experiences.length * 2 - 1, (
+                          index,
+                        ) {
+                          final realIndex = index ~/ 2;
+                          if (index.isOdd) {
+                            return const SizedBox(height: 12.0);
+                          }
+                          return _ExperienceItemView(experiences[realIndex]);
+                        }),
+                      ),
+                  orElse: () => const SizedBox(),
                 ),
-              ),
-              failure: (failure) => Center(
-                child: Text(failure.message ?? 'Unknown Error'),
-              ),
-              success: (experiences) => Column(
-                children: List.generate(experiences.length * 2 - 1, (index) {
-                  final realIndex = index ~/ 2;
-                  if (index.isOdd) {
-                    return const SizedBox(height: 12.0);
-                  }
-                  return _ExperienceItemView(experiences[realIndex]);
-                }),
-              ),
-              orElse: () => const SizedBox(),
-            ),
           ),
         ],
       ),
@@ -88,18 +94,20 @@ class _ExperienceItemView extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       InkWell(
-                        onTap: _experience.url != null
-                            ? () {
-                                if (_experience.url != null) {
-                                  canLaunchUrlString(_experience.url!)
-                                      .then((value) {
-                                    if (value) {
-                                      launchUrlString(_experience.url!);
-                                    }
-                                  });
+                        onTap:
+                            _experience.url != null
+                                ? () {
+                                  if (_experience.url != null) {
+                                    canLaunchUrlString(_experience.url!).then((
+                                      value,
+                                    ) {
+                                      if (value) {
+                                        launchUrlString(_experience.url!);
+                                      }
+                                    });
+                                  }
                                 }
-                              }
-                            : null,
+                                : null,
                         child: Text(
                           _experience.name,
                           maxLines: 1,
@@ -122,10 +130,10 @@ class _ExperienceItemView extends StatelessWidget {
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                         style: const TextStyle(fontWeight: FontWeight.w300),
-                      )
+                      ),
                     ],
                   ),
-                )
+                ),
               ],
             ),
             const Divider(),
@@ -151,9 +159,10 @@ class _ExperienceItemView extends StatelessWidget {
                   Wrap(
                     spacing: 16.0,
                     runSpacing: 8.0,
-                    children: _experience.tags
-                        .map((e) => Chip(label: Text(e)))
-                        .toList(),
+                    children:
+                        _experience.tags
+                            .map((e) => Chip(label: Text(e)))
+                            .toList(),
                   ),
                 ],
               ),

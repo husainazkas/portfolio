@@ -7,6 +7,6 @@ part of 'threshold.dart';
 // **************************************************************************
 
 _$_Threshold _$$_ThresholdFromJson(Map<String, dynamic> json) => _$_Threshold(
-      label: json['label'] as String,
-      value: (json['value'] as num).toDouble(),
-    );
+  label: json['label'] as String,
+  value: (json['value'] as num).toDouble(),
+);

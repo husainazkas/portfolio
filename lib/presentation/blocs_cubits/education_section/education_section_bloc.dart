@@ -15,19 +15,20 @@ class EducationSectionBloc
   final GetEducations _getEducations;
 
   EducationSectionBloc(this._getEducations)
-      : super(const EducationSectionState.initial()) {
+    : super(const EducationSectionState.initial()) {
     on<_Fetched>(_onFetched);
   }
 
   Future<void> _onFetched(
-      _Fetched event, Emitter<EducationSectionState> emit) async {
+    _Fetched event,
+    Emitter<EducationSectionState> emit,
+  ) async {
     emit(const EducationSectionState.loading());
 
     final result = await _getEducations(const NoParams());
 
-    emit(result.fold(
-      EducationSectionState.failure,
-      EducationSectionState.success,
-    ));
+    emit(
+      result.fold(EducationSectionState.failure, EducationSectionState.success),
+    );
   }
 }

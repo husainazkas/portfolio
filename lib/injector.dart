@@ -38,7 +38,8 @@ Future<void> initApp() async {
 
 void _initSkillsSection() {
   sl.registerLazySingleton<ISkillLocalDatasource>(
-      () => AssetsSkillLocalDatasource());
+    () => AssetsSkillLocalDatasource(),
+  );
   sl.registerLazySingleton<ISkillRepository>(() => SkillRepository(sl()));
   sl.registerLazySingleton(() => GetSkills(sl()));
 
@@ -47,7 +48,8 @@ void _initSkillsSection() {
 
 void _initProjectsSection() {
   sl.registerLazySingleton<IProjectLocalDatasource>(
-      () => AssetsProjectLocalDatasource());
+    () => AssetsProjectLocalDatasource(),
+  );
   sl.registerLazySingleton<IProjectRepository>(() => ProjectRepository(sl()));
   sl.registerLazySingleton(() => GetProjects(sl()));
 
@@ -56,9 +58,11 @@ void _initProjectsSection() {
 
 void _initWorkExperienceSection() {
   sl.registerLazySingleton<IWorkExperienceLocalDatasource>(
-      () => AssetsWorkExperienceLocalDatasource());
+    () => AssetsWorkExperienceLocalDatasource(),
+  );
   sl.registerLazySingleton<IWorkExperienceRepository>(
-      () => WorkExperienceRepository(sl()));
+    () => WorkExperienceRepository(sl()),
+  );
   sl.registerLazySingleton(() => GetWorkExperiences(sl()));
 
   sl.registerFactory(() => WorkExperienceSectionBloc(sl()));
@@ -66,9 +70,11 @@ void _initWorkExperienceSection() {
 
 void _initEducationSection() {
   sl.registerLazySingleton<IEducationLocalDatasource>(
-      () => AssetsEducationLocalDatasource());
+    () => AssetsEducationLocalDatasource(),
+  );
   sl.registerLazySingleton<IEducationRepository>(
-      () => EducationRepository(sl()));
+    () => EducationRepository(sl()),
+  );
   sl.registerLazySingleton(() => GetEducations(sl()));
 
   sl.registerFactory(() => EducationSectionBloc(sl()));
@@ -76,7 +82,8 @@ void _initEducationSection() {
 
 void _initContactSection() {
   sl.registerLazySingleton<IContactLocalDatasource>(
-      () => AssetsContactLocalDatasource());
+    () => AssetsContactLocalDatasource(),
+  );
   sl.registerLazySingleton<IContactRepository>(() => ContactRepository(sl()));
   sl.registerLazySingleton(() => GetContact(sl()));
 

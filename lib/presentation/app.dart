@@ -14,24 +14,23 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider<ThemeModeCubit>(
-          create: (context) => ThemeModeCubit(),
-        ),
+        BlocProvider<ThemeModeCubit>(create: (context) => ThemeModeCubit()),
         BlocProvider<ContactSectionBloc>(
           lazy: false,
           create: (context) => sl()..add(const ContactSectionEvent.fetched()),
         ),
       ],
       child: BlocBuilder<ThemeModeCubit, ThemeModeState>(
-        builder: (context, state) => MaterialApp.router(
-          routeInformationParser: router.routeInformationParser,
-          routeInformationProvider: router.routeInformationProvider,
-          routerDelegate: router.routerDelegate,
-          title: 'Husain Fadhilah Azka S',
-          themeMode: state.themeMode,
-          theme: AppTheme.lightTheme,
-          darkTheme: AppTheme.darkTheme,
-        ),
+        builder:
+            (context, state) => MaterialApp.router(
+              routeInformationParser: router.routeInformationParser,
+              routeInformationProvider: router.routeInformationProvider,
+              routerDelegate: router.routerDelegate,
+              title: 'Husain Fadhilah Azka S',
+              themeMode: state.themeMode,
+              theme: AppTheme.lightTheme,
+              darkTheme: AppTheme.darkTheme,
+            ),
       ),
     );
   }

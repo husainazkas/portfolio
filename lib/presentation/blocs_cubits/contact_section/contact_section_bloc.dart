@@ -15,12 +15,14 @@ class ContactSectionBloc
   final GetContact _getContact;
 
   ContactSectionBloc(this._getContact)
-      : super(const ContactSectionState.initial()) {
+    : super(const ContactSectionState.initial()) {
     on<_Fetched>(_onFetched);
   }
 
   Future<void> _onFetched(
-      _Fetched event, Emitter<ContactSectionState> emit) async {
+    _Fetched event,
+    Emitter<ContactSectionState> emit,
+  ) async {
     emit(const ContactSectionState.loading());
 
     final result = await _getContact(const NoParams());

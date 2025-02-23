@@ -10,8 +10,10 @@ class ExpandableGroup extends StatefulWidget {
 }
 
 class _ExpandableGroupState extends State<ExpandableGroup> {
-  late final List<bool> _isItemsExpanded =
-      List.filled(widget.items.length, false);
+  late final List<bool> _isItemsExpanded = List.filled(
+    widget.items.length,
+    false,
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -35,16 +37,19 @@ class _ExpandableGroupState extends State<ExpandableGroup> {
         return ExpansionPanel(
           canTapOnHeader: true,
           isExpanded: _isItemsExpanded[index],
-          headerBuilder: (context, isExpanded) => Padding(
-            padding: item.headerPadding.resolve(direction).copyWith(right: 0.0),
-            child: Align(
-              alignment: Alignment.centerLeft,
-              child: DefaultTextStyle.merge(
-                style: const TextStyle(color: Colors.white),
-                child: item.headerBuilder(isExpanded),
+          headerBuilder:
+              (context, isExpanded) => Padding(
+                padding: item.headerPadding
+                    .resolve(direction)
+                    .copyWith(right: 0.0),
+                child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: DefaultTextStyle.merge(
+                    style: const TextStyle(color: Colors.white),
+                    child: item.headerBuilder(isExpanded),
+                  ),
+                ),
               ),
-            ),
-          ),
           body: Container(
             width: double.infinity,
             decoration: const BoxDecoration(

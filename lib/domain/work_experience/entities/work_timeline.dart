@@ -19,8 +19,8 @@ class WorkTimeline with _$WorkTimeline {
       _$WorkTimelineFromJson(json);
 
   TimelineData toTimelineData() => TimelineData(
-        title: title,
-        subtitle: '$period ($type)',
-        description: description,
-      );
+    title: title,
+    subtitle: '$period ($type)',
+    description: description,
+  );
 }

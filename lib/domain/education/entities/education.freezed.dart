@@ -12,7 +12,8 @@ part of 'education.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods',
+);
 
 Education _$EducationFromJson(Map<String, dynamic> json) {
   return _Education.fromJson(json);
@@ -56,32 +57,40 @@ class _$EducationCopyWithImpl<$Res, $Val extends Education>
     Object? period = null,
     Object? description = freezed,
   }) {
-    return _then(_value.copyWith(
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      major: null == major
-          ? _value.major
-          : major // ignore: cast_nullable_to_non_nullable
-              as String,
-      period: null == period
-          ? _value.period
-          : period // ignore: cast_nullable_to_non_nullable
-              as String,
-      description: freezed == description
-          ? _value.description
-          : description // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ) as $Val);
+    return _then(
+      _value.copyWith(
+            name:
+                null == name
+                    ? _value.name
+                    : name // ignore: cast_nullable_to_non_nullable
+                        as String,
+            major:
+                null == major
+                    ? _value.major
+                    : major // ignore: cast_nullable_to_non_nullable
+                        as String,
+            period:
+                null == period
+                    ? _value.period
+                    : period // ignore: cast_nullable_to_non_nullable
+                        as String,
+            description:
+                freezed == description
+                    ? _value.description
+                    : description // ignore: cast_nullable_to_non_nullable
+                        as String?,
+          )
+          as $Val,
+    );
   }
 }
 
 /// @nodoc
 abstract class _$$_EducationCopyWith<$Res> implements $EducationCopyWith<$Res> {
   factory _$$_EducationCopyWith(
-          _$_Education value, $Res Function(_$_Education) then) =
-      __$$_EducationCopyWithImpl<$Res>;
+    _$_Education value,
+    $Res Function(_$_Education) then,
+  ) = __$$_EducationCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String name, String major, String period, String? description});
@@ -92,8 +101,9 @@ class __$$_EducationCopyWithImpl<$Res>
     extends _$EducationCopyWithImpl<$Res, _$_Education>
     implements _$$_EducationCopyWith<$Res> {
   __$$_EducationCopyWithImpl(
-      _$_Education _value, $Res Function(_$_Education) _then)
-      : super(_value, _then);
+    _$_Education _value,
+    $Res Function(_$_Education) _then,
+  ) : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
@@ -103,36 +113,42 @@ class __$$_EducationCopyWithImpl<$Res>
     Object? period = null,
     Object? description = freezed,
   }) {
-    return _then(_$_Education(
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      major: null == major
-          ? _value.major
-          : major // ignore: cast_nullable_to_non_nullable
-              as String,
-      period: null == period
-          ? _value.period
-          : period // ignore: cast_nullable_to_non_nullable
-              as String,
-      description: freezed == description
-          ? _value.description
-          : description // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
+    return _then(
+      _$_Education(
+        name:
+            null == name
+                ? _value.name
+                : name // ignore: cast_nullable_to_non_nullable
+                    as String,
+        major:
+            null == major
+                ? _value.major
+                : major // ignore: cast_nullable_to_non_nullable
+                    as String,
+        period:
+            null == period
+                ? _value.period
+                : period // ignore: cast_nullable_to_non_nullable
+                    as String,
+        description:
+            freezed == description
+                ? _value.description
+                : description // ignore: cast_nullable_to_non_nullable
+                    as String?,
+      ),
+    );
   }
 }
 
 /// @nodoc
 @JsonSerializable(createToJson: false)
 class _$_Education extends _Education {
-  const _$_Education(
-      {required this.name,
-      required this.major,
-      required this.period,
-      required this.description})
-      : super._();
+  const _$_Education({
+    required this.name,
+    required this.major,
+    required this.period,
+    required this.description,
+  }) : super._();
 
   factory _$_Education.fromJson(Map<String, dynamic> json) =>
       _$$_EducationFromJson(json);
@@ -176,11 +192,12 @@ class _$_Education extends _Education {
 }
 
 abstract class _Education extends Education {
-  const factory _Education(
-      {required final String name,
-      required final String major,
-      required final String period,
-      required final String? description}) = _$_Education;
+  const factory _Education({
+    required final String name,
+    required final String major,
+    required final String period,
+    required final String? description,
+  }) = _$_Education;
   const _Education._() : super._();
 
   factory _Education.fromJson(Map<String, dynamic> json) =

@@ -7,7 +7,7 @@ const String brokenImage =
 class CachedImage extends StatelessWidget {
   final String source;
   final Widget Function(BuildContext context, String error, dynamic stackrace)?
-      errorBuilder;
+  errorBuilder;
   final BoxFit fit;
   final double? width;
   final double? height;
@@ -44,8 +44,8 @@ class CachedImage extends StatelessWidget {
         height: height,
         memCacheHeight: height?.toInt(),
         memCacheWidth: width?.toInt(),
-        progressIndicatorBuilder: (context, url, progress) =>
-            _progressIndicator(progress),
+        progressIndicatorBuilder:
+            (context, url, progress) => _progressIndicator(progress),
         errorWidget: errorBuilder ?? (context, e, s) => _errorImage(),
       ),
     );
@@ -58,10 +58,7 @@ class CachedImage extends StatelessWidget {
         heightFactor: 0.6,
         widthFactor: 0.6,
         child: FittedBox(
-          child: Icon(
-            Icons.broken_image_outlined,
-            color: Colors.black54,
-          ),
+          child: Icon(Icons.broken_image_outlined, color: Colors.black54),
         ),
       ),
     );
@@ -71,9 +68,7 @@ class CachedImage extends StatelessWidget {
     return Center(
       child: SizedBox.square(
         dimension: 32.0,
-        child: CircularProgressIndicator(
-          value: progress.progress,
-        ),
+        child: CircularProgressIndicator(value: progress.progress),
       ),
     );
   }

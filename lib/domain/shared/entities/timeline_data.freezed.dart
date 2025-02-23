@@ -12,7 +12,8 @@ part of 'timeline_data.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods',
+);
 
 TimelineData _$TimelineDataFromJson(Map<String, dynamic> json) {
   return _TimelineData.fromJson(json);
@@ -32,8 +33,9 @@ mixin _$TimelineData {
 /// @nodoc
 abstract class $TimelineDataCopyWith<$Res> {
   factory $TimelineDataCopyWith(
-          TimelineData value, $Res Function(TimelineData) then) =
-      _$TimelineDataCopyWithImpl<$Res, TimelineData>;
+    TimelineData value,
+    $Res Function(TimelineData) then,
+  ) = _$TimelineDataCopyWithImpl<$Res, TimelineData>;
   @useResult
   $Res call({String title, String? subtitle, String? description});
 }
@@ -55,20 +57,26 @@ class _$TimelineDataCopyWithImpl<$Res, $Val extends TimelineData>
     Object? subtitle = freezed,
     Object? description = freezed,
   }) {
-    return _then(_value.copyWith(
-      title: null == title
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String,
-      subtitle: freezed == subtitle
-          ? _value.subtitle
-          : subtitle // ignore: cast_nullable_to_non_nullable
-              as String?,
-      description: freezed == description
-          ? _value.description
-          : description // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ) as $Val);
+    return _then(
+      _value.copyWith(
+            title:
+                null == title
+                    ? _value.title
+                    : title // ignore: cast_nullable_to_non_nullable
+                        as String,
+            subtitle:
+                freezed == subtitle
+                    ? _value.subtitle
+                    : subtitle // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            description:
+                freezed == description
+                    ? _value.description
+                    : description // ignore: cast_nullable_to_non_nullable
+                        as String?,
+          )
+          as $Val,
+    );
   }
 }
 
@@ -76,8 +84,9 @@ class _$TimelineDataCopyWithImpl<$Res, $Val extends TimelineData>
 abstract class _$$_TimelineDataCopyWith<$Res>
     implements $TimelineDataCopyWith<$Res> {
   factory _$$_TimelineDataCopyWith(
-          _$_TimelineData value, $Res Function(_$_TimelineData) then) =
-      __$$_TimelineDataCopyWithImpl<$Res>;
+    _$_TimelineData value,
+    $Res Function(_$_TimelineData) then,
+  ) = __$$_TimelineDataCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String title, String? subtitle, String? description});
@@ -88,8 +97,9 @@ class __$$_TimelineDataCopyWithImpl<$Res>
     extends _$TimelineDataCopyWithImpl<$Res, _$_TimelineData>
     implements _$$_TimelineDataCopyWith<$Res> {
   __$$_TimelineDataCopyWithImpl(
-      _$_TimelineData _value, $Res Function(_$_TimelineData) _then)
-      : super(_value, _then);
+    _$_TimelineData _value,
+    $Res Function(_$_TimelineData) _then,
+  ) : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
@@ -98,28 +108,36 @@ class __$$_TimelineDataCopyWithImpl<$Res>
     Object? subtitle = freezed,
     Object? description = freezed,
   }) {
-    return _then(_$_TimelineData(
-      title: null == title
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String,
-      subtitle: freezed == subtitle
-          ? _value.subtitle
-          : subtitle // ignore: cast_nullable_to_non_nullable
-              as String?,
-      description: freezed == description
-          ? _value.description
-          : description // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
+    return _then(
+      _$_TimelineData(
+        title:
+            null == title
+                ? _value.title
+                : title // ignore: cast_nullable_to_non_nullable
+                    as String,
+        subtitle:
+            freezed == subtitle
+                ? _value.subtitle
+                : subtitle // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        description:
+            freezed == description
+                ? _value.description
+                : description // ignore: cast_nullable_to_non_nullable
+                    as String?,
+      ),
+    );
   }
 }
 
 /// @nodoc
 @JsonSerializable(createToJson: false)
 class _$_TimelineData implements _TimelineData {
-  const _$_TimelineData(
-      {required this.title, required this.subtitle, required this.description});
+  const _$_TimelineData({
+    required this.title,
+    required this.subtitle,
+    required this.description,
+  });
 
   factory _$_TimelineData.fromJson(Map<String, dynamic> json) =>
       _$$_TimelineDataFromJson(json);
@@ -160,10 +178,11 @@ class _$_TimelineData implements _TimelineData {
 }
 
 abstract class _TimelineData implements TimelineData {
-  const factory _TimelineData(
-      {required final String title,
-      required final String? subtitle,
-      required final String? description}) = _$_TimelineData;
+  const factory _TimelineData({
+    required final String title,
+    required final String? subtitle,
+    required final String? description,
+  }) = _$_TimelineData;
 
   factory _TimelineData.fromJson(Map<String, dynamic> json) =
       _$_TimelineData.fromJson;

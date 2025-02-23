@@ -14,8 +14,10 @@ class GetEducations
 
   @override
   Future<Either<LocalFailure, List<TimelineData>>> call(NoParams params) =>
-      _repository.getEducations().then((v) => v.fold(
-            left,
-            (r) => right(r.map((e) => e.toTimelineData()).toList()),
-          ));
+      _repository.getEducations().then(
+        (v) => v.fold(
+          left,
+          (r) => right(r.map((e) => e.toTimelineData()).toList()),
+        ),
+      );
 }

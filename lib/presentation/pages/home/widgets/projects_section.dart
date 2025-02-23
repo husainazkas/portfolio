@@ -24,79 +24,102 @@ class ProjectSection extends StatelessWidget {
         title: title,
         children: [
           BlocBuilder<ProjectsSectionBloc, ProjectsSectionState>(
-            builder: (context, state) => state.maybeWhen(
-              loading: () => const Center(
-                child: SizedBox.square(
-                  dimension: 75.0,
-                  child: CircularProgressIndicator.adaptive(),
-                ),
-              ),
-              failure: (failure) => Center(
-                child: Text(failure.message ?? 'Unknown Error'),
-              ),
-              success: (group) {
-                if (group.isEmpty) return const SizedBox();
+            builder:
+                (context, state) => state.maybeWhen(
+                  loading:
+                      () => const Center(
+                        child: SizedBox.square(
+                          dimension: 75.0,
+                          child: CircularProgressIndicator.adaptive(),
+                        ),
+                      ),
+                  failure:
+                      (failure) => Center(
+                        child: Text(failure.message ?? 'Unknown Error'),
+                      ),
+                  success: (group) {
+                    if (group.isEmpty) return const SizedBox();
 
-                return Container(
-                  padding: const EdgeInsets.all(8.0),
-                  decoration: BoxDecoration(
-                    color: sideBarColor(context),
-                    borderRadius: const BorderRadius.all(Radius.circular(12.0)),
-                  ),
-                  child: ClipRRect(
-                    borderRadius: const BorderRadius.all(Radius.circular(12.0)),
-                    child: ExpandableGroup(
-                      items: group
-                          .map((e) => ExpandableItem(
-                                headerBuilder: (isExpanded) => Text(e.header),
-                                content: Padding(
-                                  padding:
-                                      const EdgeInsets.symmetric(vertical: 8.0),
-                                  child: Column(
-                                    children: List.generate(
-                                        e.projects.length * 2 - 1, (index) {
-                                      if (index.isOdd) {
-                                        return const SizedBox(height: 8.0);
-                                      }
-                                      const radius = Radius.circular(12.0);
-                                      final rTop =
-                                          index == 0 ? radius : Radius.zero;
-                                      final rBottom = ((index ~/ 2) + 1) ==
-                                              e.projects.length
-                                          ? radius
-                                          : Radius.zero;
-                                      final p = e.projects[index ~/ 2];
-                                      return _ProjectItemCard(
-                                        borderRadius: BorderRadius.vertical(
-                                          top: rTop,
-                                          bottom: rBottom,
+                    return Container(
+                      padding: const EdgeInsets.all(8.0),
+                      decoration: BoxDecoration(
+                        color: sideBarColor(context),
+                        borderRadius: const BorderRadius.all(
+                          Radius.circular(12.0),
+                        ),
+                      ),
+                      child: ClipRRect(
+                        borderRadius: const BorderRadius.all(
+                          Radius.circular(12.0),
+                        ),
+                        child: ExpandableGroup(
+                          items:
+                              group
+                                  .map(
+                                    (e) => ExpandableItem(
+                                      headerBuilder:
+                                          (isExpanded) => Text(e.header),
+                                      content: Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                          vertical: 8.0,
                                         ),
-                                        imageUrl: p.thumb ?? '',
-                                        title: p.title,
-                                        description: p.description,
-                                        tags: p.tags,
-                                        onTap: () {
-                                          if (p.url != null) {
-                                            canLaunchUrlString(p.url!)
-                                                .then((value) {
-                                              if (value) {
-                                                launchUrlString(p.url!);
+                                        child: Column(
+                                          children: List.generate(
+                                            e.projects.length * 2 - 1,
+                                            (index) {
+                                              if (index.isOdd) {
+                                                return const SizedBox(
+                                                  height: 8.0,
+                                                );
                                               }
-                                            });
-                                          }
-                                        },
-                                      );
-                                    }),
-                                  ),
-                                ),
-                              ))
-                          .toList(),
-                    ),
-                  ),
-                );
-              },
-              orElse: () => const SizedBox(),
-            ),
+                                              const radius = Radius.circular(
+                                                12.0,
+                                              );
+                                              final rTop =
+                                                  index == 0
+                                                      ? radius
+                                                      : Radius.zero;
+                                              final rBottom =
+                                                  ((index ~/ 2) + 1) ==
+                                                          e.projects.length
+                                                      ? radius
+                                                      : Radius.zero;
+                                              final p = e.projects[index ~/ 2];
+                                              return _ProjectItemCard(
+                                                borderRadius:
+                                                    BorderRadius.vertical(
+                                                      top: rTop,
+                                                      bottom: rBottom,
+                                                    ),
+                                                imageUrl: p.thumb ?? '',
+                                                title: p.title,
+                                                description: p.description,
+                                                tags: p.tags,
+                                                onTap: () {
+                                                  if (p.url != null) {
+                                                    canLaunchUrlString(
+                                                      p.url!,
+                                                    ).then((value) {
+                                                      if (value) {
+                                                        launchUrlString(p.url!);
+                                                      }
+                                                    });
+                                                  }
+                                                },
+                                              );
+                                            },
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  )
+                                  .toList(),
+                        ),
+                      ),
+                    );
+                  },
+                  orElse: () => const SizedBox(),
+                ),
           ),
         ],
       ),
@@ -135,7 +158,7 @@ class _ProjectItemCard extends StatelessWidget {
           spacing: 16.0,
           runSpacing: 8.0,
           children: tags.map((e) => Chip(label: Text(e))).toList(),
-        )
+        ),
       ];
     }
 
@@ -168,10 +191,7 @@ class _ProjectItemCard extends StatelessWidget {
             aspectRatio: 6 / 4,
             child: ClipRRect(
               borderRadius: const BorderRadius.all(Radius.circular(12.0)),
-              child: CachedImage(
-                source: imageUrl,
-                width: width,
-              ),
+              child: CachedImage(source: imageUrl, width: width),
             ),
           ),
         ),
@@ -202,10 +222,7 @@ class _ProjectItemCard extends StatelessWidget {
           constraints: BoxConstraints(maxHeight: width * .5),
           child: ClipRRect(
             borderRadius: const BorderRadius.all(Radius.circular(12.0)),
-            child: CachedImage(
-              source: imageUrl,
-              width: width,
-            ),
+            child: CachedImage(source: imageUrl, width: width),
           ),
         ),
         const SizedBox(width: 12.0),

@@ -14,8 +14,9 @@ class AssetsWorkExperienceLocalDatasource
   @override
   Future<List<WorkExperience>> getWorkExperiences() async {
     try {
-      final result =
-          await rootBundle.loadString('assets/data/work_experience.json');
+      final result = await rootBundle.loadString(
+        'assets/data/work_experience.json',
+      );
       return ((jsonDecode(result) as Map)['data'] as List?)
               ?.map((e) => WorkExperience.fromJson((e as Map).cast()))
               .toList() ??

@@ -15,19 +15,20 @@ class ProjectsSectionBloc
   final GetProjects _getProjects;
 
   ProjectsSectionBloc(this._getProjects)
-      : super(const ProjectsSectionState.initial()) {
+    : super(const ProjectsSectionState.initial()) {
     on<_Fetched>(_onFetched);
   }
 
   Future<void> _onFetched(
-      _Fetched event, Emitter<ProjectsSectionState> emit) async {
+    _Fetched event,
+    Emitter<ProjectsSectionState> emit,
+  ) async {
     emit(const ProjectsSectionState.loading());
 
     final result = await _getProjects(const NoParams());
 
-    emit(result.fold(
-      ProjectsSectionState.failure,
-      ProjectsSectionState.success,
-    ));
+    emit(
+      result.fold(ProjectsSectionState.failure, ProjectsSectionState.success),
+    );
   }
 }

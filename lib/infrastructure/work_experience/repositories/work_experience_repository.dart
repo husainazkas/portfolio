@@ -12,7 +12,7 @@ class WorkExperienceRepository implements IWorkExperienceRepository {
 
   @override
   Future<Either<LocalFailure, List<WorkExperience>>>
-      getWorkExperiences() async {
+  getWorkExperiences() async {
     try {
       final result = await _localDatasource.getWorkExperiences();
 

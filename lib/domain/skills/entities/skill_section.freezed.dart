@@ -12,7 +12,8 @@ part of 'skill_section.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods',
+);
 
 SkillSection _$SkillSectionFromJson(Map<String, dynamic> json) {
   return _SkillSection.fromJson(json);
@@ -32,11 +33,14 @@ mixin _$SkillSection {
 /// @nodoc
 abstract class $SkillSectionCopyWith<$Res> {
   factory $SkillSectionCopyWith(
-          SkillSection value, $Res Function(SkillSection) then) =
-      _$SkillSectionCopyWithImpl<$Res, SkillSection>;
+    SkillSection value,
+    $Res Function(SkillSection) then,
+  ) = _$SkillSectionCopyWithImpl<$Res, SkillSection>;
   @useResult
-  $Res call(
-      {List<Threshold> thresholds, @JsonKey(name: 'data') List<Skill> skills});
+  $Res call({
+    List<Threshold> thresholds,
+    @JsonKey(name: 'data') List<Skill> skills,
+  });
 }
 
 /// @nodoc
@@ -51,20 +55,22 @@ class _$SkillSectionCopyWithImpl<$Res, $Val extends SkillSection>
 
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? thresholds = null,
-    Object? skills = null,
-  }) {
-    return _then(_value.copyWith(
-      thresholds: null == thresholds
-          ? _value.thresholds
-          : thresholds // ignore: cast_nullable_to_non_nullable
-              as List<Threshold>,
-      skills: null == skills
-          ? _value.skills
-          : skills // ignore: cast_nullable_to_non_nullable
-              as List<Skill>,
-    ) as $Val);
+  $Res call({Object? thresholds = null, Object? skills = null}) {
+    return _then(
+      _value.copyWith(
+            thresholds:
+                null == thresholds
+                    ? _value.thresholds
+                    : thresholds // ignore: cast_nullable_to_non_nullable
+                        as List<Threshold>,
+            skills:
+                null == skills
+                    ? _value.skills
+                    : skills // ignore: cast_nullable_to_non_nullable
+                        as List<Skill>,
+          )
+          as $Val,
+    );
   }
 }
 
@@ -72,12 +78,15 @@ class _$SkillSectionCopyWithImpl<$Res, $Val extends SkillSection>
 abstract class _$$_SkillSectionCopyWith<$Res>
     implements $SkillSectionCopyWith<$Res> {
   factory _$$_SkillSectionCopyWith(
-          _$_SkillSection value, $Res Function(_$_SkillSection) then) =
-      __$$_SkillSectionCopyWithImpl<$Res>;
+    _$_SkillSection value,
+    $Res Function(_$_SkillSection) then,
+  ) = __$$_SkillSectionCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {List<Threshold> thresholds, @JsonKey(name: 'data') List<Skill> skills});
+  $Res call({
+    List<Threshold> thresholds,
+    @JsonKey(name: 'data') List<Skill> skills,
+  });
 }
 
 /// @nodoc
@@ -85,36 +94,38 @@ class __$$_SkillSectionCopyWithImpl<$Res>
     extends _$SkillSectionCopyWithImpl<$Res, _$_SkillSection>
     implements _$$_SkillSectionCopyWith<$Res> {
   __$$_SkillSectionCopyWithImpl(
-      _$_SkillSection _value, $Res Function(_$_SkillSection) _then)
-      : super(_value, _then);
+    _$_SkillSection _value,
+    $Res Function(_$_SkillSection) _then,
+  ) : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? thresholds = null,
-    Object? skills = null,
-  }) {
-    return _then(_$_SkillSection(
-      thresholds: null == thresholds
-          ? _value._thresholds
-          : thresholds // ignore: cast_nullable_to_non_nullable
-              as List<Threshold>,
-      skills: null == skills
-          ? _value._skills
-          : skills // ignore: cast_nullable_to_non_nullable
-              as List<Skill>,
-    ));
+  $Res call({Object? thresholds = null, Object? skills = null}) {
+    return _then(
+      _$_SkillSection(
+        thresholds:
+            null == thresholds
+                ? _value._thresholds
+                : thresholds // ignore: cast_nullable_to_non_nullable
+                    as List<Threshold>,
+        skills:
+            null == skills
+                ? _value._skills
+                : skills // ignore: cast_nullable_to_non_nullable
+                    as List<Skill>,
+      ),
+    );
   }
 }
 
 /// @nodoc
 @JsonSerializable(createToJson: false)
 class _$_SkillSection implements _SkillSection {
-  const _$_SkillSection(
-      {required final List<Threshold> thresholds,
-      @JsonKey(name: 'data') required final List<Skill> skills})
-      : _thresholds = thresholds,
-        _skills = skills;
+  const _$_SkillSection({
+    required final List<Threshold> thresholds,
+    @JsonKey(name: 'data') required final List<Skill> skills,
+  }) : _thresholds = thresholds,
+       _skills = skills;
 
   factory _$_SkillSection.fromJson(Map<String, dynamic> json) =>
       _$$_SkillSectionFromJson(json);
@@ -146,17 +157,20 @@ class _$_SkillSection implements _SkillSection {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_SkillSection &&
-            const DeepCollectionEquality()
-                .equals(other._thresholds, _thresholds) &&
+            const DeepCollectionEquality().equals(
+              other._thresholds,
+              _thresholds,
+            ) &&
             const DeepCollectionEquality().equals(other._skills, _skills));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(_thresholds),
-      const DeepCollectionEquality().hash(_skills));
+    runtimeType,
+    const DeepCollectionEquality().hash(_thresholds),
+    const DeepCollectionEquality().hash(_skills),
+  );
 
   @JsonKey(ignore: true)
   @override
@@ -166,10 +180,10 @@ class _$_SkillSection implements _SkillSection {
 }
 
 abstract class _SkillSection implements SkillSection {
-  const factory _SkillSection(
-          {required final List<Threshold> thresholds,
-          @JsonKey(name: 'data') required final List<Skill> skills}) =
-      _$_SkillSection;
+  const factory _SkillSection({
+    required final List<Threshold> thresholds,
+    @JsonKey(name: 'data') required final List<Skill> skills,
+  }) = _$_SkillSection;
 
   factory _SkillSection.fromJson(Map<String, dynamic> json) =
       _$_SkillSection.fromJson;

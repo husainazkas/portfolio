@@ -12,7 +12,8 @@ part of 'failures.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods',
+);
 
 /// @nodoc
 mixin _$Failure {
@@ -23,45 +24,39 @@ mixin _$Failure {
     required TResult Function(int? code, String? message) server,
     required TResult Function(int? code, String? message) local,
     required TResult Function(int? code, String? message) unknown,
-  }) =>
-      throw _privateConstructorUsedError;
+  }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(int? code, String? message)? server,
     TResult? Function(int? code, String? message)? local,
     TResult? Function(int? code, String? message)? unknown,
-  }) =>
-      throw _privateConstructorUsedError;
+  }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(int? code, String? message)? server,
     TResult Function(int? code, String? message)? local,
     TResult Function(int? code, String? message)? unknown,
     required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
+  }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(ServerFailure value) server,
     required TResult Function(LocalFailure value) local,
     required TResult Function(UnknownFailure value) unknown,
-  }) =>
-      throw _privateConstructorUsedError;
+  }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(ServerFailure value)? server,
     TResult? Function(LocalFailure value)? local,
     TResult? Function(UnknownFailure value)? unknown,
-  }) =>
-      throw _privateConstructorUsedError;
+  }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ServerFailure value)? server,
     TResult Function(LocalFailure value)? local,
     TResult Function(UnknownFailure value)? unknown,
     required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
+  }) => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $FailureCopyWith<Failure> get copyWith => throw _privateConstructorUsedError;
@@ -87,20 +82,22 @@ class _$FailureCopyWithImpl<$Res, $Val extends Failure>
 
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? code = freezed,
-    Object? message = freezed,
-  }) {
-    return _then(_value.copyWith(
-      code: freezed == code
-          ? _value.code
-          : code // ignore: cast_nullable_to_non_nullable
-              as int?,
-      message: freezed == message
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ) as $Val);
+  $Res call({Object? code = freezed, Object? message = freezed}) {
+    return _then(
+      _value.copyWith(
+            code:
+                freezed == code
+                    ? _value.code
+                    : code // ignore: cast_nullable_to_non_nullable
+                        as int?,
+            message:
+                freezed == message
+                    ? _value.message
+                    : message // ignore: cast_nullable_to_non_nullable
+                        as String?,
+          )
+          as $Val,
+    );
   }
 }
 
@@ -108,8 +105,9 @@ class _$FailureCopyWithImpl<$Res, $Val extends Failure>
 abstract class _$$ServerFailureCopyWith<$Res>
     implements $FailureCopyWith<$Res> {
   factory _$$ServerFailureCopyWith(
-          _$ServerFailure value, $Res Function(_$ServerFailure) then) =
-      __$$ServerFailureCopyWithImpl<$Res>;
+    _$ServerFailure value,
+    $Res Function(_$ServerFailure) then,
+  ) = __$$ServerFailureCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({int? code, String? message});
@@ -120,25 +118,27 @@ class __$$ServerFailureCopyWithImpl<$Res>
     extends _$FailureCopyWithImpl<$Res, _$ServerFailure>
     implements _$$ServerFailureCopyWith<$Res> {
   __$$ServerFailureCopyWithImpl(
-      _$ServerFailure _value, $Res Function(_$ServerFailure) _then)
-      : super(_value, _then);
+    _$ServerFailure _value,
+    $Res Function(_$ServerFailure) _then,
+  ) : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? code = freezed,
-    Object? message = freezed,
-  }) {
-    return _then(_$ServerFailure(
-      code: freezed == code
-          ? _value.code
-          : code // ignore: cast_nullable_to_non_nullable
-              as int?,
-      message: freezed == message
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
+  $Res call({Object? code = freezed, Object? message = freezed}) {
+    return _then(
+      _$ServerFailure(
+        code:
+            freezed == code
+                ? _value.code
+                : code // ignore: cast_nullable_to_non_nullable
+                    as int?,
+        message:
+            freezed == message
+                ? _value.message
+                : message // ignore: cast_nullable_to_non_nullable
+                    as String?,
+      ),
+    );
   }
 }
 
@@ -261,8 +261,9 @@ abstract class ServerFailure implements Failure {
 /// @nodoc
 abstract class _$$LocalFailureCopyWith<$Res> implements $FailureCopyWith<$Res> {
   factory _$$LocalFailureCopyWith(
-          _$LocalFailure value, $Res Function(_$LocalFailure) then) =
-      __$$LocalFailureCopyWithImpl<$Res>;
+    _$LocalFailure value,
+    $Res Function(_$LocalFailure) then,
+  ) = __$$LocalFailureCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({int? code, String? message});
@@ -273,25 +274,27 @@ class __$$LocalFailureCopyWithImpl<$Res>
     extends _$FailureCopyWithImpl<$Res, _$LocalFailure>
     implements _$$LocalFailureCopyWith<$Res> {
   __$$LocalFailureCopyWithImpl(
-      _$LocalFailure _value, $Res Function(_$LocalFailure) _then)
-      : super(_value, _then);
+    _$LocalFailure _value,
+    $Res Function(_$LocalFailure) _then,
+  ) : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? code = freezed,
-    Object? message = freezed,
-  }) {
-    return _then(_$LocalFailure(
-      code: freezed == code
-          ? _value.code
-          : code // ignore: cast_nullable_to_non_nullable
-              as int?,
-      message: freezed == message
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
+  $Res call({Object? code = freezed, Object? message = freezed}) {
+    return _then(
+      _$LocalFailure(
+        code:
+            freezed == code
+                ? _value.code
+                : code // ignore: cast_nullable_to_non_nullable
+                    as int?,
+        message:
+            freezed == message
+                ? _value.message
+                : message // ignore: cast_nullable_to_non_nullable
+                    as String?,
+      ),
+    );
   }
 }
 
@@ -415,8 +418,9 @@ abstract class LocalFailure implements Failure {
 abstract class _$$UnknownFailureCopyWith<$Res>
     implements $FailureCopyWith<$Res> {
   factory _$$UnknownFailureCopyWith(
-          _$UnknownFailure value, $Res Function(_$UnknownFailure) then) =
-      __$$UnknownFailureCopyWithImpl<$Res>;
+    _$UnknownFailure value,
+    $Res Function(_$UnknownFailure) then,
+  ) = __$$UnknownFailureCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({int? code, String? message});
@@ -427,25 +431,27 @@ class __$$UnknownFailureCopyWithImpl<$Res>
     extends _$FailureCopyWithImpl<$Res, _$UnknownFailure>
     implements _$$UnknownFailureCopyWith<$Res> {
   __$$UnknownFailureCopyWithImpl(
-      _$UnknownFailure _value, $Res Function(_$UnknownFailure) _then)
-      : super(_value, _then);
+    _$UnknownFailure _value,
+    $Res Function(_$UnknownFailure) _then,
+  ) : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? code = freezed,
-    Object? message = freezed,
-  }) {
-    return _then(_$UnknownFailure(
-      code: freezed == code
-          ? _value.code
-          : code // ignore: cast_nullable_to_non_nullable
-              as int?,
-      message: freezed == message
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
+  $Res call({Object? code = freezed, Object? message = freezed}) {
+    return _then(
+      _$UnknownFailure(
+        code:
+            freezed == code
+                ? _value.code
+                : code // ignore: cast_nullable_to_non_nullable
+                    as int?,
+        message:
+            freezed == message
+                ? _value.message
+                : message // ignore: cast_nullable_to_non_nullable
+                    as String?,
+      ),
+    );
   }
 }
 

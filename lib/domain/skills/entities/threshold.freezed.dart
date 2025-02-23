@@ -12,7 +12,8 @@ part of 'threshold.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods',
+);
 
 Threshold _$ThresholdFromJson(Map<String, dynamic> json) {
   return _Threshold.fromJson(json);
@@ -48,28 +49,31 @@ class _$ThresholdCopyWithImpl<$Res, $Val extends Threshold>
 
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? label = null,
-    Object? value = null,
-  }) {
-    return _then(_value.copyWith(
-      label: null == label
-          ? _value.label
-          : label // ignore: cast_nullable_to_non_nullable
-              as String,
-      value: null == value
-          ? _value.value
-          : value // ignore: cast_nullable_to_non_nullable
-              as double,
-    ) as $Val);
+  $Res call({Object? label = null, Object? value = null}) {
+    return _then(
+      _value.copyWith(
+            label:
+                null == label
+                    ? _value.label
+                    : label // ignore: cast_nullable_to_non_nullable
+                        as String,
+            value:
+                null == value
+                    ? _value.value
+                    : value // ignore: cast_nullable_to_non_nullable
+                        as double,
+          )
+          as $Val,
+    );
   }
 }
 
 /// @nodoc
 abstract class _$$_ThresholdCopyWith<$Res> implements $ThresholdCopyWith<$Res> {
   factory _$$_ThresholdCopyWith(
-          _$_Threshold value, $Res Function(_$_Threshold) then) =
-      __$$_ThresholdCopyWithImpl<$Res>;
+    _$_Threshold value,
+    $Res Function(_$_Threshold) then,
+  ) = __$$_ThresholdCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String label, double value});
@@ -80,25 +84,27 @@ class __$$_ThresholdCopyWithImpl<$Res>
     extends _$ThresholdCopyWithImpl<$Res, _$_Threshold>
     implements _$$_ThresholdCopyWith<$Res> {
   __$$_ThresholdCopyWithImpl(
-      _$_Threshold _value, $Res Function(_$_Threshold) _then)
-      : super(_value, _then);
+    _$_Threshold _value,
+    $Res Function(_$_Threshold) _then,
+  ) : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? label = null,
-    Object? value = null,
-  }) {
-    return _then(_$_Threshold(
-      label: null == label
-          ? _value.label
-          : label // ignore: cast_nullable_to_non_nullable
-              as String,
-      value: null == value
-          ? _value.value
-          : value // ignore: cast_nullable_to_non_nullable
-              as double,
-    ));
+  $Res call({Object? label = null, Object? value = null}) {
+    return _then(
+      _$_Threshold(
+        label:
+            null == label
+                ? _value.label
+                : label // ignore: cast_nullable_to_non_nullable
+                    as String,
+        value:
+            null == value
+                ? _value.value
+                : value // ignore: cast_nullable_to_non_nullable
+                    as double,
+      ),
+    );
   }
 }
 
@@ -141,9 +147,10 @@ class _$_Threshold implements _Threshold {
 }
 
 abstract class _Threshold implements Threshold {
-  const factory _Threshold(
-      {required final String label,
-      required final double value}) = _$_Threshold;
+  const factory _Threshold({
+    required final String label,
+    required final double value,
+  }) = _$_Threshold;
 
   factory _Threshold.fromJson(Map<String, dynamic> json) =
       _$_Threshold.fromJson;

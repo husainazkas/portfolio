@@ -14,19 +14,23 @@ class WorkExperienceSectionBloc
     extends Bloc<WorkExperienceSectionEvent, WorkExperienceSectionState> {
   final GetWorkExperiences _getWorkExperiences;
   WorkExperienceSectionBloc(this._getWorkExperiences)
-      : super(const WorkExperienceSectionState.initial()) {
+    : super(const WorkExperienceSectionState.initial()) {
     on<_Fetched>(_onFetched);
   }
 
   Future<void> _onFetched(
-      _Fetched event, Emitter<WorkExperienceSectionState> emit) async {
+    _Fetched event,
+    Emitter<WorkExperienceSectionState> emit,
+  ) async {
     emit(const WorkExperienceSectionState.loading());
 
     final result = await _getWorkExperiences(const NoParams());
 
-    emit(result.fold(
-      WorkExperienceSectionState.failure,
-      WorkExperienceSectionState.success,
-    ));
+    emit(
+      result.fold(
+        WorkExperienceSectionState.failure,
+        WorkExperienceSectionState.success,
+      ),
+    );
   }
 }

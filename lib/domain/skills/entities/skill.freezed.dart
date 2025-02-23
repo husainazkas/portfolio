@@ -12,7 +12,8 @@ part of 'skill.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods',
+);
 
 Skill _$SkillFromJson(Map<String, dynamic> json) {
   return _Skill.fromJson(json);
@@ -47,20 +48,22 @@ class _$SkillCopyWithImpl<$Res, $Val extends Skill>
 
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? title = null,
-    Object? score = null,
-  }) {
-    return _then(_value.copyWith(
-      title: null == title
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String,
-      score: null == score
-          ? _value.score
-          : score // ignore: cast_nullable_to_non_nullable
-              as double,
-    ) as $Val);
+  $Res call({Object? title = null, Object? score = null}) {
+    return _then(
+      _value.copyWith(
+            title:
+                null == title
+                    ? _value.title
+                    : title // ignore: cast_nullable_to_non_nullable
+                        as String,
+            score:
+                null == score
+                    ? _value.score
+                    : score // ignore: cast_nullable_to_non_nullable
+                        as double,
+          )
+          as $Val,
+    );
   }
 }
 
@@ -77,24 +80,25 @@ abstract class _$$_SkillCopyWith<$Res> implements $SkillCopyWith<$Res> {
 class __$$_SkillCopyWithImpl<$Res> extends _$SkillCopyWithImpl<$Res, _$_Skill>
     implements _$$_SkillCopyWith<$Res> {
   __$$_SkillCopyWithImpl(_$_Skill _value, $Res Function(_$_Skill) _then)
-      : super(_value, _then);
+    : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? title = null,
-    Object? score = null,
-  }) {
-    return _then(_$_Skill(
-      title: null == title
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String,
-      score: null == score
-          ? _value.score
-          : score // ignore: cast_nullable_to_non_nullable
-              as double,
-    ));
+  $Res call({Object? title = null, Object? score = null}) {
+    return _then(
+      _$_Skill(
+        title:
+            null == title
+                ? _value.title
+                : title // ignore: cast_nullable_to_non_nullable
+                    as String,
+        score:
+            null == score
+                ? _value.score
+                : score // ignore: cast_nullable_to_non_nullable
+                    as double,
+      ),
+    );
   }
 }
 
@@ -137,8 +141,10 @@ class _$_Skill implements _Skill {
 }
 
 abstract class _Skill implements Skill {
-  const factory _Skill(
-      {required final String title, required final double score}) = _$_Skill;
+  const factory _Skill({
+    required final String title,
+    required final double score,
+  }) = _$_Skill;
 
   factory _Skill.fromJson(Map<String, dynamic> json) = _$_Skill.fromJson;
 

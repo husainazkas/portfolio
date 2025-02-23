@@ -42,11 +42,7 @@ class SocialButton extends StatelessWidget {
       default:
         if (iconSrc != null &&
             (iconSrc!.startsWith('assets') || iconSrc!.startsWith('http'))) {
-          return CachedImage(
-            source: iconSrc!,
-            width: width,
-            height: height,
-          );
+          return CachedImage(source: iconSrc!, width: width, height: height);
         }
         return const SizedBox();
     }

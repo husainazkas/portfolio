@@ -12,7 +12,8 @@ part of 'work_experience.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods',
+);
 
 WorkExperience _$WorkExperienceFromJson(Map<String, dynamic> json) {
   return _WorkExperience.fromJson(json);
@@ -38,19 +39,20 @@ mixin _$WorkExperience {
 /// @nodoc
 abstract class $WorkExperienceCopyWith<$Res> {
   factory $WorkExperienceCopyWith(
-          WorkExperience value, $Res Function(WorkExperience) then) =
-      _$WorkExperienceCopyWithImpl<$Res, WorkExperience>;
+    WorkExperience value,
+    $Res Function(WorkExperience) then,
+  ) = _$WorkExperienceCopyWithImpl<$Res, WorkExperience>;
   @useResult
-  $Res call(
-      {String name,
-      String period,
-      String address,
-      String? thumb,
-      @JsonKey(name: 'href')
-          String? url,
-      @JsonKey(fromJson: WorkExperience._parseTimeline)
-          List<TimelineData> timeline,
-      List<String> tags});
+  $Res call({
+    String name,
+    String period,
+    String address,
+    String? thumb,
+    @JsonKey(name: 'href') String? url,
+    @JsonKey(fromJson: WorkExperience._parseTimeline)
+    List<TimelineData> timeline,
+    List<String> tags,
+  });
 }
 
 /// @nodoc
@@ -74,36 +76,46 @@ class _$WorkExperienceCopyWithImpl<$Res, $Val extends WorkExperience>
     Object? timeline = null,
     Object? tags = null,
   }) {
-    return _then(_value.copyWith(
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      period: null == period
-          ? _value.period
-          : period // ignore: cast_nullable_to_non_nullable
-              as String,
-      address: null == address
-          ? _value.address
-          : address // ignore: cast_nullable_to_non_nullable
-              as String,
-      thumb: freezed == thumb
-          ? _value.thumb
-          : thumb // ignore: cast_nullable_to_non_nullable
-              as String?,
-      url: freezed == url
-          ? _value.url
-          : url // ignore: cast_nullable_to_non_nullable
-              as String?,
-      timeline: null == timeline
-          ? _value.timeline
-          : timeline // ignore: cast_nullable_to_non_nullable
-              as List<TimelineData>,
-      tags: null == tags
-          ? _value.tags
-          : tags // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-    ) as $Val);
+    return _then(
+      _value.copyWith(
+            name:
+                null == name
+                    ? _value.name
+                    : name // ignore: cast_nullable_to_non_nullable
+                        as String,
+            period:
+                null == period
+                    ? _value.period
+                    : period // ignore: cast_nullable_to_non_nullable
+                        as String,
+            address:
+                null == address
+                    ? _value.address
+                    : address // ignore: cast_nullable_to_non_nullable
+                        as String,
+            thumb:
+                freezed == thumb
+                    ? _value.thumb
+                    : thumb // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            url:
+                freezed == url
+                    ? _value.url
+                    : url // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            timeline:
+                null == timeline
+                    ? _value.timeline
+                    : timeline // ignore: cast_nullable_to_non_nullable
+                        as List<TimelineData>,
+            tags:
+                null == tags
+                    ? _value.tags
+                    : tags // ignore: cast_nullable_to_non_nullable
+                        as List<String>,
+          )
+          as $Val,
+    );
   }
 }
 
@@ -111,20 +123,21 @@ class _$WorkExperienceCopyWithImpl<$Res, $Val extends WorkExperience>
 abstract class _$$_WorkExperienceCopyWith<$Res>
     implements $WorkExperienceCopyWith<$Res> {
   factory _$$_WorkExperienceCopyWith(
-          _$_WorkExperience value, $Res Function(_$_WorkExperience) then) =
-      __$$_WorkExperienceCopyWithImpl<$Res>;
+    _$_WorkExperience value,
+    $Res Function(_$_WorkExperience) then,
+  ) = __$$_WorkExperienceCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {String name,
-      String period,
-      String address,
-      String? thumb,
-      @JsonKey(name: 'href')
-          String? url,
-      @JsonKey(fromJson: WorkExperience._parseTimeline)
-          List<TimelineData> timeline,
-      List<String> tags});
+  $Res call({
+    String name,
+    String period,
+    String address,
+    String? thumb,
+    @JsonKey(name: 'href') String? url,
+    @JsonKey(fromJson: WorkExperience._parseTimeline)
+    List<TimelineData> timeline,
+    List<String> tags,
+  });
 }
 
 /// @nodoc
@@ -132,8 +145,9 @@ class __$$_WorkExperienceCopyWithImpl<$Res>
     extends _$WorkExperienceCopyWithImpl<$Res, _$_WorkExperience>
     implements _$$_WorkExperienceCopyWith<$Res> {
   __$$_WorkExperienceCopyWithImpl(
-      _$_WorkExperience _value, $Res Function(_$_WorkExperience) _then)
-      : super(_value, _then);
+    _$_WorkExperience _value,
+    $Res Function(_$_WorkExperience) _then,
+  ) : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
@@ -146,54 +160,62 @@ class __$$_WorkExperienceCopyWithImpl<$Res>
     Object? timeline = null,
     Object? tags = null,
   }) {
-    return _then(_$_WorkExperience(
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      period: null == period
-          ? _value.period
-          : period // ignore: cast_nullable_to_non_nullable
-              as String,
-      address: null == address
-          ? _value.address
-          : address // ignore: cast_nullable_to_non_nullable
-              as String,
-      thumb: freezed == thumb
-          ? _value.thumb
-          : thumb // ignore: cast_nullable_to_non_nullable
-              as String?,
-      url: freezed == url
-          ? _value.url
-          : url // ignore: cast_nullable_to_non_nullable
-              as String?,
-      timeline: null == timeline
-          ? _value._timeline
-          : timeline // ignore: cast_nullable_to_non_nullable
-              as List<TimelineData>,
-      tags: null == tags
-          ? _value._tags
-          : tags // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-    ));
+    return _then(
+      _$_WorkExperience(
+        name:
+            null == name
+                ? _value.name
+                : name // ignore: cast_nullable_to_non_nullable
+                    as String,
+        period:
+            null == period
+                ? _value.period
+                : period // ignore: cast_nullable_to_non_nullable
+                    as String,
+        address:
+            null == address
+                ? _value.address
+                : address // ignore: cast_nullable_to_non_nullable
+                    as String,
+        thumb:
+            freezed == thumb
+                ? _value.thumb
+                : thumb // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        url:
+            freezed == url
+                ? _value.url
+                : url // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        timeline:
+            null == timeline
+                ? _value._timeline
+                : timeline // ignore: cast_nullable_to_non_nullable
+                    as List<TimelineData>,
+        tags:
+            null == tags
+                ? _value._tags
+                : tags // ignore: cast_nullable_to_non_nullable
+                    as List<String>,
+      ),
+    );
   }
 }
 
 /// @nodoc
 @JsonSerializable(createToJson: false)
 class _$_WorkExperience implements _WorkExperience {
-  const _$_WorkExperience(
-      {required this.name,
-      required this.period,
-      required this.address,
-      required this.thumb,
-      @JsonKey(name: 'href')
-          required this.url,
-      @JsonKey(fromJson: WorkExperience._parseTimeline)
-          required final List<TimelineData> timeline,
-      required final List<String> tags})
-      : _timeline = timeline,
-        _tags = tags;
+  const _$_WorkExperience({
+    required this.name,
+    required this.period,
+    required this.address,
+    required this.thumb,
+    @JsonKey(name: 'href') required this.url,
+    @JsonKey(fromJson: WorkExperience._parseTimeline)
+    required final List<TimelineData> timeline,
+    required final List<String> tags,
+  }) : _timeline = timeline,
+       _tags = tags;
 
   factory _$_WorkExperience.fromJson(Map<String, dynamic> json) =>
       _$$_WorkExperienceFromJson(json);
@@ -248,14 +270,15 @@ class _$_WorkExperience implements _WorkExperience {
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
-      runtimeType,
-      name,
-      period,
-      address,
-      thumb,
-      url,
-      const DeepCollectionEquality().hash(_timeline),
-      const DeepCollectionEquality().hash(_tags));
+    runtimeType,
+    name,
+    period,
+    address,
+    thumb,
+    url,
+    const DeepCollectionEquality().hash(_timeline),
+    const DeepCollectionEquality().hash(_tags),
+  );
 
   @JsonKey(ignore: true)
   @override
@@ -265,16 +288,16 @@ class _$_WorkExperience implements _WorkExperience {
 }
 
 abstract class _WorkExperience implements WorkExperience {
-  const factory _WorkExperience(
-      {required final String name,
-      required final String period,
-      required final String address,
-      required final String? thumb,
-      @JsonKey(name: 'href')
-          required final String? url,
-      @JsonKey(fromJson: WorkExperience._parseTimeline)
-          required final List<TimelineData> timeline,
-      required final List<String> tags}) = _$_WorkExperience;
+  const factory _WorkExperience({
+    required final String name,
+    required final String period,
+    required final String address,
+    required final String? thumb,
+    @JsonKey(name: 'href') required final String? url,
+    @JsonKey(fromJson: WorkExperience._parseTimeline)
+    required final List<TimelineData> timeline,
+    required final List<String> tags,
+  }) = _$_WorkExperience;
 
   factory _WorkExperience.fromJson(Map<String, dynamic> json) =
       _$_WorkExperience.fromJson;

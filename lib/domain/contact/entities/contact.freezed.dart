@@ -12,7 +12,8 @@ part of 'contact.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods',
+);
 
 Contact _$ContactFromJson(Map<String, dynamic> json) {
   return _Contact.fromJson(json);
@@ -37,14 +38,15 @@ abstract class $ContactCopyWith<$Res> {
   factory $ContactCopyWith(Contact value, $Res Function(Contact) then) =
       _$ContactCopyWithImpl<$Res, Contact>;
   @useResult
-  $Res call(
-      {String nickname,
-      String fullname,
-      String email,
-      String phone,
-      String address,
-      String description,
-      List<ExternalLink> externals});
+  $Res call({
+    String nickname,
+    String fullname,
+    String email,
+    String phone,
+    String address,
+    String description,
+    List<ExternalLink> externals,
+  });
 }
 
 /// @nodoc
@@ -68,54 +70,66 @@ class _$ContactCopyWithImpl<$Res, $Val extends Contact>
     Object? description = null,
     Object? externals = null,
   }) {
-    return _then(_value.copyWith(
-      nickname: null == nickname
-          ? _value.nickname
-          : nickname // ignore: cast_nullable_to_non_nullable
-              as String,
-      fullname: null == fullname
-          ? _value.fullname
-          : fullname // ignore: cast_nullable_to_non_nullable
-              as String,
-      email: null == email
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
-              as String,
-      phone: null == phone
-          ? _value.phone
-          : phone // ignore: cast_nullable_to_non_nullable
-              as String,
-      address: null == address
-          ? _value.address
-          : address // ignore: cast_nullable_to_non_nullable
-              as String,
-      description: null == description
-          ? _value.description
-          : description // ignore: cast_nullable_to_non_nullable
-              as String,
-      externals: null == externals
-          ? _value.externals
-          : externals // ignore: cast_nullable_to_non_nullable
-              as List<ExternalLink>,
-    ) as $Val);
+    return _then(
+      _value.copyWith(
+            nickname:
+                null == nickname
+                    ? _value.nickname
+                    : nickname // ignore: cast_nullable_to_non_nullable
+                        as String,
+            fullname:
+                null == fullname
+                    ? _value.fullname
+                    : fullname // ignore: cast_nullable_to_non_nullable
+                        as String,
+            email:
+                null == email
+                    ? _value.email
+                    : email // ignore: cast_nullable_to_non_nullable
+                        as String,
+            phone:
+                null == phone
+                    ? _value.phone
+                    : phone // ignore: cast_nullable_to_non_nullable
+                        as String,
+            address:
+                null == address
+                    ? _value.address
+                    : address // ignore: cast_nullable_to_non_nullable
+                        as String,
+            description:
+                null == description
+                    ? _value.description
+                    : description // ignore: cast_nullable_to_non_nullable
+                        as String,
+            externals:
+                null == externals
+                    ? _value.externals
+                    : externals // ignore: cast_nullable_to_non_nullable
+                        as List<ExternalLink>,
+          )
+          as $Val,
+    );
   }
 }
 
 /// @nodoc
 abstract class _$$_ContactCopyWith<$Res> implements $ContactCopyWith<$Res> {
   factory _$$_ContactCopyWith(
-          _$_Contact value, $Res Function(_$_Contact) then) =
-      __$$_ContactCopyWithImpl<$Res>;
+    _$_Contact value,
+    $Res Function(_$_Contact) then,
+  ) = __$$_ContactCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {String nickname,
-      String fullname,
-      String email,
-      String phone,
-      String address,
-      String description,
-      List<ExternalLink> externals});
+  $Res call({
+    String nickname,
+    String fullname,
+    String email,
+    String phone,
+    String address,
+    String description,
+    List<ExternalLink> externals,
+  });
 }
 
 /// @nodoc
@@ -123,7 +137,7 @@ class __$$_ContactCopyWithImpl<$Res>
     extends _$ContactCopyWithImpl<$Res, _$_Contact>
     implements _$$_ContactCopyWith<$Res> {
   __$$_ContactCopyWithImpl(_$_Contact _value, $Res Function(_$_Contact) _then)
-      : super(_value, _then);
+    : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
@@ -136,51 +150,60 @@ class __$$_ContactCopyWithImpl<$Res>
     Object? description = null,
     Object? externals = null,
   }) {
-    return _then(_$_Contact(
-      nickname: null == nickname
-          ? _value.nickname
-          : nickname // ignore: cast_nullable_to_non_nullable
-              as String,
-      fullname: null == fullname
-          ? _value.fullname
-          : fullname // ignore: cast_nullable_to_non_nullable
-              as String,
-      email: null == email
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
-              as String,
-      phone: null == phone
-          ? _value.phone
-          : phone // ignore: cast_nullable_to_non_nullable
-              as String,
-      address: null == address
-          ? _value.address
-          : address // ignore: cast_nullable_to_non_nullable
-              as String,
-      description: null == description
-          ? _value.description
-          : description // ignore: cast_nullable_to_non_nullable
-              as String,
-      externals: null == externals
-          ? _value._externals
-          : externals // ignore: cast_nullable_to_non_nullable
-              as List<ExternalLink>,
-    ));
+    return _then(
+      _$_Contact(
+        nickname:
+            null == nickname
+                ? _value.nickname
+                : nickname // ignore: cast_nullable_to_non_nullable
+                    as String,
+        fullname:
+            null == fullname
+                ? _value.fullname
+                : fullname // ignore: cast_nullable_to_non_nullable
+                    as String,
+        email:
+            null == email
+                ? _value.email
+                : email // ignore: cast_nullable_to_non_nullable
+                    as String,
+        phone:
+            null == phone
+                ? _value.phone
+                : phone // ignore: cast_nullable_to_non_nullable
+                    as String,
+        address:
+            null == address
+                ? _value.address
+                : address // ignore: cast_nullable_to_non_nullable
+                    as String,
+        description:
+            null == description
+                ? _value.description
+                : description // ignore: cast_nullable_to_non_nullable
+                    as String,
+        externals:
+            null == externals
+                ? _value._externals
+                : externals // ignore: cast_nullable_to_non_nullable
+                    as List<ExternalLink>,
+      ),
+    );
   }
 }
 
 /// @nodoc
 @JsonSerializable(createToJson: false)
 class _$_Contact implements _Contact {
-  const _$_Contact(
-      {required this.nickname,
-      required this.fullname,
-      required this.email,
-      required this.phone,
-      required this.address,
-      required this.description,
-      required final List<ExternalLink> externals})
-      : _externals = externals;
+  const _$_Contact({
+    required this.nickname,
+    required this.fullname,
+    required this.email,
+    required this.phone,
+    required this.address,
+    required this.description,
+    required final List<ExternalLink> externals,
+  }) : _externals = externals;
 
   factory _$_Contact.fromJson(Map<String, dynamic> json) =>
       _$$_ContactFromJson(json);
@@ -224,14 +247,24 @@ class _$_Contact implements _Contact {
             (identical(other.address, address) || other.address == address) &&
             (identical(other.description, description) ||
                 other.description == description) &&
-            const DeepCollectionEquality()
-                .equals(other._externals, _externals));
+            const DeepCollectionEquality().equals(
+              other._externals,
+              _externals,
+            ));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, nickname, fullname, email, phone,
-      address, description, const DeepCollectionEquality().hash(_externals));
+  int get hashCode => Object.hash(
+    runtimeType,
+    nickname,
+    fullname,
+    email,
+    phone,
+    address,
+    description,
+    const DeepCollectionEquality().hash(_externals),
+  );
 
   @JsonKey(ignore: true)
   @override
@@ -241,14 +274,15 @@ class _$_Contact implements _Contact {
 }
 
 abstract class _Contact implements Contact {
-  const factory _Contact(
-      {required final String nickname,
-      required final String fullname,
-      required final String email,
-      required final String phone,
-      required final String address,
-      required final String description,
-      required final List<ExternalLink> externals}) = _$_Contact;
+  const factory _Contact({
+    required final String nickname,
+    required final String fullname,
+    required final String email,
+    required final String phone,
+    required final String address,
+    required final String description,
+    required final List<ExternalLink> externals,
+  }) = _$_Contact;
 
   factory _Contact.fromJson(Map<String, dynamic> json) = _$_Contact.fromJson;
 

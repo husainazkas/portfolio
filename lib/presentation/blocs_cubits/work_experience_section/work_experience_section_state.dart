@@ -6,5 +6,6 @@ class WorkExperienceSectionState with _$WorkExperienceSectionState {
   const factory WorkExperienceSectionState.loading() = _Loading;
   const factory WorkExperienceSectionState.failure(Failure failure) = _Failure;
   const factory WorkExperienceSectionState.success(
-      List<WorkExperience> experiences) = _Success;
+    List<WorkExperience> experiences,
+  ) = _Success;
 }

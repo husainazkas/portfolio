@@ -9,8 +9,10 @@ class ThemeModeCubit extends Cubit<ThemeModeState> {
   ThemeModeCubit() : super(const ThemeModeState(ThemeMode.system));
 
   void switchMode(Brightness brightness) {
-    emit(ThemeModeState(
-      brightness == Brightness.light ? ThemeMode.dark : ThemeMode.light,
-    ));
+    emit(
+      ThemeModeState(
+        brightness == Brightness.light ? ThemeMode.dark : ThemeMode.light,
+      ),
+    );
   }
 }

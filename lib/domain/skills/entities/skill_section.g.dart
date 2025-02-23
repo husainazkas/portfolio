@@ -8,10 +8,12 @@ part of 'skill_section.dart';
 
 _$_SkillSection _$$_SkillSectionFromJson(Map<String, dynamic> json) =>
     _$_SkillSection(
-      thresholds: (json['thresholds'] as List<dynamic>)
-          .map((e) => Threshold.fromJson(e as Map<String, dynamic>))
-          .toList(),
-      skills: (json['data'] as List<dynamic>)
-          .map((e) => Skill.fromJson(e as Map<String, dynamic>))
-          .toList(),
+      thresholds:
+          (json['thresholds'] as List<dynamic>)
+              .map((e) => Threshold.fromJson(e as Map<String, dynamic>))
+              .toList(),
+      skills:
+          (json['data'] as List<dynamic>)
+              .map((e) => Skill.fromJson(e as Map<String, dynamic>))
+              .toList(),
     );

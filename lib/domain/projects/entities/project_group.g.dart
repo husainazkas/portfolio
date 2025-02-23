@@ -9,7 +9,8 @@ part of 'project_group.dart';
 _$_ProjectGroup _$$_ProjectGroupFromJson(Map<String, dynamic> json) =>
     _$_ProjectGroup(
       header: json['header'] as String,
-      projects: (json['contents'] as List<dynamic>)
-          .map((e) => Project.fromJson(e as Map<String, dynamic>))
-          .toList(),
+      projects:
+          (json['contents'] as List<dynamic>)
+              .map((e) => Project.fromJson(e as Map<String, dynamic>))
+              .toList(),
     );

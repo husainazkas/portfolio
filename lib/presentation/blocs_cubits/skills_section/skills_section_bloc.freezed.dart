@@ -12,49 +12,45 @@ part of 'skills_section_bloc.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods',
+);
 
 /// @nodoc
 mixin _$SkillsSectionEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() fetched,
-  }) =>
-      throw _privateConstructorUsedError;
+  }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? fetched,
-  }) =>
-      throw _privateConstructorUsedError;
+  }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? fetched,
     required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
+  }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Fetched value) fetched,
-  }) =>
-      throw _privateConstructorUsedError;
+  }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Fetched value)? fetched,
-  }) =>
-      throw _privateConstructorUsedError;
+  }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Fetched value)? fetched,
     required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
+  }) => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $SkillsSectionEventCopyWith<$Res> {
   factory $SkillsSectionEventCopyWith(
-          SkillsSectionEvent value, $Res Function(SkillsSectionEvent) then) =
-      _$SkillsSectionEventCopyWithImpl<$Res, SkillsSectionEvent>;
+    SkillsSectionEvent value,
+    $Res Function(SkillsSectionEvent) then,
+  ) = _$SkillsSectionEventCopyWithImpl<$Res, SkillsSectionEvent>;
 }
 
 /// @nodoc
@@ -71,8 +67,9 @@ class _$SkillsSectionEventCopyWithImpl<$Res, $Val extends SkillsSectionEvent>
 /// @nodoc
 abstract class _$$_FetchedCopyWith<$Res> {
   factory _$$_FetchedCopyWith(
-          _$_Fetched value, $Res Function(_$_Fetched) then) =
-      __$$_FetchedCopyWithImpl<$Res>;
+    _$_Fetched value,
+    $Res Function(_$_Fetched) then,
+  ) = __$$_FetchedCopyWithImpl<$Res>;
 }
 
 /// @nodoc
@@ -80,7 +77,7 @@ class __$$_FetchedCopyWithImpl<$Res>
     extends _$SkillsSectionEventCopyWithImpl<$Res, _$_Fetched>
     implements _$$_FetchedCopyWith<$Res> {
   __$$_FetchedCopyWithImpl(_$_Fetched _value, $Res Function(_$_Fetched) _then)
-      : super(_value, _then);
+    : super(_value, _then);
 }
 
 /// @nodoc
@@ -104,17 +101,13 @@ class _$_Fetched implements _Fetched {
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() fetched,
-  }) {
+  TResult when<TResult extends Object?>({required TResult Function() fetched}) {
     return fetched();
   }
 
   @override
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? fetched,
-  }) {
+  TResult? whenOrNull<TResult extends Object?>({TResult? Function()? fetched}) {
     return fetched?.call();
   }
 
@@ -171,16 +164,14 @@ mixin _$SkillsSectionState {
     required TResult Function() loading,
     required TResult Function(Failure failure) failure,
     required TResult Function(SkillSection data) success,
-  }) =>
-      throw _privateConstructorUsedError;
+  }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(Failure failure)? failure,
     TResult? Function(SkillSection data)? success,
-  }) =>
-      throw _privateConstructorUsedError;
+  }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
@@ -188,24 +179,21 @@ mixin _$SkillsSectionState {
     TResult Function(Failure failure)? failure,
     TResult Function(SkillSection data)? success,
     required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
+  }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Failure value) failure,
     required TResult Function(_Success value) success,
-  }) =>
-      throw _privateConstructorUsedError;
+  }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Failure value)? failure,
     TResult? Function(_Success value)? success,
-  }) =>
-      throw _privateConstructorUsedError;
+  }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
@@ -213,15 +201,15 @@ mixin _$SkillsSectionState {
     TResult Function(_Failure value)? failure,
     TResult Function(_Success value)? success,
     required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
+  }) => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $SkillsSectionStateCopyWith<$Res> {
   factory $SkillsSectionStateCopyWith(
-          SkillsSectionState value, $Res Function(SkillsSectionState) then) =
-      _$SkillsSectionStateCopyWithImpl<$Res, SkillsSectionState>;
+    SkillsSectionState value,
+    $Res Function(SkillsSectionState) then,
+  ) = _$SkillsSectionStateCopyWithImpl<$Res, SkillsSectionState>;
 }
 
 /// @nodoc
@@ -238,8 +226,9 @@ class _$SkillsSectionStateCopyWithImpl<$Res, $Val extends SkillsSectionState>
 /// @nodoc
 abstract class _$$_InitialCopyWith<$Res> {
   factory _$$_InitialCopyWith(
-          _$_Initial value, $Res Function(_$_Initial) then) =
-      __$$_InitialCopyWithImpl<$Res>;
+    _$_Initial value,
+    $Res Function(_$_Initial) then,
+  ) = __$$_InitialCopyWithImpl<$Res>;
 }
 
 /// @nodoc
@@ -247,7 +236,7 @@ class __$$_InitialCopyWithImpl<$Res>
     extends _$SkillsSectionStateCopyWithImpl<$Res, _$_Initial>
     implements _$$_InitialCopyWith<$Res> {
   __$$_InitialCopyWithImpl(_$_Initial _value, $Res Function(_$_Initial) _then)
-      : super(_value, _then);
+    : super(_value, _then);
 }
 
 /// @nodoc
@@ -351,8 +340,9 @@ abstract class _Initial implements SkillsSectionState {
 /// @nodoc
 abstract class _$$_LoadingCopyWith<$Res> {
   factory _$$_LoadingCopyWith(
-          _$_Loading value, $Res Function(_$_Loading) then) =
-      __$$_LoadingCopyWithImpl<$Res>;
+    _$_Loading value,
+    $Res Function(_$_Loading) then,
+  ) = __$$_LoadingCopyWithImpl<$Res>;
 }
 
 /// @nodoc
@@ -360,7 +350,7 @@ class __$$_LoadingCopyWithImpl<$Res>
     extends _$SkillsSectionStateCopyWithImpl<$Res, _$_Loading>
     implements _$$_LoadingCopyWith<$Res> {
   __$$_LoadingCopyWithImpl(_$_Loading _value, $Res Function(_$_Loading) _then)
-      : super(_value, _then);
+    : super(_value, _then);
 }
 
 /// @nodoc
@@ -464,8 +454,9 @@ abstract class _Loading implements SkillsSectionState {
 /// @nodoc
 abstract class _$$_FailureCopyWith<$Res> {
   factory _$$_FailureCopyWith(
-          _$_Failure value, $Res Function(_$_Failure) then) =
-      __$$_FailureCopyWithImpl<$Res>;
+    _$_Failure value,
+    $Res Function(_$_Failure) then,
+  ) = __$$_FailureCopyWithImpl<$Res>;
   @useResult
   $Res call({Failure failure});
 
@@ -477,19 +468,19 @@ class __$$_FailureCopyWithImpl<$Res>
     extends _$SkillsSectionStateCopyWithImpl<$Res, _$_Failure>
     implements _$$_FailureCopyWith<$Res> {
   __$$_FailureCopyWithImpl(_$_Failure _value, $Res Function(_$_Failure) _then)
-      : super(_value, _then);
+    : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? failure = null,
-  }) {
-    return _then(_$_Failure(
-      null == failure
-          ? _value.failure
-          : failure // ignore: cast_nullable_to_non_nullable
-              as Failure,
-    ));
+  $Res call({Object? failure = null}) {
+    return _then(
+      _$_Failure(
+        null == failure
+            ? _value.failure
+            : failure // ignore: cast_nullable_to_non_nullable
+                as Failure,
+      ),
+    );
   }
 
   @override
@@ -618,8 +609,9 @@ abstract class _Failure implements SkillsSectionState {
 /// @nodoc
 abstract class _$$_SuccessCopyWith<$Res> {
   factory _$$_SuccessCopyWith(
-          _$_Success value, $Res Function(_$_Success) then) =
-      __$$_SuccessCopyWithImpl<$Res>;
+    _$_Success value,
+    $Res Function(_$_Success) then,
+  ) = __$$_SuccessCopyWithImpl<$Res>;
   @useResult
   $Res call({SkillSection data});
 
@@ -631,19 +623,19 @@ class __$$_SuccessCopyWithImpl<$Res>
     extends _$SkillsSectionStateCopyWithImpl<$Res, _$_Success>
     implements _$$_SuccessCopyWith<$Res> {
   __$$_SuccessCopyWithImpl(_$_Success _value, $Res Function(_$_Success) _then)
-      : super(_value, _then);
+    : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? data = null,
-  }) {
-    return _then(_$_Success(
-      null == data
-          ? _value.data
-          : data // ignore: cast_nullable_to_non_nullable
-              as SkillSection,
-    ));
+  $Res call({Object? data = null}) {
+    return _then(
+      _$_Success(
+        null == data
+            ? _value.data
+            : data // ignore: cast_nullable_to_non_nullable
+                as SkillSection,
+      ),
+    );
   }
 
   @override

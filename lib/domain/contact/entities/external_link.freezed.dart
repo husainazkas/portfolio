@@ -12,7 +12,8 @@ part of 'external_link.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods',
+);
 
 ExternalLink _$ExternalLinkFromJson(Map<String, dynamic> json) {
   return _ExternalLink.fromJson(json);
@@ -33,8 +34,9 @@ mixin _$ExternalLink {
 /// @nodoc
 abstract class $ExternalLinkCopyWith<$Res> {
   factory $ExternalLinkCopyWith(
-          ExternalLink value, $Res Function(ExternalLink) then) =
-      _$ExternalLinkCopyWithImpl<$Res, ExternalLink>;
+    ExternalLink value,
+    $Res Function(ExternalLink) then,
+  ) = _$ExternalLinkCopyWithImpl<$Res, ExternalLink>;
   @useResult
   $Res call({String label, String? url, String? icon, String type});
 }
@@ -57,24 +59,31 @@ class _$ExternalLinkCopyWithImpl<$Res, $Val extends ExternalLink>
     Object? icon = freezed,
     Object? type = null,
   }) {
-    return _then(_value.copyWith(
-      label: null == label
-          ? _value.label
-          : label // ignore: cast_nullable_to_non_nullable
-              as String,
-      url: freezed == url
-          ? _value.url
-          : url // ignore: cast_nullable_to_non_nullable
-              as String?,
-      icon: freezed == icon
-          ? _value.icon
-          : icon // ignore: cast_nullable_to_non_nullable
-              as String?,
-      type: null == type
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
+    return _then(
+      _value.copyWith(
+            label:
+                null == label
+                    ? _value.label
+                    : label // ignore: cast_nullable_to_non_nullable
+                        as String,
+            url:
+                freezed == url
+                    ? _value.url
+                    : url // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            icon:
+                freezed == icon
+                    ? _value.icon
+                    : icon // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            type:
+                null == type
+                    ? _value.type
+                    : type // ignore: cast_nullable_to_non_nullable
+                        as String,
+          )
+          as $Val,
+    );
   }
 }
 
@@ -82,8 +91,9 @@ class _$ExternalLinkCopyWithImpl<$Res, $Val extends ExternalLink>
 abstract class _$$_ExternalLinkCopyWith<$Res>
     implements $ExternalLinkCopyWith<$Res> {
   factory _$$_ExternalLinkCopyWith(
-          _$_ExternalLink value, $Res Function(_$_ExternalLink) then) =
-      __$$_ExternalLinkCopyWithImpl<$Res>;
+    _$_ExternalLink value,
+    $Res Function(_$_ExternalLink) then,
+  ) = __$$_ExternalLinkCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String label, String? url, String? icon, String type});
@@ -94,8 +104,9 @@ class __$$_ExternalLinkCopyWithImpl<$Res>
     extends _$ExternalLinkCopyWithImpl<$Res, _$_ExternalLink>
     implements _$$_ExternalLinkCopyWith<$Res> {
   __$$_ExternalLinkCopyWithImpl(
-      _$_ExternalLink _value, $Res Function(_$_ExternalLink) _then)
-      : super(_value, _then);
+    _$_ExternalLink _value,
+    $Res Function(_$_ExternalLink) _then,
+  ) : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
@@ -105,35 +116,42 @@ class __$$_ExternalLinkCopyWithImpl<$Res>
     Object? icon = freezed,
     Object? type = null,
   }) {
-    return _then(_$_ExternalLink(
-      label: null == label
-          ? _value.label
-          : label // ignore: cast_nullable_to_non_nullable
-              as String,
-      url: freezed == url
-          ? _value.url
-          : url // ignore: cast_nullable_to_non_nullable
-              as String?,
-      icon: freezed == icon
-          ? _value.icon
-          : icon // ignore: cast_nullable_to_non_nullable
-              as String?,
-      type: null == type
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
+    return _then(
+      _$_ExternalLink(
+        label:
+            null == label
+                ? _value.label
+                : label // ignore: cast_nullable_to_non_nullable
+                    as String,
+        url:
+            freezed == url
+                ? _value.url
+                : url // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        icon:
+            freezed == icon
+                ? _value.icon
+                : icon // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        type:
+            null == type
+                ? _value.type
+                : type // ignore: cast_nullable_to_non_nullable
+                    as String,
+      ),
+    );
   }
 }
 
 /// @nodoc
 @JsonSerializable(createToJson: false)
 class _$_ExternalLink implements _ExternalLink {
-  const _$_ExternalLink(
-      {required this.label,
-      required this.url,
-      required this.icon,
-      required this.type});
+  const _$_ExternalLink({
+    required this.label,
+    required this.url,
+    required this.icon,
+    required this.type,
+  });
 
   factory _$_ExternalLink.fromJson(Map<String, dynamic> json) =>
       _$$_ExternalLinkFromJson(json);
@@ -175,11 +193,12 @@ class _$_ExternalLink implements _ExternalLink {
 }
 
 abstract class _ExternalLink implements ExternalLink {
-  const factory _ExternalLink(
-      {required final String label,
-      required final String? url,
-      required final String? icon,
-      required final String type}) = _$_ExternalLink;
+  const factory _ExternalLink({
+    required final String label,
+    required final String? url,
+    required final String? icon,
+    required final String type,
+  }) = _$_ExternalLink;
 
   factory _ExternalLink.fromJson(Map<String, dynamic> json) =
       _$_ExternalLink.fromJson;
