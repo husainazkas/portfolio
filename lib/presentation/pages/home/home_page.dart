@@ -1,6 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:url_launcher/link.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 import '../../blocs_cubits/contact_section/contact_section_bloc.dart';
@@ -124,19 +125,15 @@ class _HomePageState extends State<HomePage> {
                                       color: Colors.white,
                                       child: SizedBox.square(
                                         dimension: 48.0,
-                                        child: SocialButton(
-                                          link.icon,
-                                          iconSize: 20.0,
-                                          onPressed: () {
-                                            final url = link.url;
-                                            if (url != null && url.isNotEmpty) {
-                                              canLaunchUrlString(url).then((
-                                                value,
-                                              ) {
-                                                if (value) launchUrlString(url);
-                                              });
-                                            }
-                                          },
+                                        child: Link(
+                                          uri: Uri.tryParse(link.url ?? ''),
+                                          builder:
+                                              (context, followLink) =>
+                                                  SocialButton(
+                                                    link.icon,
+                                                    iconSize: 20.0,
+                                                    onPressed: followLink,
+                                                  ),
                                         ),
                                       ),
                                     );
@@ -373,16 +370,13 @@ class HomeFooter extends StatelessWidget {
                                 clipBehavior: Clip.antiAlias,
                                 shape: const CircleBorder(),
                                 color: Colors.white,
-                                child: SocialButton(
-                                  link.icon,
-                                  onPressed: () {
-                                    final url = link.url;
-                                    if (url != null && url.isNotEmpty) {
-                                      canLaunchUrlString(url).then((value) {
-                                        if (value) launchUrlString(url);
-                                      });
-                                    }
-                                  },
+                                child: Link(
+                                  uri: Uri.tryParse(link.url ?? ''),
+                                  builder:
+                                      (context, followLink) => SocialButton(
+                                        link.icon,
+                                        onPressed: followLink,
+                                      ),
                                 ),
                               );
                             },
@@ -407,7 +401,7 @@ class HomeFooter extends StatelessWidget {
                       TextSpan(
                         text: '@vinaysomawat',
                         style: const TextStyle(fontWeight: FontWeight.w700),
-                        recognizer:
+                        recognizer: 
                             TapGestureRecognizer()
                               ..onTap = () {
                                 const url = 'https://github.com/vinaysomawat';

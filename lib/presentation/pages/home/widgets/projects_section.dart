@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:url_launcher/url_launcher_string.dart';
+import 'package:url_launcher/link.dart';
 
 import '../../../../injector.dart';
 import '../../../blocs_cubits/projects_section/projects_section_bloc.dart';
@@ -85,6 +85,29 @@ class ProjectSection extends StatelessWidget {
                                                       ? radius
                                                       : Radius.zero;
                                               final p = e.projects[index ~/ 2];
+                                              if (p.url != null) {
+                                                return Link(
+                                                  uri: Uri.parse(p.url!),
+                                                  builder:
+                                                      (
+                                                        context,
+                                                        followLink,
+                                                      ) => _ProjectItemCard(
+                                                        borderRadius:
+                                                            BorderRadius.vertical(
+                                                              top: rTop,
+                                                              bottom: rBottom,
+                                                            ),
+                                                        imageUrl: p.thumb ?? '',
+                                                        title: p.title,
+                                                        description:
+                                                            p.description,
+                                                        tags: p.tags,
+                                                        onTap: followLink,
+                                                      ),
+                                                );
+                                              }
+
                                               return _ProjectItemCard(
                                                 borderRadius:
                                                     BorderRadius.vertical(
@@ -95,17 +118,7 @@ class ProjectSection extends StatelessWidget {
                                                 title: p.title,
                                                 description: p.description,
                                                 tags: p.tags,
-                                                onTap: () {
-                                                  if (p.url != null) {
-                                                    canLaunchUrlString(
-                                                      p.url!,
-                                                    ).then((value) {
-                                                      if (value) {
-                                                        launchUrlString(p.url!);
-                                                      }
-                                                    });
-                                                  }
-                                                },
+                                                onTap: () {},
                                               );
                                             },
                                           ),

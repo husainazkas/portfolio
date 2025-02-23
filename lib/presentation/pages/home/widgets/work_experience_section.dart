@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:timelines/timelines.dart';
-import 'package:url_launcher/url_launcher_string.dart';
+import 'package:url_launcher/link.dart';
 
 import '../../../../domain/work_experience/entities/work_experience.dart';
 import '../../../../injector.dart';
@@ -93,31 +93,23 @@ class _ExperienceItemView extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      InkWell(
-                        onTap:
-                            _experience.url != null
-                                ? () {
-                                  if (_experience.url != null) {
-                                    canLaunchUrlString(_experience.url!).then((
-                                      value,
-                                    ) {
-                                      if (value) {
-                                        launchUrlString(_experience.url!);
-                                      }
-                                    });
-                                  }
-                                }
-                                : null,
-                        child: Text(
-                          _experience.name,
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                          style: const TextStyle(
-                            fontSize: 16.0,
-                            fontWeight: FontWeight.w600,
-                            decoration: TextDecoration.underline,
-                          ),
-                        ),
+                      Link(
+                        uri: Uri.tryParse(_experience.url ?? ''),
+                        target: LinkTarget.blank,
+                        builder:
+                            (context, followLink) => InkWell(
+                              onTap: followLink,
+                              child: Text(
+                                _experience.name,
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                                style: const TextStyle(
+                                  fontSize: 16.0,
+                                  fontWeight: FontWeight.w600,
+                                  decoration: TextDecoration.underline,
+                                ),
+                              ),
+                            ),
                       ),
                       Text(
                         _experience.period,
