@@ -102,7 +102,7 @@ class _SkillBar extends StatelessWidget {
         theme.isDarkMode ? theme.colorScheme.onSurface : headerColor(context);
     final backgroundColor = color.withValues(alpha: .35);
     return Column(
-      mainAxisSize: MainAxisSize.min,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Row(
