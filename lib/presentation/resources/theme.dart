@@ -21,14 +21,14 @@ class AppTheme {
         primaryContainer: ColorPalette.primaryContainerColor,
         secondary: ColorPalette.secondaryColor,
         onSecondary: Colors.white,
-        background: ColorPalette.backgroundColor,
-        onBackground: ColorPalette.onBackgroundColor,
+        // background: ColorPalette.backgroundColor,
+        // onBackground: ColorPalette.onBackgroundColor,
         surface: ColorPalette.surfaceColor,
         onSurface: ColorPalette.onSurfaceColor,
       ),
       primaryColor: ColorPalette.primaryColor,
       scaffoldBackgroundColor: ColorPalette.backgroundColor,
-      dividerColor: ColorPalette.borderColor,
+      dividerColor: ColorPalette.onSurfaceColor,
       unselectedWidgetColor: ColorPalette.disabledColor,
       shadowColor: ColorPalette.borderColor,
       disabledColor: ColorPalette.disabledColor,
@@ -44,14 +44,14 @@ class AppTheme {
         primaryContainer: ColorPalette.primaryContainerColor,
         secondary: ColorPalette.secondaryColor,
         onSecondary: ColorPalette.onSecondaryColor,
-        background: ColorPalette.darkBackgroundColor,
-        onBackground: ColorPalette.onDarkBackgroundColor,
+        // background: ColorPalette.darkBackgroundColor,
+        // onBackground: ColorPalette.onDarkBackgroundColor,
         surface: ColorPalette.surfaceColor,
         onSurface: ColorPalette.onSurfaceColor,
       ),
       primaryColor: ColorPalette.darkPrimaryColor,
       scaffoldBackgroundColor: ColorPalette.darkBackgroundColor,
-      dividerColor: ColorPalette.borderColor,
+      dividerColor: ColorPalette.onSurfaceColor,
       unselectedWidgetColor: ColorPalette.disabledColor,
     );
     return _buildThemeData(base);
@@ -82,16 +82,16 @@ class AppTheme {
         trackColor: _toggleableActiveColor(),
       ),
       radioTheme: RadioThemeData(fillColor: _toggleableActiveColor()),
+      dividerTheme: DividerThemeData(color: base.dividerColor),
     );
   }
 
-  static MaterialStateProperty<Color?> _toggleableActiveColor() {
-    return MaterialStateProperty.resolveWith<Color?>(
-        (Set<MaterialState> states) {
-      if (states.contains(MaterialState.disabled)) {
+  static WidgetStateProperty<Color?> _toggleableActiveColor() {
+    return WidgetStateProperty.resolveWith<Color?>((Set<WidgetState> states) {
+      if (states.contains(WidgetState.disabled)) {
         return null;
       }
-      if (states.contains(MaterialState.selected)) {
+      if (states.contains(WidgetState.selected)) {
         return ColorPalette.secondaryColor;
       }
       return null;
@@ -100,9 +100,10 @@ class AppTheme {
 
   static ChipThemeData _buildChipTheme(ThemeData base) {
     return ChipThemeData(
-      backgroundColor: base.brightness == Brightness.dark
-          ? base.colorScheme.background
-          : base.colorScheme.surface,
+      backgroundColor:
+          base.brightness == Brightness.dark
+              ? base.scaffoldBackgroundColor
+              : base.colorScheme.surface,
       disabledColor: base.disabledColor,
       selectedColor: base.colorScheme.secondary,
       secondarySelectedColor: base.colorScheme.secondary,
@@ -110,9 +111,10 @@ class AppTheme {
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 0),
       shape: StadiumBorder(
         side: BorderSide(
-          color: base.brightness == Brightness.dark
-              ? base.colorScheme.secondary
-              : Colors.white,
+          color:
+              base.brightness == Brightness.dark
+                  ? base.colorScheme.secondary
+                  : Colors.white,
         ),
       ),
       secondaryLabelStyle: TextStyle(
@@ -121,9 +123,10 @@ class AppTheme {
       ),
       labelStyle: TextStyle(
         fontSize: 10,
-        color: base.brightness == Brightness.dark
-            ? base.colorScheme.secondary
-            : base.colorScheme.onSecondary,
+        color:
+            base.brightness == Brightness.dark
+                ? base.colorScheme.secondary
+                : base.colorScheme.onSecondary,
         fontWeight: FontWeight.w600,
       ),
       brightness: base.brightness,
@@ -132,8 +135,8 @@ class AppTheme {
 
   static CheckboxThemeData _buildCheckboxTheme(ThemeData base) {
     return CheckboxThemeData(
-      fillColor: MaterialStateProperty.all<Color>(base.colorScheme.surface),
-      checkColor: MaterialStateProperty.all<Color>(base.colorScheme.secondary),
+      fillColor: WidgetStateProperty.all<Color>(base.colorScheme.surface),
+      checkColor: WidgetStateProperty.all<Color>(base.colorScheme.secondary),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
       side: BorderSide(color: base.disabledColor),
     );
@@ -141,14 +144,12 @@ class AppTheme {
 
   static AppBarTheme _buildAppBarTheme(ThemeData theme) {
     return AppBarTheme(
-      color: theme.colorScheme.background,
+      color: theme.scaffoldBackgroundColor,
       titleTextStyle: TextStyle(
         color: theme.colorScheme.onPrimary,
         fontWeight: FontWeight.w600,
       ),
-      iconTheme: theme.iconTheme.copyWith(
-        color: theme.colorScheme.secondary,
-      ),
+      iconTheme: theme.iconTheme.copyWith(color: theme.colorScheme.secondary),
     );
   }
 
@@ -167,15 +168,15 @@ class AppTheme {
         errorStyle: TextStyle(color: theme.colorScheme.error),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
-          borderSide: BorderSide(color: theme.dividerColor),
+          borderSide: const BorderSide(color: ColorPalette.borderColor),
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
-          borderSide: BorderSide(color: theme.dividerColor),
+          borderSide: const BorderSide(color: ColorPalette.borderColor),
         ),
         disabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
-          borderSide: BorderSide(color: theme.dividerColor),
+          borderSide: const BorderSide(color: ColorPalette.borderColor),
         ),
       );
 
@@ -189,78 +190,73 @@ class AppTheme {
       );
 
   static OutlinedButtonThemeData _buildOutlinedButtonThemeData(
-          ThemeData theme) =>
-      OutlinedButtonThemeData(
-        style: OutlinedButton.styleFrom(
-          elevation: 0,
-          padding: const EdgeInsets.fromLTRB(12, 8, 12, 8),
-          shape: const StadiumBorder(),
-        ).copyWith(
-          backgroundColor: MaterialStateProperty.resolveWith<Color?>(
-            (Set<MaterialState> states) {
-              if (states.contains(MaterialState.pressed)) {
-                return theme.colorScheme.primary.withOpacity(0.5);
-              }
-              return null; // Use the component's default.
-            },
-          ),
-          foregroundColor: MaterialStateProperty.resolveWith<Color?>(
-            (Set<MaterialState> states) {
-              if (states.contains(MaterialState.disabled)) {
-                return theme.colorScheme.onSurface;
-              }
-              return theme.colorScheme.primary;
-            },
-          ),
-        ),
-      );
+    ThemeData theme,
+  ) => OutlinedButtonThemeData(
+    style: OutlinedButton.styleFrom(
+      elevation: 0,
+      padding: const EdgeInsets.fromLTRB(12, 8, 12, 8),
+      shape: const StadiumBorder(),
+    ).copyWith(
+      backgroundColor: WidgetStateProperty.resolveWith<Color?>((
+        Set<WidgetState> states,
+      ) {
+        if (states.contains(WidgetState.pressed)) {
+          return theme.colorScheme.primary.withValues(alpha: 0.5);
+        }
+        return null; // Use the component's default.
+      }),
+      foregroundColor: WidgetStateProperty.resolveWith<Color?>((
+        Set<WidgetState> states,
+      ) {
+        if (states.contains(WidgetState.disabled)) {
+          return theme.colorScheme.onSurface;
+        }
+        return theme.colorScheme.primary;
+      }),
+    ),
+  );
 
   static ElevatedButtonThemeData _buildElevatedButtonThemeData(
-          ThemeData theme) =>
-      ElevatedButtonThemeData(
-        style: ElevatedButton.styleFrom(
-          textStyle: const TextStyle(
-            fontSize: 12,
-            fontWeight: FontWeight.w500,
-          ),
-          padding: const EdgeInsets.fromLTRB(12, 8, 12, 8),
-          elevation: 0,
-          shape: const StadiumBorder(),
-        ).copyWith(
-          backgroundColor: MaterialStateProperty.resolveWith<Color?>(
-            (Set<MaterialState> states) {
-              if (states.contains(MaterialState.pressed)) {
-                return theme.colorScheme.primary.withOpacity(0.5);
-              } else if (states.contains(MaterialState.disabled)) {
-                return theme.disabledColor;
-              }
-              return null; // Use the component's default.
-            },
-          ),
-          foregroundColor: MaterialStateProperty.resolveWith<Color?>(
-            (Set<MaterialState> states) {
-              if (states.contains(MaterialState.disabled)) {
-                return theme.colorScheme.onSurface;
-              }
-              return theme.colorScheme.background;
-            },
-          ),
-        ),
-      );
+    ThemeData theme,
+  ) => ElevatedButtonThemeData(
+    style: ElevatedButton.styleFrom(
+      textStyle: const TextStyle(fontSize: 12, fontWeight: FontWeight.w500),
+      padding: const EdgeInsets.fromLTRB(12, 8, 12, 8),
+      elevation: 0,
+      shape: const StadiumBorder(),
+    ).copyWith(
+      backgroundColor: WidgetStateProperty.resolveWith<Color?>((
+        Set<WidgetState> states,
+      ) {
+        if (states.contains(WidgetState.pressed)) {
+          return theme.colorScheme.primary.withValues(alpha: 0.5);
+        } else if (states.contains(WidgetState.disabled)) {
+          return theme.disabledColor;
+        }
+        return null; // Use the component's default.
+      }),
+      foregroundColor: WidgetStateProperty.resolveWith<Color?>((
+        Set<WidgetState> states,
+      ) {
+        if (states.contains(WidgetState.disabled)) {
+          return theme.colorScheme.onSurface;
+        }
+        return theme.scaffoldBackgroundColor;
+      }),
+    ),
+  );
 
   static BottomNavigationBarThemeData _buildBottomNavigationBarThemeData(
-          ThemeData theme) =>
-      BottomNavigationBarThemeData(
-        selectedItemColor: theme.colorScheme.primary,
-        unselectedItemColor: theme.colorScheme.onSurface,
-        elevation: 10,
-        backgroundColor: theme.colorScheme.background,
-      );
+    ThemeData theme,
+  ) => BottomNavigationBarThemeData(
+    selectedItemColor: theme.colorScheme.primary,
+    unselectedItemColor: theme.colorScheme.onSurface,
+    elevation: 10,
+    backgroundColor: theme.scaffoldBackgroundColor,
+  );
 
   static IconThemeData _buildIconThemeData(ThemeData theme) =>
-      theme.iconTheme.copyWith(
-        color: theme.primaryColor,
-      );
+      theme.iconTheme.copyWith(color: theme.primaryColor);
 
   static TextTheme _buildTextTheme(ThemeData base) {
     final lato = GoogleFonts.lato().copyWith(fontWeight: FontWeight.w700);
@@ -271,8 +267,9 @@ class AppTheme {
           bodySmall: base.textTheme.bodySmall?.merge(lato) ?? lato,
         )
         .apply(
-          displayColor: base.colorScheme.onBackground,
-          bodyColor: base.colorScheme.onBackground,
+          displayColor: base.colorScheme.onSurface,
+          bodyColor: base.colorScheme.onSurface,
+          decorationColor: base.colorScheme.onSurface,
         );
   }
 }

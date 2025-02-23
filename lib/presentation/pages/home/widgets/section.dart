@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 
+import '../../../resources/colors.dart';
+import '../../../utils/color_utils.dart';
+
 class Section extends StatelessWidget {
-  const Section({
-    super.key,
-    this.titleKey,
-    required this.title,
-    this.children,
-  });
+  const Section({super.key, this.titleKey, required this.title, this.children});
 
   final Key? titleKey;
   final String title;
@@ -14,6 +12,7 @@ class Section extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Padding(
       padding: const EdgeInsets.only(left: 20.0),
       child: Column(
@@ -25,7 +24,12 @@ class Section extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(left: 16.0, right: 36.0),
               child: DefaultTextStyle.merge(
-                style: Theme.of(context).textTheme.titleSmall,
+                style: theme.textTheme.titleSmall?.copyWith(
+                  color:
+                      theme.isDarkMode
+                          ? null
+                          : ColorPalette.darkPrimaryColor.withValues(alpha: .8),
+                ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: children!,

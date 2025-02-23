@@ -52,28 +52,25 @@ class TimelineItemView extends StatelessWidget {
                   child: TimelineNode(
                     direction: Axis.vertical,
                     indicator: Padding(
-                      padding: const EdgeInsets.symmetric(
-                        vertical: 8.0,
-                      ),
+                      padding: const EdgeInsets.symmetric(vertical: 8.0),
                       child: Indicator.dot(
                         size: 8.0,
-                        color: textColor ??
-                            theme.colorScheme.onBackground.withOpacity(.8),
+                        color: textColor ?? theme.colorScheme.onSurface,
                       ),
                     ),
                     indicatorPosition: 0.0,
-                    startConnector: showStartLine
-                        ? Connector.solidLine(
-                            color: textColor ??
-                                theme.colorScheme.onBackground.withOpacity(.35),
-                          )
-                        : null,
-                    endConnector: showEndLine
-                        ? Connector.solidLine(
-                            color: textColor ??
-                                theme.colorScheme.onBackground.withOpacity(.35),
-                          )
-                        : null,
+                    startConnector:
+                        showStartLine
+                            ? Connector.solidLine(
+                              color: textColor ?? theme.colorScheme.onSurface,
+                            )
+                            : null,
+                    endConnector:
+                        showEndLine
+                            ? Connector.solidLine(
+                              color: textColor ?? theme.colorScheme.onSurface,
+                            )
+                            : null,
                   ),
                 ),
               Expanded(
@@ -93,9 +90,10 @@ class TimelineItemView extends StatelessWidget {
                           if (data.subtitle != null)
                             Text(
                               data.subtitle!,
-                              style:
-                                  const TextStyle(fontWeight: FontWeight.w300),
-                              textScaleFactor: .95,
+                              style: const TextStyle(
+                                fontWeight: FontWeight.w300,
+                              ),
+                              textScaler: const TextScaler.linear(.95),
                             ),
                           if (data.description != null) ...[
                             const SizedBox(height: 4.0),
@@ -125,7 +123,7 @@ class TimelineItemView extends StatelessWidget {
                               ),
                             ),
                           ],
-                          const SizedBox(height: 20.0)
+                          const SizedBox(height: 20.0),
                         ],
                       ),
                     ),

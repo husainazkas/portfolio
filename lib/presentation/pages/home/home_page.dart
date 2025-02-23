@@ -58,11 +58,14 @@ class _HomePageState extends State<HomePage> {
     final bodyHasSize = _bodyBox != null && _bodyBox!.hasSize;
     final bodyOffset =
         (bodyHasSize ? _bodyBox : null)?.localToGlobal(Offset.zero) ??
-            Offset.zero;
+        Offset.zero;
     final diff = bodyOffset.dy - kToolbarHeight;
-    final transformation = bodyOffset.dy > kToolbarHeight || offset == 0.0
-        ? 0.0
-        : ((diff.isNegative ? diff.abs() : 0.0) / 50).clamp(0, 1).toDouble();
+    final transformation =
+        bodyOffset.dy > kToolbarHeight || offset == 0.0
+            ? 0.0
+            : ((diff.isNegative ? diff.abs() : 0.0) / 50)
+                .clamp(0, 1)
+                .toDouble();
     return transformation;
   }
 
@@ -84,55 +87,65 @@ class _HomePageState extends State<HomePage> {
             constraints.maxWidth > 800 ? 300.0 : constraints.maxWidth * .35;
         final isMobileSize = constraints.maxWidth < 600;
         return Scaffold(
-          drawer: isMobileSize
-              ? SideBar(
-                  width: 300.0,
-                  items: HomePage._sections,
-                  onTap: (context, i) {
-                    _handleScrollNavigation(i, alignment: .1);
-                    Scaffold.of(context).closeDrawer();
-                  },
-                )
-              : null,
-          floatingActionButton: constraints.maxWidth >= 900
-              ? null
-              : BlocBuilder<ContactSectionBloc, ContactSectionState>(
-                  builder: (context, state) => state.maybeWhen(
-                    success: (contact) => Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: List.generate(
-                        contact.externals.length * 2 - 1,
-                        (index) {
-                          if (index.isOdd) return const SizedBox(height: 12.0);
-                          final link = contact.externals[index ~/ 2];
-                          if (link.icon == null) return const SizedBox();
-                          return Material(
-                            type: MaterialType.button,
-                            clipBehavior: Clip.antiAlias,
-                            shape: const CircleBorder(),
-                            color: Colors.white,
-                            child: SizedBox.square(
-                              dimension: 48.0,
-                              child: SocialButton(
-                                link.icon,
-                                iconSize: 20.0,
-                                onPressed: () {
-                                  final url = link.url;
-                                  if (url != null && url.isNotEmpty) {
-                                    canLaunchUrlString(url).then((value) {
-                                      if (value) launchUrlString(url);
-                                    });
-                                  }
-                                },
+          drawer:
+              isMobileSize
+                  ? SideBar(
+                    width: 300.0,
+                    items: HomePage._sections,
+                    onTap: (context, i) {
+                      _handleScrollNavigation(i, alignment: .1);
+                      Scaffold.of(context).closeDrawer();
+                    },
+                  )
+                  : null,
+          floatingActionButton:
+              constraints.maxWidth >= 900
+                  ? null
+                  : BlocBuilder<ContactSectionBloc, ContactSectionState>(
+                    builder:
+                        (context, state) => state.maybeWhen(
+                          success:
+                              (contact) => Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: List.generate(
+                                  contact.externals.length * 2 - 1,
+                                  (index) {
+                                    if (index.isOdd) {
+                                      return const SizedBox(height: 12.0);
+                                    }
+                                    final link = contact.externals[index ~/ 2];
+                                    if (link.icon == null) {
+                                      return const SizedBox();
+                                    }
+                                    return Material(
+                                      type: MaterialType.button,
+                                      clipBehavior: Clip.antiAlias,
+                                      shape: const CircleBorder(),
+                                      color: Colors.white,
+                                      child: SizedBox.square(
+                                        dimension: 48.0,
+                                        child: SocialButton(
+                                          link.icon,
+                                          iconSize: 20.0,
+                                          onPressed: () {
+                                            final url = link.url;
+                                            if (url != null && url.isNotEmpty) {
+                                              canLaunchUrlString(url).then((
+                                                value,
+                                              ) {
+                                                if (value) launchUrlString(url);
+                                              });
+                                            }
+                                          },
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                ),
                               ),
-                            ),
-                          );
-                        },
-                      ),
-                    ),
-                    orElse: () => const SizedBox(),
+                          orElse: () => const SizedBox(),
+                        ),
                   ),
-                ),
           body: Row(
             children: [
               if (!isMobileSize)
@@ -159,31 +172,36 @@ class _HomePageState extends State<HomePage> {
                     if (isMobileSize)
                       PreferredSize(
                         preferredSize: const Size.fromHeight(kToolbarHeight),
-                        child: BlocBuilder<ScrollListenerCubit,
-                            ScrollListenerState>(
+                        child: BlocBuilder<
+                          ScrollListenerCubit,
+                          ScrollListenerState
+                        >(
                           bloc: _scrollCubit,
-                          builder: (context, state) => Container(
-                            height: kToolbarHeight,
-                            width: double.infinity,
-                            color: sideBarColor(context)
-                                .withOpacity(_getTransformation(state.offset)),
-                            child: Material(
-                              type: MaterialType.transparency,
-                              child: Align(
-                                alignment: Alignment.centerLeft,
-                                child: IconButton(
-                                  onPressed: () =>
-                                      Scaffold.of(context).openDrawer(),
-                                  icon: Icon(
-                                    Icons.menu,
-                                    color: theme.colorScheme.onSurface,
+                          builder:
+                              (context, state) => Container(
+                                height: kToolbarHeight,
+                                width: double.infinity,
+                                color: sideBarColor(context).withValues(
+                                  alpha: _getTransformation(state.offset),
+                                ),
+                                child: Material(
+                                  type: MaterialType.transparency,
+                                  child: Align(
+                                    alignment: Alignment.centerLeft,
+                                    child: IconButton(
+                                      onPressed:
+                                          () =>
+                                              Scaffold.of(context).openDrawer(),
+                                      icon: Icon(
+                                        Icons.menu,
+                                        color: theme.colorScheme.onSurface,
+                                      ),
+                                    ),
                                   ),
                                 ),
                               ),
-                            ),
-                          ),
                         ),
-                      )
+                      ),
                   ],
                 ),
               ),
@@ -214,9 +232,10 @@ class HomeHeader extends StatelessWidget {
     return Container(
       width: double.infinity,
       color: isMobileSize ? sideBarColor(context) : headerColor(context),
-      padding: isMobileSize
-          ? const EdgeInsets.fromLTRB(40.0, 20.0, 20.0, 20.0)
-          : EdgeInsets.fromLTRB(36.0, 20.0, _rightPadding(width), 20.0),
+      padding:
+          isMobileSize
+              ? const EdgeInsets.fromLTRB(40.0, 20.0, 20.0, 20.0)
+              : EdgeInsets.fromLTRB(36.0, 20.0, _rightPadding(width), 20.0),
       child: DefaultTextStyle.merge(
         style: TextStyle(color: theme.colorScheme.onSurface),
         child: Column(
@@ -224,13 +243,14 @@ class HomeHeader extends StatelessWidget {
           children: [
             Text(
               'Hello \u{01f44b}',
-              style: isMobileSize
-                  ? null
-                  : theme.textTheme.headlineMedium?.copyWith(
-                      fontFamily: theme.textTheme.titleSmall?.fontFamily,
-                      fontWeight: FontWeight.w700,
-                      color: ColorPalette.darkPrimaryColor,
-                    ),
+              style:
+                  isMobileSize
+                      ? null
+                      : theme.textTheme.headlineMedium?.copyWith(
+                        fontFamily: theme.textTheme.titleSmall?.fontFamily,
+                        fontWeight: FontWeight.w700,
+                        color: ColorPalette.darkPrimaryColor,
+                      ),
             ),
             SizedBox(height: isMobileSize ? 12.0 : 20.0),
             const Text.rich(
@@ -242,16 +262,12 @@ class HomeHeader extends StatelessWidget {
                   ),
                   TextSpan(
                     text: 'Mobile Apps Developer',
-                    style: TextStyle(
-                      fontWeight: FontWeight.w700,
-                    ),
+                    style: TextStyle(fontWeight: FontWeight.w700),
                   ),
                   TextSpan(text: ' at Startup Company specialized in '),
                   TextSpan(
                     text: 'Flutter Applications',
-                    style: TextStyle(
-                      fontWeight: FontWeight.w700,
-                    ),
+                    style: TextStyle(fontWeight: FontWeight.w700),
                   ),
                   TextSpan(text: '.'),
                 ],
@@ -264,16 +280,12 @@ class HomeHeader extends StatelessWidget {
                   TextSpan(text: 'I\'m a '),
                   TextSpan(
                     text: 'developer',
-                    style: TextStyle(
-                      fontWeight: FontWeight.w700,
-                    ),
+                    style: TextStyle(fontWeight: FontWeight.w700),
                   ),
                   TextSpan(text: ' and a programming enthusiast especially '),
                   TextSpan(
                     text: 'Flutter',
-                    style: TextStyle(
-                      fontWeight: FontWeight.w700,
-                    ),
+                    style: TextStyle(fontWeight: FontWeight.w700),
                   ),
                   TextSpan(
                     text:
@@ -290,11 +302,8 @@ class HomeHeader extends StatelessWidget {
 }
 
 class HomeBody extends StatelessWidget {
-  const HomeBody(
-    this.isMobileSize, {
-    super.key,
-    required this.sectionKeys,
-  }) : assert(sectionKeys.length > 0);
+  const HomeBody(this.isMobileSize, {super.key, required this.sectionKeys})
+    : assert(sectionKeys.length > 0);
 
   final bool isMobileSize;
   final List<GlobalKey<State<StatefulWidget>>> sectionKeys;
@@ -308,8 +317,10 @@ class HomeBody extends StatelessWidget {
         const SizedBox(height: 24.0),
         ProjectSection(HomePage._sections[1].label, titleKey: sectionKeys[1]),
         const SizedBox(height: 24.0),
-        WorkExperienceSection(HomePage._sections[2].label,
-            titleKey: sectionKeys[2]),
+        WorkExperienceSection(
+          HomePage._sections[2].label,
+          titleKey: sectionKeys[2],
+        ),
         const SizedBox(height: 24.0),
         EducationSection(HomePage._sections[3].label, titleKey: sectionKeys[3]),
         const SizedBox(height: 24.0),
@@ -340,34 +351,40 @@ class HomeFooter extends StatelessWidget {
         children: [
           if (constraints.maxWidth >= 900)
             BlocBuilder<ContactSectionBloc, ContactSectionState>(
-              builder: (context, state) => state.maybeWhen(
-                success: (contact) => Row(
-                  children:
-                      List.generate(contact.externals.length * 2 - 1, (index) {
-                    if (index.isOdd) return const SizedBox(width: 12.0);
-                    final link = contact.externals[index ~/ 2];
-                    if (link.icon == null) return const SizedBox();
-                    return Material(
-                      type: MaterialType.button,
-                      clipBehavior: Clip.antiAlias,
-                      shape: const CircleBorder(),
-                      color: Colors.white,
-                      child: SocialButton(
-                        link.icon,
-                        onPressed: () {
-                          final url = link.url;
-                          if (url != null && url.isNotEmpty) {
-                            canLaunchUrlString(url).then((value) {
-                              if (value) launchUrlString(url);
-                            });
-                          }
-                        },
-                      ),
-                    );
-                  }),
-                ),
-                orElse: () => const SizedBox(),
-              ),
+              builder:
+                  (context, state) => state.maybeWhen(
+                    success:
+                        (contact) => Row(
+                          children: List.generate(
+                            contact.externals.length * 2 - 1,
+                            (index) {
+                              if (index.isOdd) {
+                                return const SizedBox(width: 12.0);
+                              }
+                              final link = contact.externals[index ~/ 2];
+                              if (link.icon == null) return const SizedBox();
+                              return Material(
+                                type: MaterialType.button,
+                                clipBehavior: Clip.antiAlias,
+                                shape: const CircleBorder(),
+                                color: Colors.white,
+                                child: SocialButton(
+                                  link.icon,
+                                  onPressed: () {
+                                    final url = link.url;
+                                    if (url != null && url.isNotEmpty) {
+                                      canLaunchUrlString(url).then((value) {
+                                        if (value) launchUrlString(url);
+                                      });
+                                    }
+                                  },
+                                ),
+                              );
+                            },
+                          ),
+                        ),
+                    orElse: () => const SizedBox(),
+                  ),
             ),
           DefaultTextStyle.merge(
             style: const TextStyle(color: Colors.white),
@@ -385,15 +402,16 @@ class HomeFooter extends StatelessWidget {
                       TextSpan(
                         text: '@vinaysomawat',
                         style: const TextStyle(fontWeight: FontWeight.w700),
-                        recognizer: TapGestureRecognizer()
-                          ..onTap = () {
-                            const url = 'https://github.com/vinaysomawat';
-                            canLaunchUrlString(url).then((value) {
-                              if (value) launchUrlString(url);
-                            });
-                          },
+                        recognizer:
+                            TapGestureRecognizer()
+                              ..onTap = () {
+                                const url = 'https://github.com/vinaysomawat';
+                                canLaunchUrlString(url).then((value) {
+                                  if (value) launchUrlString(url);
+                                });
+                              },
                       ),
-                      const TextSpan(text: ' for the reference')
+                      const TextSpan(text: ' for the reference'),
                     ],
                   ),
                   textAlign: TextAlign.center,
