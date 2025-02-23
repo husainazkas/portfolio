@@ -90,7 +90,7 @@
             ]
         },
         {
-            "header": "Another Programming",
+            "header": "Other Programming",
             "contents": [
                 {
                     "title": "Slidable Button (Flutter Package)",
