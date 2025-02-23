@@ -94,7 +94,7 @@ class _HomePageState extends State<HomePage> {
                     width: 300.0,
                     items: HomePage._sections,
                     onTap: (context, i) {
-                      _handleScrollNavigation(i, alignment: .1);
+                      _handleScrollNavigation(i, alignment: .12);
                       Scaffold.of(context).closeDrawer();
                     },
                   )
@@ -170,7 +170,7 @@ class _HomePageState extends State<HomePage> {
                           handleScrollNavigationFunc:
                               (value) => _handleScrollNavigation(
                                 value,
-                                alignment: .02,
+                                alignment: isMobileSize ? .12 : .02,
                               ),
                         ),
                         HomeFooter(constraints),
