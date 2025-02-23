@@ -82,6 +82,7 @@ class TimelineItemView extends StatelessWidget {
                       padding: EdgeInsets.only(
                         left: showStartLine || showEndLine ? 20.0 : 0.0,
                         top: 4.0,
+                        bottom: 20.0,
                       ),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -123,7 +124,6 @@ class TimelineItemView extends StatelessWidget {
                               ),
                             ),
                           ],
-                          const SizedBox(height: 20.0),
                         ],
                       ),
                     ),
