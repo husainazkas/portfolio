@@ -167,6 +167,11 @@ class _HomePageState extends State<HomePage> {
                           isMobileSize,
                           key: _bodyKey,
                           sectionKeys: _sectionKeys,
+                          handleScrollNavigationFunc:
+                              (value) => _handleScrollNavigation(
+                                value,
+                                alignment: .02,
+                              ),
                         ),
                         HomeFooter(constraints),
                       ],
@@ -304,11 +309,16 @@ class HomeHeader extends StatelessWidget {
 }
 
 class HomeBody extends StatelessWidget {
-  const HomeBody(this.isMobileSize, {super.key, required this.sectionKeys})
-    : assert(sectionKeys.length > 0);
+  const HomeBody(
+    this.isMobileSize, {
+    super.key,
+    required this.sectionKeys,
+    this.handleScrollNavigationFunc,
+  }) : assert(sectionKeys.length > 0);
 
   final bool isMobileSize;
   final List<GlobalKey<State<StatefulWidget>>> sectionKeys;
+  final ValueChanged<int>? handleScrollNavigationFunc;
 
   @override
   Widget build(BuildContext context) {
@@ -317,7 +327,24 @@ class HomeBody extends StatelessWidget {
         SizedBox(height: isMobileSize ? 20.0 : 38.0),
         SkillsSection(HomePage._sections[0].label, titleKey: sectionKeys[0]),
         const SizedBox(height: 24.0),
-        ProjectSection(HomePage._sections[1].label, titleKey: sectionKeys[1]),
+        ProjectSection(
+          HomePage._sections[1].label,
+          titleKey: sectionKeys[1],
+          onHasdata: (value) {
+            if (sectionKeys.length > 4) {
+              sectionKeys.removeRange(5, sectionKeys.length);
+            }
+            sectionKeys.addAll(value);
+          },
+          onDataFocused: (value) {
+            if (sectionKeys.length > 4) {
+              Future.delayed(
+                kThemeAnimationDuration,
+                () => handleScrollNavigationFunc?.call(value + 5),
+              );
+            }
+          },
+        ),
         const SizedBox(height: 24.0),
         WorkExperienceSection(
           HomePage._sections[2].label,
@@ -401,7 +428,7 @@ class HomeFooter extends StatelessWidget {
                       TextSpan(
                         text: '@vinaysomawat',
                         style: const TextStyle(fontWeight: FontWeight.w700),
-                        recognizer: 
+                        recognizer:
                             TapGestureRecognizer()
                               ..onTap = () {
                                 const url = 'https://github.com/vinaysomawat';

@@ -10,10 +10,18 @@ import '../../../widgets/expandable_group.dart';
 import 'section.dart';
 
 class ProjectSection extends StatelessWidget {
-  const ProjectSection(this.title, {super.key, this.titleKey});
+  const ProjectSection(
+    this.title, {
+    super.key,
+    this.titleKey,
+    this.onHasdata,
+    this.onDataFocused,
+  });
 
   final Key? titleKey;
   final String title;
+  final ValueChanged<List<GlobalKey>>? onHasdata;
+  final ValueChanged<int>? onDataFocused;
 
   @override
   Widget build(BuildContext context) {
@@ -40,6 +48,12 @@ class ProjectSection extends StatelessWidget {
                   success: (group) {
                     if (group.isEmpty) return const SizedBox();
 
+                    final List<GlobalKey> itemKeys = [];
+                    for (final _ in group) {
+                      itemKeys.add(GlobalKey());
+                    }
+                    onHasdata?.call(itemKeys);
+
                     return Container(
                       padding: const EdgeInsets.all(8.0),
                       decoration: BoxDecoration(
@@ -53,19 +67,21 @@ class ProjectSection extends StatelessWidget {
                           Radius.circular(12.0),
                         ),
                         child: ExpandableGroup(
+                          onExpanded: onDataFocused,
                           items:
-                              group
+                              group.indexed
                                   .map(
                                     (e) => ExpandableItem(
+                                      key: itemKeys[e.$1],
                                       headerBuilder:
-                                          (isExpanded) => Text(e.header),
+                                          (isExpanded) => Text(e.$2.header),
                                       content: Padding(
                                         padding: const EdgeInsets.symmetric(
                                           vertical: 8.0,
                                         ),
                                         child: Column(
                                           children: List.generate(
-                                            e.projects.length * 2 - 1,
+                                            e.$2.projects.length * 2 - 1,
                                             (index) {
                                               if (index.isOdd) {
                                                 return const SizedBox(
@@ -81,10 +97,11 @@ class ProjectSection extends StatelessWidget {
                                                       : Radius.zero;
                                               final rBottom =
                                                   ((index ~/ 2) + 1) ==
-                                                          e.projects.length
+                                                          e.$2.projects.length
                                                       ? radius
                                                       : Radius.zero;
-                                              final p = e.projects[index ~/ 2];
+                                              final p =
+                                                  e.$2.projects[index ~/ 2];
                                               if (p.url != null) {
                                                 return Link(
                                                   uri: Uri.parse(p.url!),

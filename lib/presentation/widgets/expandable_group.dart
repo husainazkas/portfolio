@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 
 class ExpandableGroup extends StatefulWidget {
-  const ExpandableGroup({super.key, required this.items});
+  const ExpandableGroup({super.key, required this.items, this.onExpanded});
 
   final List<ExpandableItem> items;
+  final ValueChanged<int>? onExpanded;
 
   @override
   State<ExpandableGroup> createState() => _ExpandableGroupState();
@@ -26,6 +27,7 @@ class _ExpandableGroupState extends State<ExpandableGroup> {
         for (int i = 0; i < _isItemsExpanded.length; i++) {
           if (i == index) {
             _isItemsExpanded[index] = isExpanded;
+            if (isExpanded) widget.onExpanded?.call(index);
           } else {
             _isItemsExpanded[i] = false;
           }
@@ -39,6 +41,7 @@ class _ExpandableGroupState extends State<ExpandableGroup> {
           isExpanded: _isItemsExpanded[index],
           headerBuilder:
               (context, isExpanded) => Padding(
+                key: item.key,
                 padding: item.headerPadding
                     .resolve(direction)
                     .copyWith(right: 0.0),
@@ -68,11 +71,13 @@ class _ExpandableGroupState extends State<ExpandableGroup> {
 }
 
 class ExpandableItem {
+  final Key? key;
   final EdgeInsetsGeometry headerPadding;
   final Widget Function(bool isExpanded) headerBuilder;
   final Widget content;
 
   const ExpandableItem({
+    this.key,
     this.headerPadding = const EdgeInsets.all(16.0),
     required this.headerBuilder,
     required this.content,
