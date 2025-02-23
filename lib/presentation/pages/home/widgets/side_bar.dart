@@ -10,12 +10,14 @@ class SideBar extends StatelessWidget {
     super.key,
     required this.items,
     this.width = 304.0,
+    this.shape,
     this.onTap,
   }) : assert(items.length > 0);
 
   final List<SideBarMenuItem> items;
   final void Function(BuildContext context, int index)? onTap;
   final double width;
+  final ShapeBorder? shape;
 
   @override
   Widget build(BuildContext context) {
@@ -23,6 +25,7 @@ class SideBar extends StatelessWidget {
     final photoDimension = width * .6;
     return Drawer(
       width: width,
+      shape: shape,
       backgroundColor: sideBarColor(context),
       child: Column(
         children: [

@@ -151,6 +151,11 @@ class _HomePageState extends State<HomePage> {
               if (!isMobileSize)
                 SideBar(
                   width: sideBarWidth,
+                  shape: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.only(
+                      bottomRight: Radius.circular(16.0),
+                    ),
+                  ),
                   items: HomePage._sections,
                   onTap: (_, i) => _handleScrollNavigation(i, alignment: .02),
                 ),
